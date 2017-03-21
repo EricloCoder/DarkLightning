@@ -1,0 +1,574 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B4A040391E8197BD00C06084 /* DarkLightning.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A0402F1E8197BC00C06084 /* DarkLightning.framework */; };
+		B4A0403E1E8197BD00C06084 /* DarkLightningTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0403D1E8197BD00C06084 /* DarkLightningTests.swift */; };
+		B4A040681E81981C00C06084 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4A0404A1E81981C00C06084 /* Info.plist */; };
+		B4A040691E81981C00C06084 /* Connections.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0404D1E81981C00C06084 /* Connections.swift */; };
+		B4A0406A1E81981C00C06084 /* DevicePortDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0404E1E81981C00C06084 /* DevicePortDelegate.swift */; };
+		B4A0406B1E81981C00C06084 /* IncomingDataReaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0404F1E81981C00C06084 /* IncomingDataReaction.swift */; };
+		B4A0406C1E81981C00C06084 /* WriteStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A040501E81981C00C06084 /* WriteStream.swift */; };
+		B4A0406D1E81981C00C06084 /* CloseStreamReaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A040521E81981C00C06084 /* CloseStreamReaction.swift */; };
+		B4A0406E1E81981C00C06084 /* ClosingDevicePort.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A040541E81981C00C06084 /* ClosingDevicePort.swift */; };
+		B4A0406F1E81981C00C06084 /* DevicePort.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A040551E81981C00C06084 /* DevicePort.swift */; };
+		B4A040701E81981C00C06084 /* OpeningDevicePort.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A040561E81981C00C06084 /* OpeningDevicePort.swift */; };
+		B4A040711E81981C00C06084 /* WritingDevicePort.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A040571E81981C00C06084 /* WritingDevicePort.swift */; };
+		B4A040721E81981C00C06084 /* DisconnectStreamReaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A040581E81981C00C06084 /* DisconnectStreamReaction.swift */; };
+		B4A040731E81981C00C06084 /* InsertConnectionReaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A040591E81981C00C06084 /* InsertConnectionReaction.swift */; };
+		B4A040741E81981C00C06084 /* ReadStreamReaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0405A1E81981C00C06084 /* ReadStreamReaction.swift */; };
+		B4A040751E81981C00C06084 /* SocketConnections.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0405B1E81981C00C06084 /* SocketConnections.swift */; };
+		B4A040761E81981C00C06084 /* SocketStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0405C1E81981C00C06084 /* SocketStream.swift */; };
+		B4A040771E81981C00C06084 /* OOUInt16.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0405F1E81981C00C06084 /* OOUInt16.swift */; };
+		B4A040781E81981C00C06084 /* OOUInt32.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A040601E81981C00C06084 /* OOUInt32.swift */; };
+		B4A040791E81981C00C06084 /* CFSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A040621E81981C00C06084 /* CFSocket.swift */; };
+		B4A0407A1E81981C00C06084 /* Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A040631E81981C00C06084 /* Memory.swift */; };
+		B4A0407B1E81981C00C06084 /* NetworkUInt16.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A040641E81981C00C06084 /* NetworkUInt16.swift */; };
+		B4A0407C1E81981C00C06084 /* NetworkUInt32.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A040651E81981C00C06084 /* NetworkUInt32.swift */; };
+		B4A0407D1E81981C00C06084 /* StreamDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A040661E81981C00C06084 /* StreamDelegates.swift */; };
+		B4A0407E1E81981C00C06084 /* WriteStreamWrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A040671E81981C00C06084 /* WriteStreamWrap.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B4A0403A1E8197BD00C06084 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B4A040261E8197BC00C06084 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B4A0402E1E8197BC00C06084;
+			remoteInfo = DarkLightning;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B4A0402F1E8197BC00C06084 /* DarkLightning.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DarkLightning.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4A040381E8197BD00C06084 /* DarkLightningTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DarkLightningTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4A0403D1E8197BD00C06084 /* DarkLightningTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkLightningTests.swift; sourceTree = "<group>"; };
+		B4A0403F1E8197BD00C06084 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B4A0404A1E81981C00C06084 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B4A0404D1E81981C00C06084 /* Connections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connections.swift; sourceTree = "<group>"; };
+		B4A0404E1E81981C00C06084 /* DevicePortDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevicePortDelegate.swift; sourceTree = "<group>"; };
+		B4A0404F1E81981C00C06084 /* IncomingDataReaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomingDataReaction.swift; sourceTree = "<group>"; };
+		B4A040501E81981C00C06084 /* WriteStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteStream.swift; sourceTree = "<group>"; };
+		B4A040521E81981C00C06084 /* CloseStreamReaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseStreamReaction.swift; sourceTree = "<group>"; };
+		B4A040541E81981C00C06084 /* ClosingDevicePort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosingDevicePort.swift; sourceTree = "<group>"; };
+		B4A040551E81981C00C06084 /* DevicePort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevicePort.swift; sourceTree = "<group>"; };
+		B4A040561E81981C00C06084 /* OpeningDevicePort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpeningDevicePort.swift; sourceTree = "<group>"; };
+		B4A040571E81981C00C06084 /* WritingDevicePort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WritingDevicePort.swift; sourceTree = "<group>"; };
+		B4A040581E81981C00C06084 /* DisconnectStreamReaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisconnectStreamReaction.swift; sourceTree = "<group>"; };
+		B4A040591E81981C00C06084 /* InsertConnectionReaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsertConnectionReaction.swift; sourceTree = "<group>"; };
+		B4A0405A1E81981C00C06084 /* ReadStreamReaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadStreamReaction.swift; sourceTree = "<group>"; };
+		B4A0405B1E81981C00C06084 /* SocketConnections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketConnections.swift; sourceTree = "<group>"; };
+		B4A0405C1E81981C00C06084 /* SocketStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketStream.swift; sourceTree = "<group>"; };
+		B4A0405F1E81981C00C06084 /* OOUInt16.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OOUInt16.swift; sourceTree = "<group>"; };
+		B4A040601E81981C00C06084 /* OOUInt32.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OOUInt32.swift; sourceTree = "<group>"; };
+		B4A040621E81981C00C06084 /* CFSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFSocket.swift; sourceTree = "<group>"; };
+		B4A040631E81981C00C06084 /* Memory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Memory.swift; sourceTree = "<group>"; };
+		B4A040641E81981C00C06084 /* NetworkUInt16.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkUInt16.swift; sourceTree = "<group>"; };
+		B4A040651E81981C00C06084 /* NetworkUInt32.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkUInt32.swift; sourceTree = "<group>"; };
+		B4A040661E81981C00C06084 /* StreamDelegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamDelegates.swift; sourceTree = "<group>"; };
+		B4A040671E81981C00C06084 /* WriteStreamWrap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteStreamWrap.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B4A0402B1E8197BC00C06084 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4A040351E8197BD00C06084 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4A040391E8197BD00C06084 /* DarkLightning.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B4A040251E8197BC00C06084 = {
+			isa = PBXGroup;
+			children = (
+				B4A040311E8197BC00C06084 /* DarkLightning */,
+				B4A0403C1E8197BD00C06084 /* DarkLightningTests */,
+				B4A040301E8197BC00C06084 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B4A040301E8197BC00C06084 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B4A0402F1E8197BC00C06084 /* DarkLightning.framework */,
+				B4A040381E8197BD00C06084 /* DarkLightningTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B4A040311E8197BC00C06084 /* DarkLightning */ = {
+			isa = PBXGroup;
+			children = (
+				B4A040491E81981C00C06084 /* iOS */,
+				B4A0404B1E81981C00C06084 /* Server */,
+				B4A0405D1E81981C00C06084 /* Utils */,
+			);
+			path = DarkLightning;
+			sourceTree = "<group>";
+		};
+		B4A0403C1E8197BD00C06084 /* DarkLightningTests */ = {
+			isa = PBXGroup;
+			children = (
+				B4A0403D1E8197BD00C06084 /* DarkLightningTests.swift */,
+				B4A0403F1E8197BD00C06084 /* Info.plist */,
+			);
+			name = DarkLightningTests;
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		B4A040491E81981C00C06084 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				B4A0404A1E81981C00C06084 /* Info.plist */,
+			);
+			name = iOS;
+			path = Sources/iOS;
+			sourceTree = SOURCE_ROOT;
+		};
+		B4A0404B1E81981C00C06084 /* Server */ = {
+			isa = PBXGroup;
+			children = (
+				B4A0404C1E81981C00C06084 /* Protocols */,
+				B4A040511E81981C00C06084 /* Sources */,
+			);
+			name = Server;
+			path = Sources/Server;
+			sourceTree = SOURCE_ROOT;
+		};
+		B4A0404C1E81981C00C06084 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				B4A0404D1E81981C00C06084 /* Connections.swift */,
+				B4A0404E1E81981C00C06084 /* DevicePortDelegate.swift */,
+				B4A0404F1E81981C00C06084 /* IncomingDataReaction.swift */,
+				B4A040501E81981C00C06084 /* WriteStream.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		B4A040511E81981C00C06084 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				B4A040531E81981C00C06084 /* DevicePort */,
+				B4A040521E81981C00C06084 /* CloseStreamReaction.swift */,
+				B4A040581E81981C00C06084 /* DisconnectStreamReaction.swift */,
+				B4A040591E81981C00C06084 /* InsertConnectionReaction.swift */,
+				B4A0405A1E81981C00C06084 /* ReadStreamReaction.swift */,
+				B4A0405B1E81981C00C06084 /* SocketConnections.swift */,
+				B4A0405C1E81981C00C06084 /* SocketStream.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		B4A040531E81981C00C06084 /* DevicePort */ = {
+			isa = PBXGroup;
+			children = (
+				B4A040541E81981C00C06084 /* ClosingDevicePort.swift */,
+				B4A040551E81981C00C06084 /* DevicePort.swift */,
+				B4A040561E81981C00C06084 /* OpeningDevicePort.swift */,
+				B4A040571E81981C00C06084 /* WritingDevicePort.swift */,
+			);
+			path = DevicePort;
+			sourceTree = "<group>";
+		};
+		B4A0405D1E81981C00C06084 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B4A0405E1E81981C00C06084 /* Protocols */,
+				B4A040611E81981C00C06084 /* Sources */,
+			);
+			name = Utils;
+			path = Sources/Utils;
+			sourceTree = SOURCE_ROOT;
+		};
+		B4A0405E1E81981C00C06084 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				B4A0405F1E81981C00C06084 /* OOUInt16.swift */,
+				B4A040601E81981C00C06084 /* OOUInt32.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		B4A040611E81981C00C06084 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				B4A040621E81981C00C06084 /* CFSocket.swift */,
+				B4A040631E81981C00C06084 /* Memory.swift */,
+				B4A040641E81981C00C06084 /* NetworkUInt16.swift */,
+				B4A040651E81981C00C06084 /* NetworkUInt32.swift */,
+				B4A040661E81981C00C06084 /* StreamDelegates.swift */,
+				B4A040671E81981C00C06084 /* WriteStreamWrap.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		B4A0402C1E8197BC00C06084 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		B4A0402E1E8197BC00C06084 /* iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4A040431E8197BD00C06084 /* Build configuration list for PBXNativeTarget "iOS" */;
+			buildPhases = (
+				B4A0402A1E8197BC00C06084 /* Sources */,
+				B4A0402B1E8197BC00C06084 /* Frameworks */,
+				B4A0402C1E8197BC00C06084 /* Headers */,
+				B4A0402D1E8197BC00C06084 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iOS;
+			productName = DarkLightning;
+			productReference = B4A0402F1E8197BC00C06084 /* DarkLightning.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		B4A040371E8197BD00C06084 /* DarkLightningTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4A040461E8197BD00C06084 /* Build configuration list for PBXNativeTarget "DarkLightningTests" */;
+			buildPhases = (
+				B4A040341E8197BD00C06084 /* Sources */,
+				B4A040351E8197BD00C06084 /* Frameworks */,
+				B4A040361E8197BD00C06084 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B4A0403B1E8197BD00C06084 /* PBXTargetDependency */,
+			);
+			name = DarkLightningTests;
+			productName = DarkLightningTests;
+			productReference = B4A040381E8197BD00C06084 /* DarkLightningTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B4A040261E8197BC00C06084 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				TargetAttributes = {
+					B4A0402E1E8197BC00C06084 = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = JAC9UTPT4U;
+						ProvisioningStyle = Automatic;
+					};
+					B4A040371E8197BD00C06084 = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = JAC9UTPT4U;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = B4A040291E8197BC00C06084 /* Build configuration list for PBXProject "DarkLightning" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B4A040251E8197BC00C06084;
+			productRefGroup = B4A040301E8197BC00C06084 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B4A0402E1E8197BC00C06084 /* iOS */,
+				B4A040371E8197BD00C06084 /* DarkLightningTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B4A0402D1E8197BC00C06084 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4A040681E81981C00C06084 /* Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4A040361E8197BD00C06084 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B4A0402A1E8197BC00C06084 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4A0407A1E81981C00C06084 /* Memory.swift in Sources */,
+				B4A040691E81981C00C06084 /* Connections.swift in Sources */,
+				B4A040771E81981C00C06084 /* OOUInt16.swift in Sources */,
+				B4A040751E81981C00C06084 /* SocketConnections.swift in Sources */,
+				B4A040761E81981C00C06084 /* SocketStream.swift in Sources */,
+				B4A0406F1E81981C00C06084 /* DevicePort.swift in Sources */,
+				B4A0406D1E81981C00C06084 /* CloseStreamReaction.swift in Sources */,
+				B4A040711E81981C00C06084 /* WritingDevicePort.swift in Sources */,
+				B4A040741E81981C00C06084 /* ReadStreamReaction.swift in Sources */,
+				B4A0406A1E81981C00C06084 /* DevicePortDelegate.swift in Sources */,
+				B4A0406B1E81981C00C06084 /* IncomingDataReaction.swift in Sources */,
+				B4A040721E81981C00C06084 /* DisconnectStreamReaction.swift in Sources */,
+				B4A040731E81981C00C06084 /* InsertConnectionReaction.swift in Sources */,
+				B4A0407E1E81981C00C06084 /* WriteStreamWrap.swift in Sources */,
+				B4A0407B1E81981C00C06084 /* NetworkUInt16.swift in Sources */,
+				B4A0407D1E81981C00C06084 /* StreamDelegates.swift in Sources */,
+				B4A040781E81981C00C06084 /* OOUInt32.swift in Sources */,
+				B4A0406E1E81981C00C06084 /* ClosingDevicePort.swift in Sources */,
+				B4A0406C1E81981C00C06084 /* WriteStream.swift in Sources */,
+				B4A0407C1E81981C00C06084 /* NetworkUInt32.swift in Sources */,
+				B4A040791E81981C00C06084 /* CFSocket.swift in Sources */,
+				B4A040701E81981C00C06084 /* OpeningDevicePort.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4A040341E8197BD00C06084 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4A0403E1E8197BD00C06084 /* DarkLightningTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B4A0403B1E8197BD00C06084 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B4A0402E1E8197BC00C06084 /* iOS */;
+			targetProxy = B4A0403A1E8197BD00C06084 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		B4A040411E8197BD00C06084 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		B4A040421E8197BD00C06084 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		B4A040441E8197BD00C06084 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = JAC9UTPT4U;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Sources/iOS/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.jensmeder.DarkLightning;
+				PRODUCT_NAME = DarkLightning;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		B4A040451E8197BD00C06084 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = JAC9UTPT4U;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Sources/iOS/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.jensmeder.DarkLightning;
+				PRODUCT_NAME = DarkLightning;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		B4A040471E8197BD00C06084 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = JAC9UTPT4U;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.jensmeder.DarkLightningTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		B4A040481E8197BD00C06084 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = JAC9UTPT4U;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.jensmeder.DarkLightningTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B4A040291E8197BC00C06084 /* Build configuration list for PBXProject "DarkLightning" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4A040411E8197BD00C06084 /* Debug */,
+				B4A040421E8197BD00C06084 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B4A040431E8197BD00C06084 /* Build configuration list for PBXNativeTarget "iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4A040441E8197BD00C06084 /* Debug */,
+				B4A040451E8197BD00C06084 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B4A040461E8197BD00C06084 /* Build configuration list for PBXNativeTarget "DarkLightningTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4A040471E8197BD00C06084 /* Debug */,
+				B4A040481E8197BD00C06084 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B4A040261E8197BC00C06084 /* Project object */;
+}
