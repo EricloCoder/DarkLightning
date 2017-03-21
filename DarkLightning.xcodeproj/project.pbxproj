@@ -32,6 +32,13 @@
 		B4A0407C1E81981C00C06084 /* NetworkUInt32.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A040651E81981C00C06084 /* NetworkUInt32.swift */; };
 		B4A0407D1E81981C00C06084 /* StreamDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A040661E81981C00C06084 /* StreamDelegates.swift */; };
 		B4A0407E1E81981C00C06084 /* WriteStreamWrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A040671E81981C00C06084 /* WriteStreamWrap.swift */; };
+		B4D98F611E81C6AE000EBAEA /* OOData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D98F601E81C6AE000EBAEA /* OOData.swift */; };
+		B4D98F671E81CEF6000EBAEA /* DictData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D98F661E81CEF6000EBAEA /* DictData.swift */; };
+		B4D98F711E81D440000EBAEA /* DataWithUInt32.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D98F701E81D440000EBAEA /* DataWithUInt32.swift */; };
+		B4D98F731E81D509000EBAEA /* MessageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D98F721E81D509000EBAEA /* MessageData.swift */; };
+		B4D98F751E81D517000EBAEA /* OODataWrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D98F741E81D517000EBAEA /* OODataWrap.swift */; };
+		B4D98F771E81D842000EBAEA /* ListeningMessageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D98F761E81D842000EBAEA /* ListeningMessageData.swift */; };
+		B4D98F791E81DAC3000EBAEA /* ConnectMessageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D98F781E81DAC3000EBAEA /* ConnectMessageData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +79,13 @@
 		B4A040651E81981C00C06084 /* NetworkUInt32.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkUInt32.swift; sourceTree = "<group>"; };
 		B4A040661E81981C00C06084 /* StreamDelegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamDelegates.swift; sourceTree = "<group>"; };
 		B4A040671E81981C00C06084 /* WriteStreamWrap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteStreamWrap.swift; sourceTree = "<group>"; };
+		B4D98F601E81C6AE000EBAEA /* OOData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OOData.swift; sourceTree = "<group>"; };
+		B4D98F661E81CEF6000EBAEA /* DictData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictData.swift; sourceTree = "<group>"; };
+		B4D98F701E81D440000EBAEA /* DataWithUInt32.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataWithUInt32.swift; sourceTree = "<group>"; };
+		B4D98F721E81D509000EBAEA /* MessageData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageData.swift; sourceTree = "<group>"; };
+		B4D98F741E81D517000EBAEA /* OODataWrap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OODataWrap.swift; sourceTree = "<group>"; };
+		B4D98F761E81D842000EBAEA /* ListeningMessageData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListeningMessageData.swift; sourceTree = "<group>"; };
+		B4D98F781E81DAC3000EBAEA /* ConnectMessageData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectMessageData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,11 +128,13 @@
 		B4A040311E8197BC00C06084 /* DarkLightning */ = {
 			isa = PBXGroup;
 			children = (
+				B4D98F5F1E81C699000EBAEA /* Messages */,
 				B4A040491E81981C00C06084 /* iOS */,
 				B4A0404B1E81981C00C06084 /* Server */,
 				B4A0405D1E81981C00C06084 /* Utils */,
 			);
-			path = DarkLightning;
+			name = DarkLightning;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		B4A0403C1E8197BD00C06084 /* DarkLightningTests */ = {
@@ -201,6 +217,7 @@
 			children = (
 				B4A0405F1E81981C00C06084 /* OOUInt16.swift */,
 				B4A040601E81981C00C06084 /* OOUInt32.swift */,
+				B4D98F601E81C6AE000EBAEA /* OOData.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -214,8 +231,21 @@
 				B4A040651E81981C00C06084 /* NetworkUInt32.swift */,
 				B4A040661E81981C00C06084 /* StreamDelegates.swift */,
 				B4A040671E81981C00C06084 /* WriteStreamWrap.swift */,
+				B4D98F741E81D517000EBAEA /* OODataWrap.swift */,
 			);
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		B4D98F5F1E81C699000EBAEA /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				B4D98F661E81CEF6000EBAEA /* DictData.swift */,
+				B4D98F701E81D440000EBAEA /* DataWithUInt32.swift */,
+				B4D98F721E81D509000EBAEA /* MessageData.swift */,
+				B4D98F761E81D842000EBAEA /* ListeningMessageData.swift */,
+				B4D98F781E81DAC3000EBAEA /* ConnectMessageData.swift */,
+			);
+			path = Messages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -332,14 +362,21 @@
 				B4A0407A1E81981C00C06084 /* Memory.swift in Sources */,
 				B4A040691E81981C00C06084 /* Connections.swift in Sources */,
 				B4A040771E81981C00C06084 /* OOUInt16.swift in Sources */,
+				B4D98F751E81D517000EBAEA /* OODataWrap.swift in Sources */,
 				B4A040751E81981C00C06084 /* SocketConnections.swift in Sources */,
+				B4D98F771E81D842000EBAEA /* ListeningMessageData.swift in Sources */,
 				B4A040761E81981C00C06084 /* SocketStream.swift in Sources */,
 				B4A0406F1E81981C00C06084 /* DevicePort.swift in Sources */,
 				B4A0406D1E81981C00C06084 /* CloseStreamReaction.swift in Sources */,
+				B4D98F791E81DAC3000EBAEA /* ConnectMessageData.swift in Sources */,
+				B4D98F671E81CEF6000EBAEA /* DictData.swift in Sources */,
 				B4A040711E81981C00C06084 /* WritingDevicePort.swift in Sources */,
 				B4A040741E81981C00C06084 /* ReadStreamReaction.swift in Sources */,
+				B4D98F611E81C6AE000EBAEA /* OOData.swift in Sources */,
 				B4A0406A1E81981C00C06084 /* DevicePortDelegate.swift in Sources */,
 				B4A0406B1E81981C00C06084 /* IncomingDataReaction.swift in Sources */,
+				B4D98F711E81D440000EBAEA /* DataWithUInt32.swift in Sources */,
+				B4D98F731E81D509000EBAEA /* MessageData.swift in Sources */,
 				B4A040721E81981C00C06084 /* DisconnectStreamReaction.swift in Sources */,
 				B4A040731E81981C00C06084 /* InsertConnectionReaction.swift in Sources */,
 				B4A0407E1E81981C00C06084 /* WriteStreamWrap.swift in Sources */,
