@@ -13,8 +13,8 @@ public final class USBDaemon: Daemon {
 	private let handle: Memory<CFSocketNativeHandle>
 	private let path: String
 	private let queue: DispatchQueue
-	private let closure: (Memory<CFSocketNativeHandle>, RunLoop) -> (WriteStream)
-	private var stream: WriteStream?
+	private let closure: (Memory<CFSocketNativeHandle>, RunLoop) -> (DataStream)
+	private var stream: DataStream?
 	
 	// MARK: Init
 	
@@ -23,7 +23,7 @@ public final class USBDaemon: Daemon {
 			socket: Memory<CFSocketNativeHandle>(initialValue: CFSocketInvalidHandle),
 			path: "/var/run/usbmuxd",
 			queue: DispatchQueue.global(qos: .background),
-			closure: { (handle: Memory<CFSocketNativeHandle>, runLoop: RunLoop) -> (WriteStream) in
+			closure: { (handle: Memory<CFSocketNativeHandle>, runLoop: RunLoop) -> (DataStream) in
 				var inputStream: Unmanaged<CFReadStream>? = nil
 				var outputStream: Unmanaged<CFWriteStream>? = nil
 				CFStreamCreatePairWithSocket(
@@ -73,12 +73,8 @@ public final class USBDaemon: Daemon {
 						delegates: [
 							OpenReaction(
 								state: state,
-								outputStream: SocketStream(
-									inputStream: inputStream?.takeRetainedValue() as! InputStream,
-									outputStream: outputStream?.takeRetainedValue() as! OutputStream,
-									readReaction: StreamDelegates(),
-									writeReaction: StreamDelegates(),
-									runLoop: RunLoop.current
+								outputStream: SocketWriteStream(
+									outputStream: outputStream?.takeRetainedValue() as! OutputStream
 								)
 							),
 							CloseStreamReaction(),
@@ -90,7 +86,7 @@ public final class USBDaemon: Daemon {
 		)
 	}
 	
-	public required init(socket: Memory<CFSocketNativeHandle>, path: String, queue: DispatchQueue, closure: @escaping (Memory<CFSocketNativeHandle>, RunLoop) -> (WriteStream)) {
+	public required init(socket: Memory<CFSocketNativeHandle>, path: String, queue: DispatchQueue, closure: @escaping (Memory<CFSocketNativeHandle>, RunLoop) -> (DataStream)) {
         self.handle = socket
 		self.path = path
 		self.queue = queue

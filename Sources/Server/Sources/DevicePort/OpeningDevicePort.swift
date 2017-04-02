@@ -28,8 +28,8 @@
 
 import Foundation
 
-internal final class OpeningDevicePort: WriteStream {
-	private let origin: WriteStream
+internal final class OpeningDevicePort: Port {
+	private let origin: Port
 	private let port: UInt16
 	private let queue: DispatchQueue
 	private let connections: Connections
@@ -37,7 +37,7 @@ internal final class OpeningDevicePort: WriteStream {
 	
 	// MARK: Init
     
-	internal required init(origin: WriteStream, port: UInt16, queue: DispatchQueue, connections: Connections, socket: Memory<CFSocketNativeHandle>) {
+	internal required init(origin: Port, port: UInt16, queue: DispatchQueue, connections: Connections, socket: Memory<CFSocketNativeHandle>) {
         self.origin = origin
 		self.port = port
 		self.queue = queue
@@ -71,7 +71,7 @@ internal final class OpeningDevicePort: WriteStream {
 		)
 	}
 	
-    // MARK: WriteStream
+    // MARK: Port
 	
 	public func open() {
 		if socket.rawValue == -1 {

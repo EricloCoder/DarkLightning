@@ -29,8 +29,6 @@
 import Foundation
 
 public protocol WriteStream: class {
-	func open()
-	func close()
 	func write(data: Data)
 }
 
@@ -43,14 +41,6 @@ public final class WriteStreamFake: WriteStream {
     }
     
     // MARK: - WriteStream
-	
-	public func open() {
-		
-	}
-	
-	public func close() {
-		
-	}
 	
 	public func write(data: Data) {
 		
@@ -67,14 +57,6 @@ public class WriteStreamWrap: WriteStream {
 	}
 	
 	// MARK: WriteStream
-	
-	public func open() {
-		origin.open()
-	}
-	
-	public func close() {
-		origin.close()
-	}
 	
 	public func write(data: Data) {
 		origin.write(data: data)

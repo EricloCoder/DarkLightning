@@ -28,18 +28,18 @@
 
 import Foundation
 
-internal final class WritingDevicePort: WriteStream {
-	private let origin: WriteStream
+internal final class WritingDevicePort: Port {
+	private let origin: Port
 	private let connections: Connections
 	
 	// MARK: Init
 	
-	internal required init(origin: WriteStream, connections: Connections) {
+	internal required init(origin: Port, connections: Connections) {
 		self.origin = origin
 		self.connections = connections
 	}
 	
-	// MARK: WriteStream
+	// MARK: Port
 	
 	public func open() {
 		origin.open()
@@ -50,11 +50,11 @@ internal final class WritingDevicePort: WriteStream {
 	}
 	
 	public func write(data: Data) {
-		if !connections.isEmpty {
+		/*if !connections.isEmpty {
 			connections.first.write(data: data)
 		}
 		else {
 			origin.write(data: data)
-		}
+		}*/
 	}
 }

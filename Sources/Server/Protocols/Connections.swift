@@ -32,7 +32,7 @@ public protocol Connections: class {
 	func insert(address: Data, socket: CFSocketNativeHandle)
 	func removeAll()
 	var isEmpty: Bool {get}
-	var first: WriteStream {get}
+	var first: DataStream {get}
 }
 
 public final class ConnectionsFake: Connections {
@@ -57,7 +57,7 @@ public final class ConnectionsFake: Connections {
 		return true
 	}
 	
-	public var first: WriteStream {
-		return WriteStreamFake()
+	public var first: DataStream {
+		return DataStreamFake()
 	}
 }

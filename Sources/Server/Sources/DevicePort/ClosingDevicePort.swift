@@ -28,14 +28,14 @@
 
 import Foundation
 
-internal final class ClosingDevicePort: WriteStream {
-	private let origin: WriteStream
+internal final class ClosingDevicePort: Port {
+	private let origin: Port
 	private let socket: Memory<CFSocketNativeHandle>
 	private let connections: Connections
 	
 	// MARK: Init
 	
-	internal required init(origin: WriteStream, socket: Memory<CFSocketNativeHandle>, connections: Connections) {
+	internal required init(origin: Port, socket: Memory<CFSocketNativeHandle>, connections: Connections) {
 		self.origin = origin
 		self.socket = socket
 		self.connections = connections
@@ -47,7 +47,7 @@ internal final class ClosingDevicePort: WriteStream {
 		close()
 	}
 	
-    // MARK: WriteStream
+    // MARK: Port
 	
 	public func open() {
 		origin.open()

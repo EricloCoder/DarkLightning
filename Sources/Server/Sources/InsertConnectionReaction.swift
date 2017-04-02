@@ -50,7 +50,7 @@ internal final class InsertConnectionReaction: Connections {
 		return origin.isEmpty
 	}
 	
-	var first: WriteStream {
+	var first: DataStream {
 		return origin.first
 	}
 	

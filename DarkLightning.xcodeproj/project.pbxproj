@@ -55,6 +55,11 @@
 		B4832BFD1E9143AD0028AB8E /* USBMuxMessageWrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43FD1AF1E8327A50060DA24 /* USBMuxMessageWrap.swift */; };
 		B4832C031E9149CF0028AB8E /* DataDecoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4832C021E9149CF0028AB8E /* DataDecoding.swift */; };
 		B4832C041E9149CF0028AB8E /* DataDecoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4832C021E9149CF0028AB8E /* DataDecoding.swift */; };
+		B4832C121E9192030028AB8E /* Port.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4832C111E9192030028AB8E /* Port.swift */; };
+		B4832C151E9193340028AB8E /* DataStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4832C141E9193340028AB8E /* DataStream.swift */; };
+		B4832C161E9193340028AB8E /* DataStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4832C141E9193340028AB8E /* DataStream.swift */; };
+		B4832C181E9193800028AB8E /* SocketWriteStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4832C171E9193800028AB8E /* SocketWriteStream.swift */; };
+		B4832C191E9193800028AB8E /* SocketWriteStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4832C171E9193800028AB8E /* SocketWriteStream.swift */; };
 		B4A040391E8197BD00C06084 /* DarkLightning.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A0402F1E8197BC00C06084 /* DarkLightning.framework */; };
 		B4A0403E1E8197BD00C06084 /* DarkLightningTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0403D1E8197BD00C06084 /* DarkLightningTests.swift */; };
 		B4A040681E81981C00C06084 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4A0404A1E81981C00C06084 /* Info.plist */; };
@@ -147,6 +152,9 @@
 		B4832BF21E913DAE0028AB8E /* USBMuxMessageData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USBMuxMessageData.swift; sourceTree = "<group>"; };
 		B4832BF41E91426D0028AB8E /* RawData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawData.swift; sourceTree = "<group>"; };
 		B4832C021E9149CF0028AB8E /* DataDecoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataDecoding.swift; sourceTree = "<group>"; };
+		B4832C111E9192030028AB8E /* Port.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Port.swift; sourceTree = "<group>"; };
+		B4832C141E9193340028AB8E /* DataStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStream.swift; sourceTree = "<group>"; };
+		B4832C171E9193800028AB8E /* SocketWriteStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketWriteStream.swift; sourceTree = "<group>"; };
 		B4A0402F1E8197BC00C06084 /* DarkLightning.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DarkLightning.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4A040381E8197BD00C06084 /* DarkLightningTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DarkLightningTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4A0403D1E8197BD00C06084 /* DarkLightningTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkLightningTests.swift; sourceTree = "<group>"; };
@@ -320,6 +328,8 @@
 				B4A0404E1E81981C00C06084 /* DevicePortDelegate.swift */,
 				B4A0404F1E81981C00C06084 /* IncomingDataReaction.swift */,
 				B4A040501E81981C00C06084 /* WriteStream.swift */,
+				B4832C111E9192030028AB8E /* Port.swift */,
+				B4832C141E9193340028AB8E /* DataStream.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -334,6 +344,7 @@
 				B4A0405A1E81981C00C06084 /* ReadStreamReaction.swift */,
 				B4A0405B1E81981C00C06084 /* SocketConnections.swift */,
 				B4A0405C1E81981C00C06084 /* SocketStream.swift */,
+				B4832C171E9193800028AB8E /* SocketWriteStream.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -674,10 +685,12 @@
 			files = (
 				B4A0407A1E81981C00C06084 /* Memory.swift in Sources */,
 				B4A040691E81981C00C06084 /* Connections.swift in Sources */,
+				B4832C181E9193800028AB8E /* SocketWriteStream.swift in Sources */,
 				B4A040771E81981C00C06084 /* OOUInt16.swift in Sources */,
 				B4A040751E81981C00C06084 /* SocketConnections.swift in Sources */,
 				B4D98F771E81D842000EBAEA /* ListeningMessageData.swift in Sources */,
 				B4A040761E81981C00C06084 /* SocketStream.swift in Sources */,
+				B4832C121E9192030028AB8E /* Port.swift in Sources */,
 				B4A0406F1E81981C00C06084 /* DevicePort.swift in Sources */,
 				B4A0406D1E81981C00C06084 /* CloseStreamReaction.swift in Sources */,
 				B4D98F791E81DAC3000EBAEA /* ConnectMessageData.swift in Sources */,
@@ -696,6 +709,7 @@
 				B4A040721E81981C00C06084 /* DisconnectStreamReaction.swift in Sources */,
 				B4A040731E81981C00C06084 /* InsertConnectionReaction.swift in Sources */,
 				B4A0407B1E81981C00C06084 /* NetworkUInt16.swift in Sources */,
+				B4832C151E9193340028AB8E /* DataStream.swift in Sources */,
 				B4A0407D1E81981C00C06084 /* StreamDelegates.swift in Sources */,
 				B4A040781E81981C00C06084 /* OOUInt32.swift in Sources */,
 				B43FD1A81E8326970060DA24 /* AttachMessage.swift in Sources */,
@@ -723,6 +737,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4832BB21E8D75DA0028AB8E /* OOUInt16.swift in Sources */,
+				B4832C191E9193800028AB8E /* SocketWriteStream.swift in Sources */,
 				B4832BF11E9124750028AB8E /* Daemon.swift in Sources */,
 				B4832BC01E9102FF0028AB8E /* USBDaemon.swift in Sources */,
 				B4832BEF1E9111960028AB8E /* ReceivingDataReaction.swift in Sources */,
@@ -751,6 +766,7 @@
 				B4832BFA1E9143A50028AB8E /* ResultMessage.swift in Sources */,
 				B4832BB81E8D75DA0028AB8E /* NetworkUInt32.swift in Sources */,
 				B4832BCE1E910A560028AB8E /* DataWithUInt32.swift in Sources */,
+				B4832C161E9193340028AB8E /* DataStream.swift in Sources */,
 				B4832BED1E910D080028AB8E /* OpenReaction.swift in Sources */,
 				B4832BC71E91041C0028AB8E /* IncomingDataReaction.swift in Sources */,
 				B4832BB91E8D75DA0028AB8E /* StreamDelegates.swift in Sources */,
@@ -1088,6 +1104,7 @@
 				B4832BE01E910AF10028AB8E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B4A040291E8197BC00C06084 /* Build configuration list for PBXProject "DarkLightning" */ = {
 			isa = XCConfigurationList;

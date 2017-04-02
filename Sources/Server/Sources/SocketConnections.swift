@@ -32,11 +32,11 @@ internal final class SocketConnections: Connections {
 	private let queue: DispatchQueue
 	private let readReaction: StreamDelegate
 	private let writeReaction: StreamDelegate
-	private var connections: Dictionary<Data, WriteStream>
+	private var connections: Dictionary<Data, DataStream>
 	
 	// MARK: Init
     
-    internal required init(queue: DispatchQueue, readReaction: StreamDelegate, writeReaction: StreamDelegate, connections: Dictionary<Data, WriteStream>) {
+    internal required init(queue: DispatchQueue, readReaction: StreamDelegate, writeReaction: StreamDelegate, connections: Dictionary<Data, DataStream>) {
         self.queue = queue
 		self.readReaction = readReaction
 		self.writeReaction = writeReaction
@@ -70,7 +70,7 @@ internal final class SocketConnections: Connections {
 		return connections.isEmpty
 	}
 	
-	var first: WriteStream {
+	var first: DataStream {
 		return connections.values.first!
 	}
 }

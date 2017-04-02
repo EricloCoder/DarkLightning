@@ -29,7 +29,7 @@
 import Foundation
 import CoreFoundation
 
-public final class DevicePort: WriteStreamWrap {
+public final class DevicePort: PortWrap {
 	
 	// MARK: Constants
 	
@@ -81,7 +81,7 @@ public final class DevicePort: WriteStreamWrap {
 			origin: OpeningDevicePort(
 				origin: ClosingDevicePort(
 					origin: WritingDevicePort(
-						origin: WriteStreamFake(),
+						origin: PortFake(),
 						connections: connections
 					),
 					socket: socket,
