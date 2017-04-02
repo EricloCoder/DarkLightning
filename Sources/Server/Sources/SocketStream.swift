@@ -43,8 +43,14 @@ internal final class SocketStream: WriteStream {
 		CFStreamCreatePairWithSocket(
 			kCFAllocatorDefault,
 			socket,
-			&inputStream,
+			nil,
 			&outputStream
+		)
+		CFStreamCreatePairWithSocket(
+			kCFAllocatorDefault,
+			socket,
+			&inputStream,
+			nil
 		)
 		CFReadStreamSetProperty(
 			inputStream!.takeUnretainedValue(),

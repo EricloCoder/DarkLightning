@@ -31,7 +31,7 @@ import Foundation
 public protocol DevicePortDelegate: class {
 	func didConnect()
 	func didDisconnect()
-    func didReceiveData(data: Data)
+    func didReceiveData(data: OOData)
 }
 
 public final class DevicePortDelegateFake: DevicePortDelegate {
@@ -52,7 +52,7 @@ public final class DevicePortDelegateFake: DevicePortDelegate {
 		
 	}
     
-    public func didReceiveData(data: Data) {
+    public func didReceiveData(data: OOData) {
         
     }
 }

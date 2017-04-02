@@ -12,7 +12,11 @@ internal final class StreamDelegates: NSObject, StreamDelegate {
 	private let delegates: [StreamDelegate]
 	
 	// MARK: Init
-    
+	
+	internal convenience override init() {
+		self.init(delegates: [])
+	}
+	
 	internal required init(delegates: [StreamDelegate]) {
         self.delegates = delegates
     }

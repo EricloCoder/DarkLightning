@@ -29,11 +29,16 @@
 import Foundation
 
 internal final class CloseStreamReaction: NSObject, StreamDelegate {
+	private let socket: Memory<CFSocketNativeHandle>
 	
 	// MARK: Init
-    
-    internal override init() {
-        
+	
+	internal convenience override init() {
+		self.init(socket: Memory<CFSocketNativeHandle>(initialValue: -1))
+	}
+	
+    internal required init(socket: Memory<CFSocketNativeHandle>) {
+        self.socket = socket
     }
     
     // MARK: StreamDelegate
@@ -42,6 +47,7 @@ internal final class CloseStreamReaction: NSObject, StreamDelegate {
 		if eventCode == .endEncountered || eventCode == .errorOccurred {
 			aStream.close()
 			aStream.delegate = nil
+			socket.rawValue = -1
 		}
 	}
 }

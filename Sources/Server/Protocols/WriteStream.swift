@@ -56,3 +56,27 @@ public final class WriteStreamFake: WriteStream {
 		
 	}
 }
+
+public class WriteStreamWrap: WriteStream {
+	private let origin: WriteStream
+	
+	// MARK: Init
+	
+	internal init(origin: WriteStream) {
+		self.origin = origin
+	}
+	
+	// MARK: WriteStream
+	
+	public func open() {
+		origin.open()
+	}
+	
+	public func close() {
+		origin.close()
+	}
+	
+	public func write(data: Data) {
+		origin.write(data: data)
+	}
+}

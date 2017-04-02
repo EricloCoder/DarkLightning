@@ -32,35 +32,49 @@ internal final class ReadStreamReaction: NSObject, StreamDelegate {
     
 	// MARK: Constants
 	
-	private static let MaxBufferSize: UInt = 1024
+	private static let MaxBufferSize: UInt = 2048
 	
 	// MARK: Members
 	
-    private let delegate: DevicePortDelegate
+    private let delegate: DataDecoding
     private let data: UnsafeMutablePointer<UInt8>
     private let bufferSize: UInt
+	private let mapping: (Data) -> (OOData)
 	
 	// MARK: Init
 	
-    internal convenience init(delegate: DevicePortDelegate) {
+    internal convenience init(delegate: DataDecoding) {
         self.init(
             bufferSize: ReadStreamReaction.MaxBufferSize,
-            delegate: delegate
+            delegate: delegate,
+            mapping: { (data: Data) -> (OOData) in
+				return RawData(data)
+			}
         )
     }
-    
-    internal convenience init(bufferSize: UInt, delegate: DevicePortDelegate) {
+	
+	internal convenience init(delegate: DataDecoding, mapping: @escaping (Data) -> (OOData)) {
+		self.init(
+			bufferSize: ReadStreamReaction.MaxBufferSize,
+			delegate: delegate,
+			mapping: mapping
+		)
+	}
+	
+    internal convenience init(bufferSize: UInt, delegate: DataDecoding, mapping: @escaping (Data) -> (OOData)) {
         self.init(
             bufferSize: ReadStreamReaction.MaxBufferSize,
             data: UnsafeMutablePointer<UInt8>.allocate(capacity: Int(bufferSize)),
-            delegate: delegate
+            delegate: delegate,
+            mapping: mapping
         )
 	}
 	
-    internal required init(bufferSize: UInt, data: UnsafeMutablePointer<UInt8>, delegate: DevicePortDelegate) {
+    internal required init(bufferSize: UInt, data: UnsafeMutablePointer<UInt8>, delegate: DataDecoding, mapping: @escaping (Data) -> (OOData)) {
         self.bufferSize = bufferSize;
         self.data = data
         self.delegate = delegate
+		self.mapping = mapping
     }
     
     // MARK: - Private
@@ -83,7 +97,7 @@ internal final class ReadStreamReaction: NSObject, StreamDelegate {
 				}
 			}
             if !buffer.isEmpty {
-                delegate.didReceiveData(data: buffer)
+                delegate.decode(data: mapping(buffer))
             }
 		}
 	}

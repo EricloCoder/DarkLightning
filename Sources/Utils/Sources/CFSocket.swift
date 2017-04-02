@@ -8,6 +8,8 @@
 
 import Foundation
 
+let CFSocketInvalidHandle: Int32 = -1
+
 internal func CFSocketSetOption(socket: CFSocket, option: Int32, aValue: Int) {
 	var value = aValue
 	setsockopt(

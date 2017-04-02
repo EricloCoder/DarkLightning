@@ -39,24 +39,26 @@ public final class DevicePort: WriteStreamWrap {
 	
 	public convenience init() {
 		self.init(
-			delegate: DevicePortDelegateFake()
+			delegate: DevicePortDelegateFake(),
+			dataDelegate: DataDecodingFake()
 		)
 	}
 	
-	public convenience init(delegate: DevicePortDelegate) {
+	public convenience init(delegate: DevicePortDelegate, dataDelegate: DataDecoding) {
 		self.init(
 			port: DevicePort.DefaultPort,
-			delegate: delegate
+			delegate: delegate,
+			dataDelegate: dataDelegate
 		)
 	}
 	
-	public convenience init(port: UInt16, delegate: DevicePortDelegate) {
+	public convenience init(port: UInt16, delegate: DevicePortDelegate, dataDelegate: DataDecoding) {
 		let connections = InsertConnectionReaction(
 			origin: SocketConnections(
 				queue: DispatchQueue.global(qos: .background),
 				readReaction: StreamDelegates(
 					delegates: [
-                        ReadStreamReaction(delegate: delegate),
+                        ReadStreamReaction(delegate: dataDelegate),
 						CloseStreamReaction(),
 						DisconnectStreamReaction(delegate: delegate)
 					]

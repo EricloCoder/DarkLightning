@@ -14,7 +14,7 @@ internal final class DataWithUInt32: OOData {
 	
 	// MARK: Init
     
-    internal init(value: UInt32, origin: OOData) {
+    internal required init(value: UInt32, origin: OOData) {
         self.value = value
 		self.origin = origin
     }
