@@ -77,12 +77,14 @@ public final class DevicePort: PortWrap {
 	}
 	
 	public required init(port: UInt16, queue: DispatchQueue, connections: Connections, socket: Memory<CFSocketNativeHandle>) {
+		let stream = UnsafeMutablePointer<WriteStream?>.allocate(capacity: 1)
+		stream.initialize(to: nil)
 		super.init(
 			origin: OpeningDevicePort(
 				origin: ClosingDevicePort(
 					origin: WritingDevicePort(
 						origin: PortFake(),
-						connections: connections
+						stream: stream
 					),
 					socket: socket,
 					connections: connections

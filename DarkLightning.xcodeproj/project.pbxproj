@@ -60,9 +60,14 @@
 		B4832C161E9193340028AB8E /* DataStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4832C141E9193340028AB8E /* DataStream.swift */; };
 		B4832C181E9193800028AB8E /* SocketWriteStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4832C171E9193800028AB8E /* SocketWriteStream.swift */; };
 		B4832C191E9193800028AB8E /* SocketWriteStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4832C171E9193800028AB8E /* SocketWriteStream.swift */; };
+		B4832C1D1E941D8A0028AB8E /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4832C1C1E941D8A0028AB8E /* Device.swift */; };
+		B4832C1F1E94231C0028AB8E /* DaemonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4832C1E1E94231C0028AB8E /* DaemonDelegate.swift */; };
+		B4832C211E94269B0028AB8E /* DictionaryReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4832C201E94269B0028AB8E /* DictionaryReference.swift */; };
+		B4832C251E94334D0028AB8E /* USBDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4832C241E94334D0028AB8E /* USBDevice.swift */; };
+		B4832C271E94385A0028AB8E /* OODataArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4832C261E94385A0028AB8E /* OODataArray.swift */; };
+		B4832C291E9438DF0028AB8E /* USBMuxMessageDataArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4832C281E9438DF0028AB8E /* USBMuxMessageDataArray.swift */; };
 		B4A040391E8197BD00C06084 /* DarkLightning.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A0402F1E8197BC00C06084 /* DarkLightning.framework */; };
 		B4A0403E1E8197BD00C06084 /* DarkLightningTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0403D1E8197BD00C06084 /* DarkLightningTests.swift */; };
-		B4A040681E81981C00C06084 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4A0404A1E81981C00C06084 /* Info.plist */; };
 		B4A040691E81981C00C06084 /* Connections.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0404D1E81981C00C06084 /* Connections.swift */; };
 		B4A0406A1E81981C00C06084 /* DevicePortDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0404E1E81981C00C06084 /* DevicePortDelegate.swift */; };
 		B4A0406B1E81981C00C06084 /* IncomingDataReaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0404F1E81981C00C06084 /* IncomingDataReaction.swift */; };
@@ -155,6 +160,12 @@
 		B4832C111E9192030028AB8E /* Port.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Port.swift; sourceTree = "<group>"; };
 		B4832C141E9193340028AB8E /* DataStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStream.swift; sourceTree = "<group>"; };
 		B4832C171E9193800028AB8E /* SocketWriteStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketWriteStream.swift; sourceTree = "<group>"; };
+		B4832C1C1E941D8A0028AB8E /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		B4832C1E1E94231C0028AB8E /* DaemonDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaemonDelegate.swift; sourceTree = "<group>"; };
+		B4832C201E94269B0028AB8E /* DictionaryReference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryReference.swift; sourceTree = "<group>"; };
+		B4832C241E94334D0028AB8E /* USBDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USBDevice.swift; sourceTree = "<group>"; };
+		B4832C261E94385A0028AB8E /* OODataArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OODataArray.swift; sourceTree = "<group>"; };
+		B4832C281E9438DF0028AB8E /* USBMuxMessageDataArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USBMuxMessageDataArray.swift; sourceTree = "<group>"; };
 		B4A0402F1E8197BC00C06084 /* DarkLightning.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DarkLightning.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4A040381E8197BD00C06084 /* DarkLightningTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DarkLightningTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4A0403D1E8197BD00C06084 /* DarkLightningTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkLightningTests.swift; sourceTree = "<group>"; };
@@ -242,6 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				B4832BF01E9124750028AB8E /* Daemon.swift */,
+				B4832C1E1E94231C0028AB8E /* DaemonDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -377,6 +389,8 @@
 				B4A040601E81981C00C06084 /* OOUInt32.swift */,
 				B4D98F601E81C6AE000EBAEA /* OOData.swift */,
 				B4832C021E9149CF0028AB8E /* DataDecoding.swift */,
+				B4832C1C1E941D8A0028AB8E /* Device.swift */,
+				B4832C261E94385A0028AB8E /* OODataArray.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -390,6 +404,8 @@
 				B4A040651E81981C00C06084 /* NetworkUInt32.swift */,
 				B4A040661E81981C00C06084 /* StreamDelegates.swift */,
 				B4832BF41E91426D0028AB8E /* RawData.swift */,
+				B4832C201E94269B0028AB8E /* DictionaryReference.swift */,
+				B4832C241E94334D0028AB8E /* USBDevice.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -409,6 +425,7 @@
 				B43FD1AD1E8327910060DA24 /* USBMuxProtocol.swift */,
 				B43FD1AF1E8327A50060DA24 /* USBMuxMessageWrap.swift */,
 				B4832BF21E913DAE0028AB8E /* USBMuxMessageData.swift */,
+				B4832C281E9438DF0028AB8E /* USBMuxMessageDataArray.swift */,
 			);
 			path = Messages;
 			sourceTree = "<group>";
@@ -580,7 +597,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0820;
 				TargetAttributes = {
 					B4832BD31E910AF10028AB8E = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -643,7 +660,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4A040681E81981C00C06084 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -736,17 +752,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4832C1D1E941D8A0028AB8E /* Device.swift in Sources */,
 				B4832BB21E8D75DA0028AB8E /* OOUInt16.swift in Sources */,
 				B4832C191E9193800028AB8E /* SocketWriteStream.swift in Sources */,
+				B4832C1F1E94231C0028AB8E /* DaemonDelegate.swift in Sources */,
 				B4832BF11E9124750028AB8E /* Daemon.swift in Sources */,
 				B4832BC01E9102FF0028AB8E /* USBDaemon.swift in Sources */,
 				B4832BEF1E9111960028AB8E /* ReceivingDataReaction.swift in Sources */,
 				B4832BC51E9104180028AB8E /* DevicePortDelegate.swift in Sources */,
 				B4832BFB1E9143A90028AB8E /* USBMuxProtocol.swift in Sources */,
+				B4832C211E94269B0028AB8E /* DictionaryReference.swift in Sources */,
 				B4832BFC1E9143AD0028AB8E /* ConnectMessageData.swift in Sources */,
+				B4832C251E94334D0028AB8E /* USBDevice.swift in Sources */,
 				B4832BFD1E9143AD0028AB8E /* USBMuxMessageWrap.swift in Sources */,
 				B4832BB31E8D75DA0028AB8E /* OOUInt32.swift in Sources */,
 				B4832BF81E9143A50028AB8E /* AttachMessage.swift in Sources */,
+				B4832C271E94385A0028AB8E /* OODataArray.swift in Sources */,
 				B4832BCC1E91096A0028AB8E /* ListeningMessageData.swift in Sources */,
 				B4832BC31E9103F80028AB8E /* DisconnectStreamReaction.swift in Sources */,
 				B4832BB41E8D75DA0028AB8E /* OOData.swift in Sources */,
@@ -770,6 +791,7 @@
 				B4832BED1E910D080028AB8E /* OpenReaction.swift in Sources */,
 				B4832BC71E91041C0028AB8E /* IncomingDataReaction.swift in Sources */,
 				B4832BB91E8D75DA0028AB8E /* StreamDelegates.swift in Sources */,
+				B4832C291E9438DF0028AB8E /* USBMuxMessageDataArray.swift in Sources */,
 				B4832BC61E91041C0028AB8E /* Connections.swift in Sources */,
 				B4832BF91E9143A50028AB8E /* DetachMessage.swift in Sources */,
 				B4832BF31E913DAE0028AB8E /* USBMuxMessageData.swift in Sources */,

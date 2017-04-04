@@ -30,13 +30,13 @@ import Foundation
 
 internal final class WritingDevicePort: Port {
 	private let origin: Port
-	private let connections: Connections
+	private let stream: UnsafeMutablePointer<WriteStream?>
 	
 	// MARK: Init
 	
-	internal required init(origin: Port, connections: Connections) {
+	internal required init(origin: Port, stream: UnsafeMutablePointer<WriteStream?>) {
 		self.origin = origin
-		self.connections = connections
+		self.stream = stream
 	}
 	
 	// MARK: Port
@@ -50,11 +50,11 @@ internal final class WritingDevicePort: Port {
 	}
 	
 	public func write(data: Data) {
-		/*if !connections.isEmpty {
-			connections.first.write(data: data)
+		if stream.pointee != nil {
+			stream.pointee?.write(data: data)
 		}
 		else {
 			origin.write(data: data)
-		}*/
+		}
 	}
 }

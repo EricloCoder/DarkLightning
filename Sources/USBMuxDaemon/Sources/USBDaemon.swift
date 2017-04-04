@@ -19,6 +19,10 @@ public final class USBDaemon: Daemon {
 	// MARK: Init
 	
 	public convenience init() {
+		self.init(delegate: DevicesDelegateFake())
+	}
+	
+	public convenience init(delegate: DevicesDelegate) {
 		self.init(
 			socket: Memory<CFSocketNativeHandle>(initialValue: CFSocketInvalidHandle),
 			path: "/var/run/usbmuxd",
@@ -47,6 +51,7 @@ public final class USBDaemon: Daemon {
 					kCFBooleanTrue
 				)
 				let state = Memory<Int>(initialValue: 0)
+				let devices = DictionaryReference<Int, Data>()
 				return SocketStream(
 					inputStream: inputStream?.takeRetainedValue() as! InputStream,
 					outputStream: outputStream?.takeRetainedValue() as! OutputStream,
@@ -55,11 +60,20 @@ public final class USBDaemon: Daemon {
 							ReadStreamReaction(
 								delegate: ReceivingDataReaction(
 									mapping: { (plist: [String : Any]) -> (USBMuxMessage) in
-										return USBMuxProtocol(plist: plist)
+										return USBMuxProtocol(
+											plist: plist,
+											devices: devices,
+											delegate: delegate
+										)
 									}
 								),
-								mapping: { (data: Data) -> (OOData) in
-									return USBMuxMessageData(origin: data)
+								mapping: { (data: Data) -> (OODataArray) in
+									return USBMuxMessageDataArray(
+										data: data,
+										closure: { (data: Data) -> (OOData) in
+											return RawData(data)
+										}
+									)
 								}
 							),
 							CloseStreamReaction(),

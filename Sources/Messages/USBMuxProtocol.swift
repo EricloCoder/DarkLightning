@@ -12,7 +12,7 @@ internal final class USBMuxProtocol: USBMuxMessageWrap {
 
 	// MARK: Init
     
-	internal required init(plist: [String: Any]) {
+	internal required init(plist: [String: Any], devices: DictionaryReference<Int, Data>, delegate: DevicesDelegate) {
         super.init(
 			origin: AttachMessage(
 				origin: DetachMessage(
@@ -22,7 +22,12 @@ internal final class USBMuxProtocol: USBMuxMessageWrap {
 					),
 					plist: plist
 				),
-				plist: plist
+				plist: plist,
+				devices: devices,
+				delegate: delegate,
+				closure: { (deviceID: Int, devices: DictionaryReference<Int, Data>) -> (Device) in
+					return USBDevice(deviceID: deviceID, dictionary: devices)
+				}
 			)
 		)
     }

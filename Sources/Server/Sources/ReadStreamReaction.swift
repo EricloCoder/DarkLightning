@@ -39,21 +39,11 @@ internal final class ReadStreamReaction: NSObject, StreamDelegate {
     private let delegate: DataDecoding
     private let data: UnsafeMutablePointer<UInt8>
     private let bufferSize: UInt
-	private let mapping: (Data) -> (OOData)
+	private let mapping: (Data) -> (OODataArray)
 	
 	// MARK: Init
 	
-    internal convenience init(delegate: DataDecoding) {
-        self.init(
-            bufferSize: ReadStreamReaction.MaxBufferSize,
-            delegate: delegate,
-            mapping: { (data: Data) -> (OOData) in
-				return RawData(data)
-			}
-        )
-    }
-	
-	internal convenience init(delegate: DataDecoding, mapping: @escaping (Data) -> (OOData)) {
+	internal convenience init(delegate: DataDecoding, mapping: @escaping (Data) -> (OODataArray)) {
 		self.init(
 			bufferSize: ReadStreamReaction.MaxBufferSize,
 			delegate: delegate,
@@ -61,7 +51,7 @@ internal final class ReadStreamReaction: NSObject, StreamDelegate {
 		)
 	}
 	
-    internal convenience init(bufferSize: UInt, delegate: DataDecoding, mapping: @escaping (Data) -> (OOData)) {
+    internal convenience init(bufferSize: UInt, delegate: DataDecoding, mapping: @escaping (Data) -> (OODataArray)) {
         self.init(
             bufferSize: ReadStreamReaction.MaxBufferSize,
             data: UnsafeMutablePointer<UInt8>.allocate(capacity: Int(bufferSize)),
@@ -70,7 +60,7 @@ internal final class ReadStreamReaction: NSObject, StreamDelegate {
         )
 	}
 	
-    internal required init(bufferSize: UInt, data: UnsafeMutablePointer<UInt8>, delegate: DataDecoding, mapping: @escaping (Data) -> (OOData)) {
+    internal required init(bufferSize: UInt, data: UnsafeMutablePointer<UInt8>, delegate: DataDecoding, mapping: @escaping (Data) -> (OODataArray)) {
         self.bufferSize = bufferSize;
         self.data = data
         self.delegate = delegate
@@ -97,7 +87,10 @@ internal final class ReadStreamReaction: NSObject, StreamDelegate {
 				}
 			}
             if !buffer.isEmpty {
-                delegate.decode(data: mapping(buffer))
+				let messages = mapping(buffer)
+				for i in 0..<messages.count {
+					delegate.decode(data: messages[i])
+				}
             }
 		}
 	}

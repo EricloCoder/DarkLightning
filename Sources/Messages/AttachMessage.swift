@@ -19,12 +19,18 @@ internal final class AttachMessage: USBMuxMessage {
 	
 	private let origin: USBMuxMessage
 	private let plist: [String: Any]
+	private let devices: DictionaryReference<Int, Data>
+	private let delegate: DevicesDelegate
+	private let closure: (Int, DictionaryReference<Int, Data>) -> (Device)
 	
 	// MARK: Init
 	
-	internal init(origin: USBMuxMessage, plist: [String: Any]) {
+	internal init(origin: USBMuxMessage, plist: [String: Any], devices: DictionaryReference<Int, Data>, delegate: DevicesDelegate, closure: @escaping (Int, DictionaryReference<Int, Data>) -> (Device)) {
 		self.origin = origin
 		self.plist = plist
+		self.devices = devices
+		self.delegate = delegate
+		self.closure = closure
 	}
 	
     // MARK: USBMuxMessage
@@ -32,7 +38,14 @@ internal final class AttachMessage: USBMuxMessage {
 	func decode() {
 		let messageType: String = plist[AttachMessage.MessageTypeKey] as! String
 		if messageType == AttachMessage.MessageTypeAttached {
-			print("Attached")
+			let deviceID: Int = plist["DeviceID"] as! Int
+			do {
+				let data = try PropertyListSerialization.data(fromPropertyList: plist, format: .xml, options: 0)
+				devices[deviceID] = data
+				delegate.device(didAttach: closure(deviceID, devices))
+			} catch {
+    
+			}
 		}
 		else {
 			origin.decode()
