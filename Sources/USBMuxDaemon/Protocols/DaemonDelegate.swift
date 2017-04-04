@@ -28,6 +28,6 @@ public final class DevicesDelegateFake: DevicesDelegate {
 	}
 	
 	public func device(didDetach device: Device) {
-		
+		print(device)
 	}
 }

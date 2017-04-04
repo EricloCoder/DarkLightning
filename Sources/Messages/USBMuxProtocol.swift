@@ -20,7 +20,12 @@ internal final class USBMuxProtocol: USBMuxMessageWrap {
 						origin: USBMuxMessageFake(),
 						plist: plist
 					),
-					plist: plist
+					plist: plist,
+					devices: devices,
+					delegate: delegate,
+					closure: { (deviceID: Int, devices: DictionaryReference<Int, Data>) -> (Device) in
+						return USBDevice(deviceID: deviceID, dictionary: devices)
+				}
 				),
 				plist: plist,
 				devices: devices,
