@@ -37,7 +37,7 @@ internal final class SocketStream: DataStream {
 	
 	// MARK: Init
 	
-    internal required init(handle: Memory<CFSocketNativeHandle>, inputStream: Memory<InputStream?>, outputStream: Memory<OutputStream?>) {
+    internal convenience init(handle: Memory<CFSocketNativeHandle>, inputStream: Memory<InputStream?>, outputStream: Memory<OutputStream?>) {
         self.init(
             handle: handle,
             inputStream: inputStream,
