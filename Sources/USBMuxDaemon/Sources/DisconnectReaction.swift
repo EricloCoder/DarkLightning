@@ -23,7 +23,7 @@ internal final class DisconnectReaction: NSObject, StreamDelegate {
 	
 	func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
 		if eventCode == .endEncountered || eventCode == .errorOccurred {
-			handle.rawValue = -1
+			handle.rawValue = CFSocketInvalidHandle
 			state.rawValue = 0
 		}
 	}
