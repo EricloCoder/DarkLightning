@@ -58,53 +58,62 @@ public final class DevicePort: PortWrap {
         let queue = DispatchQueue.global(qos: .background)
         let outputStream = Memory<OutputStream?>(initialValue: nil)
         let inputStream = Memory<InputStream?>(initialValue: nil)
+        let connections = SocketConnections(
+            queue: DispatchQueue.global(qos: .background),
+            stream: SocketStream(
+                handle: connectedHandle,
+                inputStream: inputStream,
+                outputStream: outputStream,
+                readReaction: StreamDelegates(
+                    delegates: [
+                        ReadStreamReaction(
+                            delegate: dataDelegate
+                        ),
+                        CloseStreamReaction(),
+                        DisconnectStreamReaction(
+                            delegate: delegate,
+                            port: DevicePort(
+                                port: port,
+                                queue: queue,
+                                inputStream: inputStream,
+                                outputStream: outputStream,
+                                socket: handle,
+                                connections: SocketConnections(
+                                    queue: queue,
+                                    stream: SocketStream(
+                                        handle: connectedHandle,
+                                        inputStream: inputStream,
+                                        outputStream: outputStream,
+                                        readReaction: StreamDelegates(),
+                                        writeReaction: StreamDelegates()
+                                    ),
+                                    handle: connectedHandle
+                                )
+                            )
+                        )
+                    ]
+                ),
+                writeReaction: CloseStreamReaction()
+            ),
+            handle: connectedHandle
+        )
 		self.init(
 			port: port,
 			queue: queue,
 			inputStream: inputStream,
 			outputStream: outputStream,
 			socket: handle,
-			connections: SocketConnections(
-                queue: DispatchQueue.global(qos: .background),
-                stream: SocketStream(
-                    handle: connectedHandle,
+			connections: InsertConnectionReaction(
+                origin: connections,
+                delegate: delegate,
+                port: DevicePort(
+                    port: port,
+                    queue: queue,
                     inputStream: inputStream,
                     outputStream: outputStream,
-                    readReaction: StreamDelegates(
-                        delegates: [
-                            ReadStreamReaction(
-                                delegate: dataDelegate,
-                                mapping: { (data: Data) -> (OODataArray) in
-                                    return OODataArrayFake()
-                                }
-                            ),
-                            CloseStreamReaction(),
-                            DisconnectStreamReaction(
-                                delegate: delegate,
-                                port: DevicePort(
-                                    port: port,
-                                    queue: queue,
-                                    inputStream: inputStream,
-                                    outputStream: outputStream,
-                                    socket: handle,
-                                    connections: SocketConnections(
-                                        queue: queue,
-                                        stream: SocketStream(
-                                            handle: connectedHandle,
-                                            inputStream: inputStream,
-                                            outputStream: outputStream,
-                                            readReaction: StreamDelegates(),
-                                            writeReaction: StreamDelegates()
-                                        ),
-                                        handle: connectedHandle
-                                    )
-                                )
-                            )
-                        ]
-                    ),
-                    writeReaction: CloseStreamReaction()
-                ),
-                handle: connectedHandle
+                    socket: handle,
+                    connections: connections
+                )
             )
 		)
 	}
@@ -129,18 +138,7 @@ public final class DevicePort: PortWrap {
 				),
 				port: port,
 				queue: queue,
-				connections: InsertConnectionReaction(
-                    origin: connections,
-                    delegate: delegate,
-                    port: DevicePort(
-                        port: port,
-                        queue: queue,
-                        inputStream: inputStream,
-                        outputStream: outputStream,
-                        socket: handle,
-                        connections: connections
-                    )
-                ),
+				connections: connections,
 				socket: socket
 			)
 		)

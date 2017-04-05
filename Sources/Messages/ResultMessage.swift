@@ -19,19 +19,22 @@ internal final class ResultMessage: USBMuxMessage {
 	
 	private let origin: USBMuxMessage
 	private let plist: [String: Any]
+    private let tcpMode: Memory<Bool>
 	
 	// MARK: Init
 	
-    internal convenience init(plist: [String: Any]) {
+    internal convenience init(plist: [String: Any], tcpMode: Memory<Bool>) {
         self.init(
             origin: USBMuxMessageFake(),
-            plist: plist
+            plist: plist,
+            tcpMode: tcpMode
         )
     }
     
-	internal required init(origin: USBMuxMessage, plist: [String: Any]) {
+	internal required init(origin: USBMuxMessage, plist: [String: Any], tcpMode: Memory<Bool>) {
 		self.origin = origin
 		self.plist = plist
+        self.tcpMode = tcpMode
 	}
 	
 	// MARK: USBMuxMessage
@@ -39,7 +42,10 @@ internal final class ResultMessage: USBMuxMessage {
 	func decode() {
 		let messageType: String = plist[ResultMessage.MessageTypeKey] as! String
 		if messageType == ResultMessage.MessageTypeResult {
-			print("Result %@", plist)
+			let number = plist["Number"] as! Int
+            if number == 0 {
+                tcpMode.rawValue = true
+            }
 		}
 		else {
 			origin.decode()

@@ -21,6 +21,7 @@ public final class USBDevice: Device, CustomStringConvertible {
         let state = Memory<Int>(initialValue: 0)
         let inputStream = Memory<InputStream?>(initialValue: nil)
         let outputStream = Memory<OutputStream?>(initialValue: nil)
+        let tcpMode = Memory<Bool>(initialValue: false)
         self.init(
             deviceID: deviceID,
             dictionary: dictionary,
@@ -35,21 +36,25 @@ public final class USBDevice: Device, CustomStringConvertible {
                     readReaction: StreamDelegates(
                         delegates: [
                             ReadStreamReaction(
-                                delegate: ReceivingDataReaction(
-                                    mapping: { (plist: [String : Any]) -> (USBMuxMessage) in
-                                        return ResultMessage(
-                                            plist: plist
-                                        )
-                                    }
-                                ),
-                                mapping: { (data: Data) -> (OODataArray) in
-                                    return USBMuxMessageDataArray(
-                                        data: data,
-                                        closure: { (data: Data) -> (OOData) in
-                                            return RawData(data)
+                                delegate: TCPMessage(
+                                    origin: ReceivingDataReaction(
+                                        mapping: { (plist: [String : Any]) -> (USBMuxMessage) in
+                                            return ResultMessage(
+                                                plist: plist,
+                                                tcpMode: tcpMode
+                                            )
+                                        },
+                                        dataMapping: { (data: Data) -> (OODataArray) in
+                                            return USBMuxMessageDataArray(
+                                                data: data,
+                                                closure: { (data: Data) -> (OOData) in
+                                                    return RawData(data)
+                                                }
+                                            )
                                         }
-                                    )
-                                }
+                                    ),
+                                    tcpMode: tcpMode
+                                )
                             ),
                             CloseStreamReaction(),
                             DisconnectReaction(

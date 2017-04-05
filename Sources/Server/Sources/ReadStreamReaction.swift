@@ -39,32 +39,28 @@ internal final class ReadStreamReaction: NSObject, StreamDelegate {
     private let delegate: DataDecoding
     private let data: UnsafeMutablePointer<UInt8>
     private let bufferSize: UInt
-	private let mapping: (Data) -> (OODataArray)
 	
 	// MARK: Init
 	
-	internal convenience init(delegate: DataDecoding, mapping: @escaping (Data) -> (OODataArray)) {
+	internal convenience init(delegate: DataDecoding) {
 		self.init(
 			bufferSize: ReadStreamReaction.MaxBufferSize,
-			delegate: delegate,
-			mapping: mapping
+			delegate: delegate
 		)
 	}
 	
-    internal convenience init(bufferSize: UInt, delegate: DataDecoding, mapping: @escaping (Data) -> (OODataArray)) {
+    internal convenience init(bufferSize: UInt, delegate: DataDecoding) {
         self.init(
             bufferSize: ReadStreamReaction.MaxBufferSize,
             data: UnsafeMutablePointer<UInt8>.allocate(capacity: Int(bufferSize)),
-            delegate: delegate,
-            mapping: mapping
+            delegate: delegate
         )
 	}
 	
-    internal required init(bufferSize: UInt, data: UnsafeMutablePointer<UInt8>, delegate: DataDecoding, mapping: @escaping (Data) -> (OODataArray)) {
+    internal required init(bufferSize: UInt, data: UnsafeMutablePointer<UInt8>, delegate: DataDecoding) {
         self.bufferSize = bufferSize;
         self.data = data
         self.delegate = delegate
-		self.mapping = mapping
     }
     
     // MARK: - Private
@@ -87,10 +83,7 @@ internal final class ReadStreamReaction: NSObject, StreamDelegate {
 				}
 			}
             if !buffer.isEmpty {
-				let messages = mapping(buffer)
-				for i in 0..<messages.count {
-					delegate.decode(data: messages[i])
-				}
+                delegate.decode(data: RawData(buffer))
             }
 		}
 	}
