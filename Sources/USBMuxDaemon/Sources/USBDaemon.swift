@@ -33,45 +33,27 @@ public final class USBDaemon: DaemonWrap {
     }
 	
     public convenience init(delegate: DevicesDelegate, port: UInt32) {
+        let handle = Memory<CFSocketNativeHandle>(initialValue: CFSocketInvalidHandle)
+        let state = Memory<Int>(initialValue: 0)
+        let devices = DictionaryReference<Int, Data>()
+        let inputStream = Memory<InputStream?>(initialValue: nil)
+        let outputStream = Memory<OutputStream?>(initialValue: nil)
 		self.init(
-			socket: Memory<CFSocketNativeHandle>(initialValue: CFSocketInvalidHandle),
+			socket: handle,
 			path: USBDaemon.USBMuxDPath,
 			queue: DispatchQueue.global(qos: .background),
-			stream: Memory<DataStream?>(initialValue: nil),
-			closure: { (handle: Memory<CFSocketNativeHandle>) -> (DataStream) in
-                let state = Memory<Int>(initialValue: 0)
-                let devices = DictionaryReference<Int, Data>()
-                var inputStream: Unmanaged<CFReadStream>? = nil
-				var outputStream: Unmanaged<CFWriteStream>? = nil
-				CFStreamCreatePairWithSocket(
-					kCFAllocatorDefault,
-					handle.rawValue,
-					&inputStream,
-					&outputStream
-				)
-				return SocketStream(
-					inputStream: inputStream!.takeRetainedValue() as InputStream,
-					outputStream: outputStream!.takeRetainedValue() as OutputStream,
-					readReaction: StreamDelegates(
-						delegates: [
-							ReadStreamReaction(
-								delegate: ReceivingDataReaction(
-									mapping: { (plist: [String : Any]) -> (USBMuxMessage) in
-                                        return AttachMessage(
-                                            origin: DetachMessage(
-                                                origin: USBMuxMessageFake(),
-                                                plist: plist,
-                                                devices: devices,
-                                                delegate: delegate,
-                                                closure: { (deviceID: Int, devices: DictionaryReference<Int, Data>) -> (Device) in
-                                                    return USBDevice(
-                                                        deviceID: deviceID,
-                                                        dictionary: devices,
-                                                        port: port,
-                                                        path: USBDaemon.USBMuxDPath
-                                                    )
-                                                }
-                                            ),
+			stream: SocketStream(
+                handle: handle,
+                inputStream: inputStream,
+                outputStream: outputStream,
+                readReaction: StreamDelegates(
+                    delegates: [
+                        ReadStreamReaction(
+                            delegate: ReceivingDataReaction(
+                                mapping: { (plist: [String : Any]) -> (USBMuxMessage) in
+                                    return AttachMessage(
+                                        origin: DetachMessage(
+                                            origin: USBMuxMessageFake(),
                                             plist: plist,
                                             devices: devices,
                                             delegate: delegate,
@@ -83,50 +65,60 @@ public final class USBDaemon: DaemonWrap {
                                                     path: USBDaemon.USBMuxDPath
                                                 )
                                             }
-                                        )
-									}
-								),
-								mapping: { (data: Data) -> (OODataArray) in
-									return USBMuxMessageDataArray(
-										data: data,
-										closure: { (data: Data) -> (OOData) in
-											return RawData(data)
-										}
-									)
-								}
-							),
-							CloseStreamReaction(),
-							DisconnectReaction(
-								handle: handle,
-								state: state
-							)
-						]
-					),
-					writeReaction: StreamDelegates(
-						delegates: [
-							OpenReaction(
-								state: state,
-								outputStream: SocketWriteStream(
-									outputStream: outputStream!.takeRetainedValue() as OutputStream
-								)
-							),
-							CloseStreamReaction(),
-						]
-					)
-				)
-			}
+                                        ),
+                                        plist: plist,
+                                        devices: devices,
+                                        delegate: delegate,
+                                        closure: { (deviceID: Int, devices: DictionaryReference<Int, Data>) -> (Device) in
+                                            return USBDevice(
+                                                deviceID: deviceID,
+                                                dictionary: devices,
+                                                port: port,
+                                                path: USBDaemon.USBMuxDPath
+                                            )
+                                        }
+                                    )
+                                }
+                            ),
+                            mapping: { (data: Data) -> (OODataArray) in
+                                return USBMuxMessageDataArray(
+                                    data: data,
+                                    closure: { (data: Data) -> (OOData) in
+                                        return RawData(data)
+                                    }
+                                )
+                            }
+                        ),
+                        CloseStreamReaction(),
+                        DisconnectReaction(
+                            handle: handle,
+                            state: state
+                        )
+                    ]
+                ),
+                writeReaction: StreamDelegates(
+                    delegates: [
+                        OpenReaction(
+                            state: state,
+                            outputStream: SocketWriteStream(
+                                outputStream: outputStream
+                            )
+                        ),
+                        CloseStreamReaction(),
+                        ]
+                )
+            )
 		)
 	}
     
-    public required init(socket: Memory<CFSocketNativeHandle>, path: String, queue: DispatchQueue, stream: Memory<DataStream?>, closure: @escaping (Memory<CFSocketNativeHandle>) -> (DataStream)) {
+    public required init(socket: Memory<CFSocketNativeHandle>, path: String, queue: DispatchQueue, stream: DataStream) {
         super.init(
             origin: StoppingUSBDaemon(
                 origin: StartingUSBDaemon(
                     socket: socket,
                     path: path,
                     queue: queue,
-                    stream: stream,
-                    closure: closure
+                    stream: stream
                 ),
                 handle: socket,
                 stream: stream

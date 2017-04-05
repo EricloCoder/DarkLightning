@@ -31,44 +31,25 @@ import Foundation
 internal final class SocketStream: DataStream {
 	private let readReaction: StreamDelegate
 	private let writeReaction: StreamDelegate
-	private let inputStream: InputStream
-	private let outputStream: OutputStream
+	private let inputStream: Memory<InputStream?>
+	private let outputStream: Memory<OutputStream?>
+    private let handle: Memory<CFSocketNativeHandle>
 	
 	// MARK: Init
     
-	internal convenience init(socket: CFSocketNativeHandle, readReaction: StreamDelegate, writeReaction: StreamDelegate) {
-		var inputStream: Unmanaged<CFReadStream>? = nil
-		var outputStream: Unmanaged<CFWriteStream>? = nil
-		CFStreamCreatePairWithSocket(
-			kCFAllocatorDefault,
-			socket,
-			nil,
-			&outputStream
-		)
-		CFStreamCreatePairWithSocket(
-			kCFAllocatorDefault,
-			socket,
-			&inputStream,
-			nil
-		)
-		CFReadStreamSetProperty(
-			inputStream!.takeUnretainedValue(),
-			CFStreamPropertyKey(
-				rawValue: kCFStreamPropertyShouldCloseNativeSocket
-			),
-			kCFBooleanTrue
-		)
-		CFWriteStreamSetProperty(
-			outputStream!.takeUnretainedValue(),
-			CFStreamPropertyKey(
-				rawValue: kCFStreamPropertyShouldCloseNativeSocket
-			),
-			kCFBooleanTrue
-		)
-		self.init(inputStream: inputStream!.takeRetainedValue() as CFReadStream, outputStream: outputStream!.takeRetainedValue() as CFWriteStream, readReaction: readReaction, writeReaction: writeReaction)
+	internal convenience init(socket: Memory<CFSocketNativeHandle>, readReaction: StreamDelegate, writeReaction: StreamDelegate) {
+		
+		self.init(
+            handle: socket,
+            inputStream: Memory<InputStream?>(initialValue: nil),
+            outputStream: Memory<OutputStream?>(initialValue: nil),
+            readReaction: readReaction,
+            writeReaction: writeReaction
+        )
     }
 	
-	internal required init(inputStream: InputStream, outputStream: OutputStream, readReaction: StreamDelegate, writeReaction: StreamDelegate) {
+	internal required init(handle: Memory<CFSocketNativeHandle>, inputStream: Memory<InputStream?>, outputStream: Memory<OutputStream?>, readReaction: StreamDelegate, writeReaction: StreamDelegate) {
+        self.handle = handle
 		self.inputStream = inputStream
 		self.outputStream = outputStream
 		self.readReaction = readReaction
@@ -84,13 +65,37 @@ internal final class SocketStream: DataStream {
     // MARK: WriteStream
 	
     func open(in queue: DispatchQueue) {
+        var inputStream: Unmanaged<CFReadStream>? = nil
+        var outputStream: Unmanaged<CFWriteStream>? = nil
+        CFStreamCreatePairWithSocket(
+            kCFAllocatorDefault,
+            handle.rawValue,
+            &inputStream,
+            &outputStream
+        )
+        CFReadStreamSetProperty(
+            inputStream!.takeUnretainedValue(),
+            CFStreamPropertyKey(
+                rawValue: kCFStreamPropertyShouldCloseNativeSocket
+            ),
+            kCFBooleanTrue
+        )
+        CFWriteStreamSetProperty(
+            outputStream!.takeUnretainedValue(),
+            CFStreamPropertyKey(
+                rawValue: kCFStreamPropertyShouldCloseNativeSocket
+            ),
+            kCFBooleanTrue
+        )
+        self.inputStream.rawValue = inputStream!.takeRetainedValue() as InputStream
+        self.outputStream.rawValue = outputStream!.takeRetainedValue() as OutputStream
         queue.sync {
-            self.inputStream.schedule(in: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
-            self.outputStream.schedule(in: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
-            self.inputStream.delegate = self.readReaction
-            self.outputStream.delegate = self.writeReaction
-            self.inputStream.open()
-            self.outputStream.open()
+            self.inputStream.rawValue?.schedule(in: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
+            self.outputStream.rawValue?.schedule(in: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
+            self.inputStream.rawValue?.delegate = self.readReaction
+            self.outputStream.rawValue?.delegate = self.writeReaction
+            self.inputStream.rawValue?.open()
+            self.outputStream.rawValue?.open()
         }
         queue.async {
             RunLoop.current.run()
@@ -98,11 +103,11 @@ internal final class SocketStream: DataStream {
 	}
 	
 	func close() {
-		if inputStream.streamStatus != .closed {
-			inputStream.close()
+		if inputStream.rawValue?.streamStatus != .closed {
+			inputStream.rawValue?.close()
 		}
-		if outputStream.streamStatus != .closed {
-			outputStream.close()
+		if outputStream.rawValue?.streamStatus != .closed {
+			outputStream.rawValue?.close()
 		}
 	}
 }

@@ -15,17 +15,15 @@ internal final class StartingUSBDaemon: Daemon {
     private let handle: Memory<CFSocketNativeHandle>
     private let path: String
     private let queue: DispatchQueue
-    private let closure: (Memory<CFSocketNativeHandle>) -> (DataStream)
-    private let stream: Memory<DataStream?>
+    private let stream: DataStream
     
     // MARK: Init
     
-    public required init(socket: Memory<CFSocketNativeHandle>, path: String, queue: DispatchQueue, stream: Memory<DataStream?>, closure: @escaping (Memory<CFSocketNativeHandle>) -> (DataStream)) {
+    public required init(socket: Memory<CFSocketNativeHandle>, path: String, queue: DispatchQueue, stream: DataStream) {
         self.handle = socket
         self.path = path
         self.queue = queue
         self.stream = stream
-        self.closure = closure
     }
     
     // MARK: Internal
@@ -64,8 +62,7 @@ internal final class StartingUSBDaemon: Daemon {
                 }
                 if result != -1 {
                     handle.rawValue = socketHandle
-                    stream.rawValue = closure(handle)
-                    stream.rawValue?.open(in: queue)
+                    stream.open(in: queue)
                 }
             }
         }

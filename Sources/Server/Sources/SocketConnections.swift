@@ -47,7 +47,7 @@ internal final class SocketConnections: Connections {
 	
     func insert(address: Data, socket: CFSocketNativeHandle) {
         let streams = SocketStream(
-            socket: socket,
+            socket: Memory<CFSocketNativeHandle>(initialValue: socket),
             readReaction: self.readReaction,
             writeReaction: self.writeReaction
 			)

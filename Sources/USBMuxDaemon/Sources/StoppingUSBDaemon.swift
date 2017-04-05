@@ -10,12 +10,12 @@ import Foundation
 
 internal final class StoppingUSBDaemon: Daemon {
     private let origin: Daemon
-    private let stream: Memory<DataStream?>
+    private let stream: DataStream
     private let handle: Memory<CFSocketNativeHandle>
     
 	// MARK: Init
     
-    internal required init(origin: Daemon, handle: Memory<CFSocketNativeHandle>, stream: Memory<DataStream?>) {
+    internal required init(origin: Daemon, handle: Memory<CFSocketNativeHandle>, stream: DataStream) {
         self.origin = origin
         self.handle = handle
         self.stream = stream
@@ -29,10 +29,9 @@ internal final class StoppingUSBDaemon: Daemon {
     
     func stop() {
         if handle.rawValue != CFSocketInvalidHandle {
-            stream.rawValue?.close()
+            stream.close()
             _ = Darwin.close(handle.rawValue)
             handle.rawValue = CFSocketInvalidHandle
-            stream.rawValue = nil
         }
     }
 }
