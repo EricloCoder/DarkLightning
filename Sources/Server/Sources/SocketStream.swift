@@ -36,17 +36,6 @@ internal final class SocketStream: DataStream {
     private let handle: Memory<CFSocketNativeHandle>
 	
 	// MARK: Init
-    
-	internal convenience init(socket: Memory<CFSocketNativeHandle>, readReaction: StreamDelegate, writeReaction: StreamDelegate) {
-		
-		self.init(
-            handle: socket,
-            inputStream: Memory<InputStream?>(initialValue: nil),
-            outputStream: Memory<OutputStream?>(initialValue: nil),
-            readReaction: readReaction,
-            writeReaction: writeReaction
-        )
-    }
 	
 	internal required init(handle: Memory<CFSocketNativeHandle>, inputStream: Memory<InputStream?>, outputStream: Memory<OutputStream?>, readReaction: StreamDelegate, writeReaction: StreamDelegate) {
         self.handle = handle

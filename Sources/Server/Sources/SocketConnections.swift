@@ -30,40 +30,21 @@ import Foundation
 
 internal final class SocketConnections: Connections {
 	private let queue: DispatchQueue
-	private let readReaction: StreamDelegate
-	private let writeReaction: StreamDelegate
-	private var connections: DictionaryReference<Data, DataStream>
+    private let stream: DataStream
+    private let handle: Memory<CFSocketNativeHandle>
 	
 	// MARK: Init
     
-    internal required init(queue: DispatchQueue, readReaction: StreamDelegate, writeReaction: StreamDelegate, connections: DictionaryReference<Data, DataStream>) {
+    internal required init(queue: DispatchQueue, stream: DataStream, handle: Memory<CFSocketNativeHandle>) {
         self.queue = queue
-		self.readReaction = readReaction
-		self.writeReaction = writeReaction
-		self.connections = connections
+		self.handle = handle
+        self.stream = stream
     }
     
     // MARK: Connections
 	
     func insert(address: Data, socket: CFSocketNativeHandle) {
-        let streams = SocketStream(
-            socket: Memory<CFSocketNativeHandle>(initialValue: socket),
-            readReaction: self.readReaction,
-            writeReaction: self.writeReaction
-        )
-        streams.open(in: queue)
-        self.connections[address] = streams
-	}
-	
-	func removeAll() {
-		connections.removeAll()
-	}
-	
-	var isEmpty: Bool {
-		return connections.isEmpty
-	}
-	
-	var first: DataStream {
-		return connections.values.first!
+        handle.rawValue = socket
+        stream.open(in: queue)
 	}
 }

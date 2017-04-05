@@ -47,16 +47,4 @@ internal final class InsertConnectionReaction: Connections {
 		origin.insert(address: address, socket: socket)
 		delegate.port(didConnect: port)
 	}
-	
-	var isEmpty: Bool {
-		return origin.isEmpty
-	}
-	
-	var first: DataStream {
-		return origin.first
-	}
-	
-	func removeAll() {
-		origin.removeAll()
-	}
 }

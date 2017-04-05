@@ -30,9 +30,6 @@ import Foundation
 
 public protocol Connections: class {
 	func insert(address: Data, socket: CFSocketNativeHandle)
-	func removeAll()
-	var isEmpty: Bool {get}
-	var first: DataStream {get}
 }
 
 public final class ConnectionsFake: Connections {
@@ -47,17 +44,5 @@ public final class ConnectionsFake: Connections {
     
 	public func insert(address: Data, socket: CFSocketNativeHandle) {
 		
-	}
-	
-	public func removeAll() {
-		
-	}
-	
-	public var isEmpty: Bool {
-		return true
-	}
-	
-	public var first: DataStream {
-		return DataStreamFake()
 	}
 }

@@ -31,14 +31,14 @@ import Foundation
 internal final class ClosingDevicePort: Port {
 	private let origin: Port
 	private let socket: Memory<CFSocketNativeHandle>
-	private let connections: Connections
+    private let stream: DataStream
 	
 	// MARK: Init
 	
-	internal required init(origin: Port, socket: Memory<CFSocketNativeHandle>, connections: Connections) {
+	internal required init(origin: Port, socket: Memory<CFSocketNativeHandle>, stream: DataStream) {
 		self.origin = origin
 		self.socket = socket
-		self.connections = connections
+		self.stream = stream
 	}
 	
 	// MARK: Private
@@ -55,7 +55,7 @@ internal final class ClosingDevicePort: Port {
 	
 	public func close() {
 		if socket.rawValue != -1 {
-			connections.removeAll()
+            stream.close()
 			let socket = CFSocketCreateWithNative(kCFAllocatorDefault, self.socket.rawValue, 0, nil, nil)
 			CFSocketInvalidate(socket)
 			self.socket.rawValue = -1

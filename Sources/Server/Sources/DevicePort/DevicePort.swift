@@ -54,65 +54,91 @@ public final class DevicePort: PortWrap {
 	
 	public convenience init(port: UInt16, delegate: PortDelegate, dataDelegate: DataDecoding) {
         let handle = Memory<CFSocketNativeHandle>(initialValue: -1)
+        let connectedHandle = Memory<CFSocketNativeHandle>(initialValue: CFSocketInvalidHandle)
         let queue = DispatchQueue.global(qos: .background)
-        let data = DictionaryReference<Data, DataStream>()
+        let outputStream = Memory<OutputStream?>(initialValue: nil)
+        let inputStream = Memory<InputStream?>(initialValue: nil)
         let connections = SocketConnections(
             queue: DispatchQueue.global(qos: .background),
-            readReaction: StreamDelegates(
-                delegates: [
-                    ReadStreamReaction(
-                        delegate: dataDelegate,
-                        mapping: { (data: Data) -> (OODataArray) in
-                            return OODataArrayFake()
-                        }
-                    ),
-                    CloseStreamReaction(),
-                    DisconnectStreamReaction(
-                        delegate: delegate,
-                        port: DevicePort(
-                            port: port,
-                            queue: queue,
-                            connections: SocketConnections(
+            stream: SocketStream(
+                handle: connectedHandle,
+                inputStream: inputStream,
+                outputStream: outputStream,
+                readReaction: StreamDelegates(
+                    delegates: [
+                        ReadStreamReaction(
+                            delegate: dataDelegate,
+                            mapping: { (data: Data) -> (OODataArray) in
+                                return OODataArrayFake()
+                            }
+                        ),
+                        CloseStreamReaction(),
+                        DisconnectStreamReaction(
+                            delegate: delegate,
+                            port: DevicePort(
+                                port: port,
                                 queue: queue,
-                                readReaction: StreamDelegates(),
-                                writeReaction: StreamDelegates(),
-                                connections: data
-                            ),
-                            socket: handle
+                                inputStream: inputStream,
+                                outputStream: outputStream,
+                                socket: handle,
+                                connections: SocketConnections(
+                                    queue: queue,
+                                    stream: SocketStream(
+                                        handle: connectedHandle,
+                                        inputStream: inputStream,
+                                        outputStream: outputStream,
+                                        readReaction: StreamDelegates(),
+                                        writeReaction: StreamDelegates()
+                                    ),
+                                    handle: connectedHandle
+                                )
+                            )
                         )
-                    )
-                ]
+                    ]
+                ),
+                writeReaction: CloseStreamReaction()
             ),
-            writeReaction: CloseStreamReaction(),
-            connections: data
+            handle: connectedHandle
         )
 		self.init(
 			port: port,
 			queue: queue,
-            connections: InsertConnectionReaction(
+			inputStream: inputStream,
+			outputStream: outputStream,
+			socket: handle,
+			connections: InsertConnectionReaction(
                 origin: connections,
                 delegate: delegate,
                 port: DevicePort(
                     port: port,
                     queue: queue,
-                    connections: connections,
-                    socket: handle
+                    inputStream: inputStream,
+                    outputStream: outputStream,
+                    socket: handle,
+                    connections: connections
                 )
-            ),
-			socket: handle
+            )
 		)
 	}
 	
-    public required init(port: UInt16, queue: DispatchQueue, connections: Connections, socket: Memory<CFSocketNativeHandle>) {
+    public required init(port: UInt16, queue: DispatchQueue, inputStream: Memory<InputStream?>, outputStream: Memory<OutputStream?>, socket: Memory<CFSocketNativeHandle>, connections: Connections) {
 		super.init(
 			origin: OpeningDevicePort(
 				origin: ClosingDevicePort(
 					origin: WritingDevicePort(
 						origin: PortFake(),
-						stream: Memory<WriteStream?>(initialValue: nil)
+						stream: SocketWriteStream(
+                            outputStream: outputStream
+                        )
 					),
 					socket: socket,
-					connections: connections
+					stream: SocketStream(
+                        handle: Memory<CFSocketNativeHandle>(initialValue: CFSocketInvalidHandle),
+                        inputStream: inputStream,
+                        outputStream: outputStream,
+                        readReaction: StreamDelegates(),
+                        writeReaction: StreamDelegates()
+                    )
 				),
 				port: port,
 				queue: queue,

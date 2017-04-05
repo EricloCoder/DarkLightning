@@ -64,7 +64,6 @@ internal final class OpeningDevicePort: Port {
 			{ (socket: CFSocket?, callbackType: CFSocketCallBackType, address: CFData?, data: UnsafeRawPointer?, info: UnsafeMutableRawPointer?) -> Swift.Void in
 				let devicePort = Unmanaged<OpeningDevicePort>.fromOpaque(info!).takeUnretainedValue()
 				let theSocket = data!.load(as: CFSocketNativeHandle.self)
-				devicePort.connections.removeAll()
 				devicePort.connections.insert(address: address! as Data, socket: theSocket)
 			},
 			&aContext
