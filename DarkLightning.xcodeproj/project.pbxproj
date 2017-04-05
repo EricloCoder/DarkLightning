@@ -8,13 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		B43FD1A61E8326850060DA24 /* USBMuxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43FD1A51E8326850060DA24 /* USBMuxMessage.swift */; };
-		B43FD1A81E8326970060DA24 /* AttachMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43FD1A71E8326970060DA24 /* AttachMessage.swift */; };
-		B43FD1AA1E8326AC0060DA24 /* DetachMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43FD1A91E8326AC0060DA24 /* DetachMessage.swift */; };
 		B43FD1AC1E8326FC0060DA24 /* ResultMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43FD1AB1E8326FC0060DA24 /* ResultMessage.swift */; };
-		B43FD1AE1E8327910060DA24 /* USBMuxProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43FD1AD1E8327910060DA24 /* USBMuxProtocol.swift */; };
 		B43FD1B01E8327A50060DA24 /* USBMuxMessageWrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43FD1AF1E8327A50060DA24 /* USBMuxMessageWrap.swift */; };
 		B448E9DF1E94E18B00316651 /* StartingUSBDaemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448E9DE1E94E18B00316651 /* StartingUSBDaemon.swift */; };
 		B448E9E11E94E1BA00316651 /* StoppingUSBDaemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448E9E01E94E1BA00316651 /* StoppingUSBDaemon.swift */; };
+		B448E9E21E94F0A100316651 /* ReadStreamReaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0405A1E81981C00C06084 /* ReadStreamReaction.swift */; };
+		B448E9E31E94F0B300316651 /* OODataArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4832C261E94385A0028AB8E /* OODataArray.swift */; };
 		B4832BB21E8D75DA0028AB8E /* OOUInt16.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0405F1E81981C00C06084 /* OOUInt16.swift */; };
 		B4832BB31E8D75DA0028AB8E /* OOUInt32.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A040601E81981C00C06084 /* OOUInt32.swift */; };
 		B4832BB41E8D75DA0028AB8E /* OOData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D98F601E81C6AE000EBAEA /* OOData.swift */; };
@@ -81,7 +80,6 @@
 		B4A040711E81981C00C06084 /* WritingDevicePort.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A040571E81981C00C06084 /* WritingDevicePort.swift */; };
 		B4A040721E81981C00C06084 /* DisconnectStreamReaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A040581E81981C00C06084 /* DisconnectStreamReaction.swift */; };
 		B4A040731E81981C00C06084 /* InsertConnectionReaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A040591E81981C00C06084 /* InsertConnectionReaction.swift */; };
-		B4A040741E81981C00C06084 /* ReadStreamReaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0405A1E81981C00C06084 /* ReadStreamReaction.swift */; };
 		B4A040751E81981C00C06084 /* SocketConnections.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0405B1E81981C00C06084 /* SocketConnections.swift */; };
 		B4A040761E81981C00C06084 /* SocketStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0405C1E81981C00C06084 /* SocketStream.swift */; };
 		B4A040771E81981C00C06084 /* OOUInt16.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0405F1E81981C00C06084 /* OOUInt16.swift */; };
@@ -718,11 +716,12 @@
 				B4D98F791E81DAC3000EBAEA /* ConnectMessageData.swift in Sources */,
 				B4D98F671E81CEF6000EBAEA /* DictData.swift in Sources */,
 				B4A040711E81981C00C06084 /* WritingDevicePort.swift in Sources */,
-				B4A040741E81981C00C06084 /* ReadStreamReaction.swift in Sources */,
 				B4832BF61E9142730028AB8E /* RawData.swift in Sources */,
 				B4D98F611E81C6AE000EBAEA /* OOData.swift in Sources */,
+				B448E9E31E94F0B300316651 /* OODataArray.swift in Sources */,
 				B43FD1B01E8327A50060DA24 /* USBMuxMessageWrap.swift in Sources */,
 				B4A0406A1E81981C00C06084 /* DevicePortDelegate.swift in Sources */,
+				B448E9E21E94F0A100316651 /* ReadStreamReaction.swift in Sources */,
 				B4A0406B1E81981C00C06084 /* IncomingDataReaction.swift in Sources */,
 				B4D98F711E81D440000EBAEA /* DataWithUInt32.swift in Sources */,
 				B4D98F731E81D509000EBAEA /* MessageData.swift in Sources */,
@@ -734,12 +733,9 @@
 				B4832C151E9193340028AB8E /* DataStream.swift in Sources */,
 				B4A0407D1E81981C00C06084 /* StreamDelegates.swift in Sources */,
 				B4A040781E81981C00C06084 /* OOUInt32.swift in Sources */,
-				B43FD1A81E8326970060DA24 /* AttachMessage.swift in Sources */,
 				B4A0406E1E81981C00C06084 /* ClosingDevicePort.swift in Sources */,
-				B43FD1AE1E8327910060DA24 /* USBMuxProtocol.swift in Sources */,
 				B43FD1A61E8326850060DA24 /* USBMuxMessage.swift in Sources */,
 				B4A0406C1E81981C00C06084 /* WriteStream.swift in Sources */,
-				B43FD1AA1E8326AC0060DA24 /* DetachMessage.swift in Sources */,
 				B4A0407C1E81981C00C06084 /* NetworkUInt32.swift in Sources */,
 				B4A040791E81981C00C06084 /* CFSocket.swift in Sources */,
 				B4A040701E81981C00C06084 /* OpeningDevicePort.swift in Sources */,

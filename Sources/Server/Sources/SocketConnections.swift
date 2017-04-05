@@ -45,21 +45,14 @@ internal final class SocketConnections: Connections {
     
     // MARK: Connections
 	
-	func insert(address: Data, socket: CFSocketNativeHandle) {
-		queue.sync {
-			let runLoop = RunLoop.current
-			let streams = SocketStream(
-				socket: socket,
-				readReaction: self.readReaction,
-				writeReaction: self.writeReaction,
-				runLoop: runLoop
+    func insert(address: Data, socket: CFSocketNativeHandle) {
+        let streams = SocketStream(
+            socket: socket,
+            readReaction: self.readReaction,
+            writeReaction: self.writeReaction
 			)
-			streams.open()
-			self.connections[address] = streams
-		}
-		queue.async {
-			RunLoop.current.run()
-		}
+        streams.open(in: queue)
+        self.connections[address] = streams
 	}
 	
 	func removeAll() {

@@ -58,7 +58,12 @@ public final class DevicePort: PortWrap {
 				queue: DispatchQueue.global(qos: .background),
 				readReaction: StreamDelegates(
 					delegates: [
-                        ReadStreamReaction(delegate: dataDelegate),
+                        ReadStreamReaction(
+                            delegate: dataDelegate,
+                            mapping: { (data: Data) -> (OODataArray) in
+                                return OODataArrayFake()
+                            }
+                        ),
 						CloseStreamReaction(),
 						DisconnectStreamReaction(delegate: delegate)
 					]
