@@ -9,20 +9,12 @@
 import Foundation
 import CoreFoundation
 
-public final class USBDaemon: Daemon {
-    
+public final class USBDaemon: DaemonWrap {
+	
     // MARK: Constants
     
     private static let USBMuxDPath = "/var/run/usbmuxd"
     
-    // MARK: Members
-    
-	private let handle: Memory<CFSocketNativeHandle>
-	private let path: String
-	private let queue: DispatchQueue
-	private let closure: (Memory<CFSocketNativeHandle>, RunLoop) -> (DataStream)
-	private var stream: DataStream?
-	
 	// MARK: Init
 	
 	public convenience init() {
@@ -34,6 +26,7 @@ public final class USBDaemon: Daemon {
 			socket: Memory<CFSocketNativeHandle>(initialValue: CFSocketInvalidHandle),
 			path: USBDaemon.USBMuxDPath,
 			queue: DispatchQueue.global(qos: .background),
+			stream: Memory<DataStream?>(initialValue: nil),
 			closure: { (handle: Memory<CFSocketNativeHandle>, runLoop: RunLoop) -> (DataStream) in
                 let state = Memory<Int>(initialValue: 0)
                 let devices = DictionaryReference<Int, Data>()
@@ -92,72 +85,20 @@ public final class USBDaemon: Daemon {
 			}
 		)
 	}
-	
-	public required init(socket: Memory<CFSocketNativeHandle>, path: String, queue: DispatchQueue, closure: @escaping (Memory<CFSocketNativeHandle>, RunLoop) -> (DataStream)) {
-        self.handle = socket
-		self.path = path
-		self.queue = queue
-		self.closure = closure
+    
+    public required init(socket: Memory<CFSocketNativeHandle>, path: String, queue: DispatchQueue, stream: Memory<DataStream?>, closure: @escaping (Memory<CFSocketNativeHandle>, RunLoop) -> (DataStream)) {
+        super.init(
+            origin: StoppingUSBDaemon(
+                origin: StartingUSBDaemon(
+                    socket: socket,
+                    path: path,
+                    queue: queue,
+                    stream: stream,
+                    closure: closure
+                ),
+                handle: socket,
+                stream: stream
+            )
+        )
     }
-	
-	// MARK: Internal
-	
-	private func addr() -> sockaddr_un {
-		let length = path.withCString { Int(strlen($0)) }
-		var addr: sockaddr_un = sockaddr_un()
-		addr.sun_family = sa_family_t(AF_UNIX)
-		_ = withUnsafeMutablePointer(to: &addr.sun_path.0) { ptr in
-			path.withCString {
-				strncpy(ptr, $0, length)
-			}
-		}
-		return addr
-	}
-	
-	private func configure(socketHandle: CFSocketNativeHandle) {
-		var on: Int = Int(true)
-		setsockopt(socketHandle, SOL_SOCKET, SO_NOSIGPIPE, &on, socklen_t(MemoryLayout<Int>.size))
-		setsockopt(socketHandle, SOL_SOCKET, SO_REUSEADDR, &on, socklen_t(MemoryLayout<Int>.size))
-		setsockopt(socketHandle, SOL_SOCKET, SO_REUSEPORT, &on, socklen_t(MemoryLayout<Int>.size))
-	}
-	
-	private func openStreams() {
-		queue.sync {
-			stream = closure(handle, RunLoop.current)
-			stream?.open()
-		}
-		queue.async {
-			RunLoop.current.run()
-		}
-	}
-	
-    // MARK: WriteStream
-	
-	public func start() {
-		if handle.rawValue == CFSocketInvalidHandle {
-			let socketHandle = socket(AF_UNIX, SOCK_STREAM, 0)
-			if socketHandle != CFSocketInvalidHandle {
-				configure(socketHandle: socketHandle)
-				var addr = self.addr()
-				let result = withUnsafeMutablePointer(to: &addr) {
-					$0.withMemoryRebound(to: sockaddr.self, capacity: 1) {
-						connect(socketHandle, $0, socklen_t(MemoryLayout.size(ofValue: addr)))
-					}
-				}
-				if result != -1 {
-					handle.rawValue = socketHandle
-					openStreams()
-				}
-			}
-		}
-	}
-	
-	public func stop() {
-		if handle.rawValue != CFSocketInvalidHandle {
-			stream?.close()
-            _ = Darwin.close(handle.rawValue)
-            handle.rawValue = CFSocketInvalidHandle
-			stream = nil
-		}
-	}
 }
