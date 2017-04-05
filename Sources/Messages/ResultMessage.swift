@@ -22,7 +22,14 @@ internal final class ResultMessage: USBMuxMessage {
 	
 	// MARK: Init
 	
-	internal init(origin: USBMuxMessage, plist: [String: Any]) {
+    internal convenience init(plist: [String: Any]) {
+        self.init(
+            origin: USBMuxMessageFake(),
+            plist: plist
+        )
+    }
+    
+	internal required init(origin: USBMuxMessage, plist: [String: Any]) {
 		self.origin = origin
 		self.plist = plist
 	}

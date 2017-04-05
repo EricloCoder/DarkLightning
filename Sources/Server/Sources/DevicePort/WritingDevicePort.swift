@@ -33,6 +33,13 @@ internal final class WritingDevicePort: Port {
 	private let stream: WriteStream
 	
 	// MARK: Init
+    
+    internal convenience init(stream: WriteStream) {
+        self.init(
+            origin: PortFake(),
+            stream: stream
+        )
+    }
 	
 	internal required init(origin: Port, stream: WriteStream) {
 		self.origin = origin

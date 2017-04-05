@@ -9,7 +9,7 @@
 import Foundation
 
 internal final class USBMuxMessageDataArray: OODataArray {
-	private let data: Data
+    private let data: Data
 	private let closure: (Data) -> (OOData)
 	
 	// MARK: Init

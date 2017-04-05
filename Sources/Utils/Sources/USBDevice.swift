@@ -38,7 +38,6 @@ public final class USBDevice: Device, CustomStringConvertible {
                                 delegate: ReceivingDataReaction(
                                     mapping: { (plist: [String : Any]) -> (USBMuxMessage) in
                                         return ResultMessage(
-                                            origin: USBMuxMessageFake(),
                                             plist: plist
                                         )
                                     }
