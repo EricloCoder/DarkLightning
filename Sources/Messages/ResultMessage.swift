@@ -32,7 +32,7 @@ internal final class ResultMessage: USBMuxMessage {
 	func decode() {
 		let messageType: String = plist[ResultMessage.MessageTypeKey] as! String
 		if messageType == ResultMessage.MessageTypeResult {
-			print("Result")
+			print("Result %@", plist)
 		}
 		else {
 			origin.decode()

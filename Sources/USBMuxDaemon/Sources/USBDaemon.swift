@@ -14,14 +14,25 @@ public final class USBDaemon: DaemonWrap {
     // MARK: Constants
     
     private static let USBMuxDPath = "/var/run/usbmuxd"
+    private static let DefaultPort: UInt32 = 2347
     
 	// MARK: Init
 	
 	public convenience init() {
-		self.init(delegate: DevicesDelegateFake())
+        self.init(
+            delegate: DevicesDelegateFake(),
+            port: USBDaemon.DefaultPort
+        )
 	}
+    
+    public convenience init(delegate: DevicesDelegate) {
+        self.init(
+            delegate: delegate,
+            port: USBDaemon.DefaultPort
+        )
+    }
 	
-	public convenience init(delegate: DevicesDelegate) {
+    public convenience init(delegate: DevicesDelegate, port: UInt32) {
 		self.init(
 			socket: Memory<CFSocketNativeHandle>(initialValue: CFSocketInvalidHandle),
 			path: USBDaemon.USBMuxDPath,
@@ -46,11 +57,33 @@ public final class USBDaemon: DaemonWrap {
 							ReadStreamReaction(
 								delegate: ReceivingDataReaction(
 									mapping: { (plist: [String : Any]) -> (USBMuxMessage) in
-										return USBMuxProtocol(
-											plist: plist,
-											devices: devices,
-											delegate: delegate
-										)
+                                        return AttachMessage(
+                                            origin: DetachMessage(
+                                                origin: USBMuxMessageFake(),
+                                                plist: plist,
+                                                devices: devices,
+                                                delegate: delegate,
+                                                closure: { (deviceID: Int, devices: DictionaryReference<Int, Data>) -> (Device) in
+                                                    return USBDevice(
+                                                        deviceID: deviceID,
+                                                        dictionary: devices,
+                                                        port: port,
+                                                        path: USBDaemon.USBMuxDPath
+                                                    )
+                                                }
+                                            ),
+                                            plist: plist,
+                                            devices: devices,
+                                            delegate: delegate,
+                                            closure: { (deviceID: Int, devices: DictionaryReference<Int, Data>) -> (Device) in
+                                                return USBDevice(
+                                                    deviceID: deviceID,
+                                                    dictionary: devices,
+                                                    port: port,
+                                                    path: USBDaemon.USBMuxDPath
+                                                )
+                                            }
+                                        )
 									}
 								),
 								mapping: { (data: Data) -> (OODataArray) in

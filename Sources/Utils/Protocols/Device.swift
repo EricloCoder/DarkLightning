@@ -36,3 +36,27 @@ public final class DeviceFake: Device {
 		
 	}
 }
+
+public class DeviceWrap: Device {
+    private let origin: Device
+    
+    // MARK: - Init
+    
+    public init(origin: Device) {
+        self.origin = origin
+    }
+    
+    // MARK: - Device
+    
+    public func connect() {
+        origin.connect()
+    }
+    
+    public func disconnect() {
+        origin.disconnect()
+    }
+    
+    public func writeData(data: Data) {
+        origin.writeData(data: data)
+    }
+}

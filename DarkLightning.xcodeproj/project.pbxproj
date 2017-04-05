@@ -21,6 +21,8 @@
 		B448E9F51E94F23700316651 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B448E9F31E94F23700316651 /* LaunchScreen.storyboard */; };
 		B448E9FA1E94F25900316651 /* DarkLightning.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A0402F1E8197BC00C06084 /* DarkLightning.framework */; };
 		B448E9FB1E94F25900316651 /* DarkLightning.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B4A0402F1E8197BC00C06084 /* DarkLightning.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B448EA061E94FC4500316651 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448EA051E94FC4500316651 /* Device.swift */; };
+		B448EA081E94FF2A00316651 /* AutoConnectDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448EA071E94FF2A00316651 /* AutoConnectDelegate.swift */; };
 		B4832BB21E8D75DA0028AB8E /* OOUInt16.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0405F1E81981C00C06084 /* OOUInt16.swift */; };
 		B4832BB31E8D75DA0028AB8E /* OOUInt32.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A040601E81981C00C06084 /* OOUInt32.swift */; };
 		B4832BB41E8D75DA0028AB8E /* OOData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D98F601E81C6AE000EBAEA /* OOData.swift */; };
@@ -58,7 +60,6 @@
 		B4832BF81E9143A50028AB8E /* AttachMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43FD1A71E8326970060DA24 /* AttachMessage.swift */; };
 		B4832BF91E9143A50028AB8E /* DetachMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43FD1A91E8326AC0060DA24 /* DetachMessage.swift */; };
 		B4832BFA1E9143A50028AB8E /* ResultMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43FD1AB1E8326FC0060DA24 /* ResultMessage.swift */; };
-		B4832BFB1E9143A90028AB8E /* USBMuxProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43FD1AD1E8327910060DA24 /* USBMuxProtocol.swift */; };
 		B4832BFC1E9143AD0028AB8E /* ConnectMessageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D98F781E81DAC3000EBAEA /* ConnectMessageData.swift */; };
 		B4832BFD1E9143AD0028AB8E /* USBMuxMessageWrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43FD1AF1E8327A50060DA24 /* USBMuxMessageWrap.swift */; };
 		B4832C031E9149CF0028AB8E /* DataDecoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4832C021E9149CF0028AB8E /* DataDecoding.swift */; };
@@ -68,7 +69,6 @@
 		B4832C161E9193340028AB8E /* DataStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4832C141E9193340028AB8E /* DataStream.swift */; };
 		B4832C181E9193800028AB8E /* SocketWriteStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4832C171E9193800028AB8E /* SocketWriteStream.swift */; };
 		B4832C191E9193800028AB8E /* SocketWriteStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4832C171E9193800028AB8E /* SocketWriteStream.swift */; };
-		B4832C1D1E941D8A0028AB8E /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4832C1C1E941D8A0028AB8E /* Device.swift */; };
 		B4832C1F1E94231C0028AB8E /* DaemonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4832C1E1E94231C0028AB8E /* DaemonDelegate.swift */; };
 		B4832C211E94269B0028AB8E /* DictionaryReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4832C201E94269B0028AB8E /* DictionaryReference.swift */; };
 		B4832C251E94334D0028AB8E /* USBDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4832C241E94334D0028AB8E /* USBDevice.swift */; };
@@ -168,7 +168,6 @@
 		B43FD1A71E8326970060DA24 /* AttachMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachMessage.swift; sourceTree = "<group>"; };
 		B43FD1A91E8326AC0060DA24 /* DetachMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetachMessage.swift; sourceTree = "<group>"; };
 		B43FD1AB1E8326FC0060DA24 /* ResultMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultMessage.swift; sourceTree = "<group>"; };
-		B43FD1AD1E8327910060DA24 /* USBMuxProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USBMuxProtocol.swift; sourceTree = "<group>"; };
 		B43FD1AF1E8327A50060DA24 /* USBMuxMessageWrap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USBMuxMessageWrap.swift; sourceTree = "<group>"; };
 		B448E9DE1E94E18B00316651 /* StartingUSBDaemon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartingUSBDaemon.swift; sourceTree = "<group>"; };
 		B448E9E01E94E1BA00316651 /* StoppingUSBDaemon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoppingUSBDaemon.swift; sourceTree = "<group>"; };
@@ -179,6 +178,8 @@
 		B448E9F11E94F23700316651 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B448E9F41E94F23700316651 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B448E9F61E94F23700316651 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B448EA051E94FC4500316651 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		B448EA071E94FF2A00316651 /* AutoConnectDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoConnectDelegate.swift; sourceTree = "<group>"; };
 		B4832BCA1E91078F0028AB8E /* DisconnectReaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisconnectReaction.swift; sourceTree = "<group>"; };
 		B4832BD41E910AF10028AB8E /* Messenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Messenger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4832BD61E910AF10028AB8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -194,7 +195,6 @@
 		B4832C111E9192030028AB8E /* Port.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Port.swift; sourceTree = "<group>"; };
 		B4832C141E9193340028AB8E /* DataStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStream.swift; sourceTree = "<group>"; };
 		B4832C171E9193800028AB8E /* SocketWriteStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketWriteStream.swift; sourceTree = "<group>"; };
-		B4832C1C1E941D8A0028AB8E /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		B4832C1E1E94231C0028AB8E /* DaemonDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaemonDelegate.swift; sourceTree = "<group>"; };
 		B4832C201E94269B0028AB8E /* DictionaryReference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryReference.swift; sourceTree = "<group>"; };
 		B4832C241E94334D0028AB8E /* USBDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USBDevice.swift; sourceTree = "<group>"; };
@@ -320,6 +320,7 @@
 				B4832BD81E910AF10028AB8E /* Assets.xcassets */,
 				B4832BDA1E910AF10028AB8E /* MainMenu.xib */,
 				B4832BDD1E910AF10028AB8E /* Info.plist */,
+				B448EA071E94FF2A00316651 /* AutoConnectDelegate.swift */,
 			);
 			path = Messenger;
 			sourceTree = "<group>";
@@ -442,11 +443,11 @@
 		B4A0405E1E81981C00C06084 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				B448EA051E94FC4500316651 /* Device.swift */,
 				B4A0405F1E81981C00C06084 /* OOUInt16.swift */,
 				B4A040601E81981C00C06084 /* OOUInt32.swift */,
 				B4D98F601E81C6AE000EBAEA /* OOData.swift */,
 				B4832C021E9149CF0028AB8E /* DataDecoding.swift */,
-				B4832C1C1E941D8A0028AB8E /* Device.swift */,
 				B4832C261E94385A0028AB8E /* OODataArray.swift */,
 			);
 			path = Protocols;
@@ -479,7 +480,6 @@
 				B43FD1A71E8326970060DA24 /* AttachMessage.swift */,
 				B43FD1A91E8326AC0060DA24 /* DetachMessage.swift */,
 				B43FD1AB1E8326FC0060DA24 /* ResultMessage.swift */,
-				B43FD1AD1E8327910060DA24 /* USBMuxProtocol.swift */,
 				B43FD1AF1E8327A50060DA24 /* USBMuxMessageWrap.swift */,
 				B4832BF21E913DAE0028AB8E /* USBMuxMessageData.swift */,
 				B4832C281E9438DF0028AB8E /* USBMuxMessageDataArray.swift */,
@@ -794,6 +794,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B448EA081E94FF2A00316651 /* AutoConnectDelegate.swift in Sources */,
 				B4832BD71E910AF10028AB8E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -853,7 +854,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4832C1D1E941D8A0028AB8E /* Device.swift in Sources */,
 				B4832BB21E8D75DA0028AB8E /* OOUInt16.swift in Sources */,
 				B4832C191E9193800028AB8E /* SocketWriteStream.swift in Sources */,
 				B4832C1F1E94231C0028AB8E /* DaemonDelegate.swift in Sources */,
@@ -861,11 +861,11 @@
 				B4832BC01E9102FF0028AB8E /* USBDaemon.swift in Sources */,
 				B4832BEF1E9111960028AB8E /* ReceivingDataReaction.swift in Sources */,
 				B4832BC51E9104180028AB8E /* DevicePortDelegate.swift in Sources */,
-				B4832BFB1E9143A90028AB8E /* USBMuxProtocol.swift in Sources */,
 				B4832C211E94269B0028AB8E /* DictionaryReference.swift in Sources */,
 				B4832BFC1E9143AD0028AB8E /* ConnectMessageData.swift in Sources */,
 				B4832C251E94334D0028AB8E /* USBDevice.swift in Sources */,
 				B4832BFD1E9143AD0028AB8E /* USBMuxMessageWrap.swift in Sources */,
+				B448EA061E94FC4500316651 /* Device.swift in Sources */,
 				B4832BB31E8D75DA0028AB8E /* OOUInt32.swift in Sources */,
 				B4832BF81E9143A50028AB8E /* AttachMessage.swift in Sources */,
 				B4832C271E94385A0028AB8E /* OODataArray.swift in Sources */,

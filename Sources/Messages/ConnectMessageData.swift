@@ -19,14 +19,15 @@ internal final class ConnectMessageData: OODataWrap {
 	
 	// MARK: Init
 	
-	internal required init(deviceID: UInt, port: UInt32) {
+	internal required init(deviceID: Int, port: UInt32) {
+        let p: UInt32 = ((port<<8) & 0xFF00) | (port>>8)
 		super.init(
 			origin: MessageData(
 				data: DictData(
 					dict: [
 						ConnectMessageData.DictionaryKeyMessageType: ConnectMessageData.MessageTypeConnect,
-						ConnectMessageData.DictionaryKeyDeviceID: String(deviceID),
-						ConnectMessageData.DictionaryKeyPortNumber: String(port),
+						ConnectMessageData.DictionaryKeyDeviceID: NSNumber(integerLiteral: deviceID),
+						ConnectMessageData.DictionaryKeyPortNumber: NSNumber(integerLiteral: Int(p)),
 						ConnectMessageData.DictionaryKeyProgName: ConnectMessageData.ProgNameValue
 					]
 				),

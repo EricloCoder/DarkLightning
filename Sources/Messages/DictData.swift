@@ -9,11 +9,11 @@
 import Foundation
 
 internal final class DictData: OOData {
-	private let dict: [String: String]
+	private let dict: [String: Any]
 	
 	// MARK: Init
     
-	internal required init(dict: [String: String]) {
+	internal required init(dict: [String: Any]) {
         self.dict = dict
     }
     
@@ -23,8 +23,8 @@ internal final class DictData: OOData {
 		var data = Data()
 		do {
 			try data = PropertyListSerialization.data(fromPropertyList: dict, format: .xml, options: 0)
-		} catch {
-			
+        } catch {
+
 		}
 		return data
 	}
