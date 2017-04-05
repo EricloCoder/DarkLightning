@@ -27,7 +27,7 @@ public final class USBDaemon: DaemonWrap {
 			path: USBDaemon.USBMuxDPath,
 			queue: DispatchQueue.global(qos: .background),
 			stream: Memory<DataStream?>(initialValue: nil),
-			closure: { (handle: Memory<CFSocketNativeHandle>, runLoop: RunLoop) -> (DataStream) in
+			closure: { (handle: Memory<CFSocketNativeHandle>) -> (DataStream) in
                 let state = Memory<Int>(initialValue: 0)
                 let devices = DictionaryReference<Int, Data>()
                 var inputStream: Unmanaged<CFReadStream>? = nil
@@ -79,14 +79,13 @@ public final class USBDaemon: DaemonWrap {
 							),
 							CloseStreamReaction(),
 						]
-					),
-					runLoop: runLoop
+					)
 				)
 			}
 		)
 	}
     
-    public required init(socket: Memory<CFSocketNativeHandle>, path: String, queue: DispatchQueue, stream: Memory<DataStream?>, closure: @escaping (Memory<CFSocketNativeHandle>, RunLoop) -> (DataStream)) {
+    public required init(socket: Memory<CFSocketNativeHandle>, path: String, queue: DispatchQueue, stream: Memory<DataStream?>, closure: @escaping (Memory<CFSocketNativeHandle>) -> (DataStream)) {
         super.init(
             origin: StoppingUSBDaemon(
                 origin: StartingUSBDaemon(

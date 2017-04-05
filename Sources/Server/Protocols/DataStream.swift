@@ -9,7 +9,7 @@
 import Foundation
 
 public protocol DataStream: class {
-	func open()
+    func open(in queue: DispatchQueue)
 	func close()
 }
 
@@ -23,7 +23,7 @@ public final class DataStreamFake: DataStream {
     
     // MARK: - DataStream
     
-	public func open() {
+	public func open(in queue: DispatchQueue) {
 		
 	}
 	

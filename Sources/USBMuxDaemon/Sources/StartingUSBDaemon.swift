@@ -15,12 +15,12 @@ internal final class StartingUSBDaemon: Daemon {
     private let handle: Memory<CFSocketNativeHandle>
     private let path: String
     private let queue: DispatchQueue
-    private let closure: (Memory<CFSocketNativeHandle>, RunLoop) -> (DataStream)
+    private let closure: (Memory<CFSocketNativeHandle>) -> (DataStream)
     private let stream: Memory<DataStream?>
     
     // MARK: Init
     
-    public required init(socket: Memory<CFSocketNativeHandle>, path: String, queue: DispatchQueue, stream: Memory<DataStream?>, closure: @escaping (Memory<CFSocketNativeHandle>, RunLoop) -> (DataStream)) {
+    public required init(socket: Memory<CFSocketNativeHandle>, path: String, queue: DispatchQueue, stream: Memory<DataStream?>, closure: @escaping (Memory<CFSocketNativeHandle>) -> (DataStream)) {
         self.handle = socket
         self.path = path
         self.queue = queue
@@ -49,16 +49,6 @@ internal final class StartingUSBDaemon: Daemon {
         setsockopt(socketHandle, SOL_SOCKET, SO_REUSEPORT, &on, socklen_t(MemoryLayout<Int>.size))
     }
     
-    private func openStreams() {
-        queue.sync {
-            stream.rawValue = closure(handle, RunLoop.current)
-            stream.rawValue?.open()
-        }
-        queue.async {
-            RunLoop.current.run()
-        }
-    }
-    
     // MARK: WriteStream
     
     public func start() {
@@ -74,7 +64,8 @@ internal final class StartingUSBDaemon: Daemon {
                 }
                 if result != -1 {
                     handle.rawValue = socketHandle
-                    openStreams()
+                    stream.rawValue = closure(handle)
+                    stream.rawValue?.open(in: queue)
                 }
             }
         }

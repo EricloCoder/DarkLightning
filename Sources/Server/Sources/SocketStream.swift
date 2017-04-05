@@ -33,11 +33,10 @@ internal final class SocketStream: DataStream {
 	private let writeReaction: StreamDelegate
 	private let inputStream: InputStream
 	private let outputStream: OutputStream
-	private let runLoop: RunLoop
 	
 	// MARK: Init
     
-	internal convenience init(socket: CFSocketNativeHandle, readReaction: StreamDelegate, writeReaction: StreamDelegate, runLoop: RunLoop) {
+	internal convenience init(socket: CFSocketNativeHandle, readReaction: StreamDelegate, writeReaction: StreamDelegate) {
 		var inputStream: Unmanaged<CFReadStream>? = nil
 		var outputStream: Unmanaged<CFWriteStream>? = nil
 		CFStreamCreatePairWithSocket(
@@ -66,15 +65,14 @@ internal final class SocketStream: DataStream {
 			),
 			kCFBooleanTrue
 		)
-		self.init(inputStream: inputStream!.takeRetainedValue() as CFReadStream, outputStream: outputStream!.takeRetainedValue() as CFWriteStream, readReaction: readReaction, writeReaction: writeReaction, runLoop: runLoop)
+		self.init(inputStream: inputStream!.takeRetainedValue() as CFReadStream, outputStream: outputStream!.takeRetainedValue() as CFWriteStream, readReaction: readReaction, writeReaction: writeReaction)
     }
 	
-	internal required init(inputStream: InputStream, outputStream: OutputStream, readReaction: StreamDelegate, writeReaction: StreamDelegate, runLoop: RunLoop) {
+	internal required init(inputStream: InputStream, outputStream: OutputStream, readReaction: StreamDelegate, writeReaction: StreamDelegate) {
 		self.inputStream = inputStream
 		self.outputStream = outputStream
 		self.readReaction = readReaction
 		self.writeReaction = writeReaction
-		self.runLoop = runLoop
 	}
 	
 	// MARK: Internal
@@ -85,13 +83,18 @@ internal final class SocketStream: DataStream {
     
     // MARK: WriteStream
 	
-	func open() {
-		self.inputStream.schedule(in: runLoop, forMode: RunLoopMode.defaultRunLoopMode)
-		self.outputStream.schedule(in: runLoop, forMode: RunLoopMode.defaultRunLoopMode)
-		self.inputStream.delegate = self.readReaction
-		self.outputStream.delegate = self.writeReaction
-		self.inputStream.open()
-		self.outputStream.open()
+    func open(in queue: DispatchQueue) {
+        queue.sync {
+            self.inputStream.schedule(in: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
+            self.outputStream.schedule(in: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
+            self.inputStream.delegate = self.readReaction
+            self.outputStream.delegate = self.writeReaction
+            self.inputStream.open()
+            self.outputStream.open()
+        }
+        queue.async {
+            RunLoop.current.run()
+        }
 	}
 	
 	func close() {
