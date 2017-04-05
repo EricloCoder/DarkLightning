@@ -32,11 +32,11 @@ internal final class SocketConnections: Connections {
 	private let queue: DispatchQueue
 	private let readReaction: StreamDelegate
 	private let writeReaction: StreamDelegate
-	private var connections: Dictionary<Data, DataStream>
+	private var connections: DictionaryReference<Data, DataStream>
 	
 	// MARK: Init
     
-    internal required init(queue: DispatchQueue, readReaction: StreamDelegate, writeReaction: StreamDelegate, connections: Dictionary<Data, DataStream>) {
+    internal required init(queue: DispatchQueue, readReaction: StreamDelegate, writeReaction: StreamDelegate, connections: DictionaryReference<Data, DataStream>) {
         self.queue = queue
 		self.readReaction = readReaction
 		self.writeReaction = writeReaction
@@ -50,7 +50,7 @@ internal final class SocketConnections: Connections {
             socket: Memory<CFSocketNativeHandle>(initialValue: socket),
             readReaction: self.readReaction,
             writeReaction: self.writeReaction
-			)
+        )
         streams.open(in: queue)
         self.connections[address] = streams
 	}

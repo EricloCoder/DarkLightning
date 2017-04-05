@@ -29,19 +29,21 @@
 import Foundation
 
 internal final class DisconnectStreamReaction: NSObject, StreamDelegate {
-	private let delegate: DevicePortDelegate
+	private let delegate: PortDelegate
+    private let port: Port
 	
 	// MARK: Init
     
-    internal required init(delegate: DevicePortDelegate) {
+    internal required init(delegate: PortDelegate, port: Port) {
         self.delegate = delegate
+        self.port = port
     }
     
     // MARK: StreamDelegate
 	
 	func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
 		if eventCode == .endEncountered || eventCode == .errorOccurred {
-			delegate.didDisconnect()
+			delegate.port(didDisconnect: port)
 		}
 	}
 }

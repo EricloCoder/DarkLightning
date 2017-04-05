@@ -23,6 +23,8 @@
 		B448E9FB1E94F25900316651 /* DarkLightning.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B4A0402F1E8197BC00C06084 /* DarkLightning.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B448EA061E94FC4500316651 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448EA051E94FC4500316651 /* Device.swift */; };
 		B448EA081E94FF2A00316651 /* AutoConnectDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448EA071E94FF2A00316651 /* AutoConnectDelegate.swift */; };
+		B448EA111E95250E00316651 /* AutoConnectDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448EA101E95250E00316651 /* AutoConnectDelegate.swift */; };
+		B448EA121E95288A00316651 /* DictionaryReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4832C201E94269B0028AB8E /* DictionaryReference.swift */; };
 		B4832BB21E8D75DA0028AB8E /* OOUInt16.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0405F1E81981C00C06084 /* OOUInt16.swift */; };
 		B4832BB31E8D75DA0028AB8E /* OOUInt32.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A040601E81981C00C06084 /* OOUInt32.swift */; };
 		B4832BB41E8D75DA0028AB8E /* OOData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D98F601E81C6AE000EBAEA /* OOData.swift */; };
@@ -180,6 +182,7 @@
 		B448E9F61E94F23700316651 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B448EA051E94FC4500316651 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		B448EA071E94FF2A00316651 /* AutoConnectDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoConnectDelegate.swift; sourceTree = "<group>"; };
+		B448EA101E95250E00316651 /* AutoConnectDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoConnectDelegate.swift; sourceTree = "<group>"; };
 		B4832BCA1E91078F0028AB8E /* DisconnectReaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisconnectReaction.swift; sourceTree = "<group>"; };
 		B4832BD41E910AF10028AB8E /* Messenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Messenger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4832BD61E910AF10028AB8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -300,6 +303,7 @@
 				B448E9F11E94F23700316651 /* Assets.xcassets */,
 				B448E9F31E94F23700316651 /* LaunchScreen.storyboard */,
 				B448E9F61E94F23700316651 /* Info.plist */,
+				B448EA101E95250E00316651 /* AutoConnectDelegate.swift */,
 			);
 			path = "Messenger-iOS";
 			sourceTree = "<group>";
@@ -787,6 +791,7 @@
 			files = (
 				B448E9ED1E94F23700316651 /* ViewController.swift in Sources */,
 				B448E9EB1E94F23700316651 /* AppDelegate.swift in Sources */,
+				B448EA111E95250E00316651 /* AutoConnectDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -819,6 +824,7 @@
 				B4832BF61E9142730028AB8E /* RawData.swift in Sources */,
 				B4D98F611E81C6AE000EBAEA /* OOData.swift in Sources */,
 				B448E9E31E94F0B300316651 /* OODataArray.swift in Sources */,
+				B448EA121E95288A00316651 /* DictionaryReference.swift in Sources */,
 				B43FD1B01E8327A50060DA24 /* USBMuxMessageWrap.swift in Sources */,
 				B4A0406A1E81981C00C06084 /* DevicePortDelegate.swift in Sources */,
 				B448E9E21E94F0A100316651 /* ReadStreamReaction.swift in Sources */,
@@ -1278,6 +1284,7 @@
 				B448E9F91E94F23700316651 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B4832BDE1E910AF10028AB8E /* Build configuration list for PBXNativeTarget "Messenger" */ = {
 			isa = XCConfigurationList;

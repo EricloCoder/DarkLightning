@@ -31,4 +31,16 @@ public final class DictionaryReference<K:Hashable, T> {
 			dictionary[key] = newValue
 		}
 	}
+    
+    public func removeAll() {
+        dictionary.removeAll()
+    }
+    
+    public var isEmpty: Bool {
+        return dictionary.isEmpty
+    }
+    
+    public var values: LazyMapCollection<Dictionary<K, T>, T> {
+        return dictionary.values
+    }
 }

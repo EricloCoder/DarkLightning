@@ -62,7 +62,7 @@ internal final class SocketStream: DataStream {
 		close()
 	}
     
-    // MARK: WriteStream
+    // MARK: DataStream
 	
     func open(in queue: DispatchQueue) {
         var inputStream: Unmanaged<CFReadStream>? = nil

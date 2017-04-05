@@ -30,12 +30,14 @@ import Foundation
 
 internal final class InsertConnectionReaction: Connections {
 	private let origin: Connections
-	private let delegate: DevicePortDelegate
+	private let delegate: PortDelegate
+    private let port: Port
 	
 	// MARK: Init
     
-	internal required init(origin: Connections, delegate: DevicePortDelegate) {
+    internal required init(origin: Connections, delegate: PortDelegate, port: Port) {
         self.origin = origin
+        self.port = port
 		self.delegate = delegate
     }
     
@@ -43,7 +45,7 @@ internal final class InsertConnectionReaction: Connections {
 	
 	func insert(address: Data, socket: CFSocketNativeHandle) {
 		origin.insert(address: address, socket: socket)
-		delegate.didConnect()
+		delegate.port(didConnect: port)
 	}
 	
 	var isEmpty: Bool {

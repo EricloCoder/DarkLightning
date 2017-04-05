@@ -28,13 +28,13 @@
 
 import Foundation
 
-public protocol DevicePortDelegate: class {
-	func didConnect()
-	func didDisconnect()
-    func didReceiveData(data: OOData)
+public protocol PortDelegate: class {
+    func port(didConnect port: Port)
+    func port(didDisconnect port: Port)
+    func port(port: Port, didReceiveData data: OOData)
 }
 
-public final class DevicePortDelegateFake: DevicePortDelegate {
+public final class PortDelegateFake: PortDelegate {
 
 	// MARK: - Init
     
@@ -44,15 +44,15 @@ public final class DevicePortDelegateFake: DevicePortDelegate {
     
     // MARK: - DevicePortDelegate
     
-	public func didConnect() {
-		
-	}
-	
-	public func didDisconnect() {
-		
-	}
+    public func port(didConnect port: Port) {
+        
+    }
     
-    public func didReceiveData(data: OOData) {
+    public func port(didDisconnect port: Port) {
+        
+    }
+    
+    public func port(port: Port, didReceiveData data: OOData) {
         
     }
 }
