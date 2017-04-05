@@ -13,6 +13,7 @@ internal final class DetachMessage: USBMuxMessage {
 	
 	private static let MessageTypeDetached = "Detached"
 	private static let MessageTypeKey = "MessageType"
+    private static let DeviceIDKey = "DeviceID"
 	
 	// MARK: Members
 	
@@ -37,7 +38,7 @@ internal final class DetachMessage: USBMuxMessage {
 	func decode() {
 		let messageType: String = plist[DetachMessage.MessageTypeKey] as! String
 		if messageType == DetachMessage.MessageTypeDetached {
-			let deviceID: Int = plist["DeviceID"] as! Int
+			let deviceID: Int = plist[DetachMessage.DeviceIDKey] as! Int
 			delegate.device(didDetach: closure(deviceID, devices))
 			devices[deviceID] = nil
 		}

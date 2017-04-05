@@ -14,6 +14,8 @@ internal final class AttachMessage: USBMuxMessage {
 	
 	private static let MessageTypeAttached = "Attached"
 	private static let MessageTypeKey = "MessageType"
+    private static let DeviceIDKey = "DeviceID"
+    private static let PropertiesKey = "Properties"
 	
 	// MARK: Members
 	
@@ -38,9 +40,10 @@ internal final class AttachMessage: USBMuxMessage {
 	func decode() {
 		let messageType: String = plist[AttachMessage.MessageTypeKey] as! String
 		if messageType == AttachMessage.MessageTypeAttached {
-			let deviceID: Int = plist["DeviceID"] as! Int
+			let deviceID: Int = plist[AttachMessage.DeviceIDKey] as! Int
 			do {
-				let data = try PropertyListSerialization.data(fromPropertyList: plist, format: .xml, options: 0)
+                let properties = plist[AttachMessage.PropertiesKey] as! [String : Any]
+				let data = try PropertyListSerialization.data(fromPropertyList: properties, format: .xml, options: 0)
 				devices[deviceID] = data
 				delegate.device(didAttach: closure(deviceID, devices))
 			} catch {

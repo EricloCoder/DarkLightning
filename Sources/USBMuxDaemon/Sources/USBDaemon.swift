@@ -10,6 +10,13 @@ import Foundation
 import CoreFoundation
 
 public final class USBDaemon: Daemon {
+    
+    // MARK: Constants
+    
+    private static let USBMuxDPath = "/var/run/usbmuxd"
+    
+    // MARK: Members
+    
 	private let handle: Memory<CFSocketNativeHandle>
 	private let path: String
 	private let queue: DispatchQueue
@@ -25,10 +32,12 @@ public final class USBDaemon: Daemon {
 	public convenience init(delegate: DevicesDelegate) {
 		self.init(
 			socket: Memory<CFSocketNativeHandle>(initialValue: CFSocketInvalidHandle),
-			path: "/var/run/usbmuxd",
+			path: USBDaemon.USBMuxDPath,
 			queue: DispatchQueue.global(qos: .background),
 			closure: { (handle: Memory<CFSocketNativeHandle>, runLoop: RunLoop) -> (DataStream) in
-				var inputStream: Unmanaged<CFReadStream>? = nil
+                let state = Memory<Int>(initialValue: 0)
+                let devices = DictionaryReference<Int, Data>()
+                var inputStream: Unmanaged<CFReadStream>? = nil
 				var outputStream: Unmanaged<CFWriteStream>? = nil
 				CFStreamCreatePairWithSocket(
 					kCFAllocatorDefault,
@@ -36,25 +45,9 @@ public final class USBDaemon: Daemon {
 					&inputStream,
 					&outputStream
 				)
-				CFReadStreamSetProperty(
-					inputStream!.takeUnretainedValue(),
-					CFStreamPropertyKey(
-						rawValue: kCFStreamPropertyShouldCloseNativeSocket
-					),
-					kCFBooleanTrue
-				)
-				CFWriteStreamSetProperty(
-					outputStream!.takeUnretainedValue(),
-					CFStreamPropertyKey(
-						rawValue: kCFStreamPropertyShouldCloseNativeSocket
-					),
-					kCFBooleanTrue
-				)
-				let state = Memory<Int>(initialValue: 0)
-				let devices = DictionaryReference<Int, Data>()
 				return SocketStream(
-					inputStream: inputStream?.takeRetainedValue() as! InputStream,
-					outputStream: outputStream?.takeRetainedValue() as! OutputStream,
+					inputStream: inputStream!.takeRetainedValue() as InputStream,
+					outputStream: outputStream!.takeRetainedValue() as OutputStream,
 					readReaction: StreamDelegates(
 						delegates: [
 							ReadStreamReaction(
@@ -88,7 +81,7 @@ public final class USBDaemon: Daemon {
 							OpenReaction(
 								state: state,
 								outputStream: SocketWriteStream(
-									outputStream: outputStream?.takeRetainedValue() as! OutputStream
+									outputStream: outputStream!.takeRetainedValue() as OutputStream
 								)
 							),
 							CloseStreamReaction(),
@@ -154,7 +147,6 @@ public final class USBDaemon: Daemon {
 				if result != -1 {
 					handle.rawValue = socketHandle
 					openStreams()
-					
 				}
 			}
 		}
@@ -163,6 +155,8 @@ public final class USBDaemon: Daemon {
 	public func stop() {
 		if handle.rawValue != CFSocketInvalidHandle {
 			stream?.close()
+            _ = Darwin.close(handle.rawValue)
+            handle.rawValue = CFSocketInvalidHandle
 			stream = nil
 		}
 	}
