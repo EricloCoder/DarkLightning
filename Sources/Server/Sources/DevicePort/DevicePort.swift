@@ -83,9 +83,7 @@ public final class DevicePort: PortWrap {
                                     stream: SocketStream(
                                         handle: connectedHandle,
                                         inputStream: inputStream,
-                                        outputStream: outputStream,
-                                        readReaction: StreamDelegates(),
-                                        writeReaction: StreamDelegates()
+                                        outputStream: outputStream
                                     ),
                                     handle: connectedHandle
                                 )
@@ -131,9 +129,7 @@ public final class DevicePort: PortWrap {
 					stream: SocketStream(
                         handle: Memory<CFSocketNativeHandle>(initialValue: CFSocketInvalidHandle),
                         inputStream: inputStream,
-                        outputStream: outputStream,
-                        readReaction: StreamDelegates(),
-                        writeReaction: StreamDelegates()
+                        outputStream: outputStream
                     )
 				),
 				port: port,
