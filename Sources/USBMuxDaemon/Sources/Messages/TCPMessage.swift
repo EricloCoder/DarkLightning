@@ -28,39 +28,27 @@
 
 import Foundation
 
-public final class DictionaryReference<K:Hashable, T> {
-	private var dictionary: [K: T]
-	
+internal final class TCPMessage: DataDecoding {
+    private let origin: DataDecoding
+    private let tcpMode: Memory<Bool>
+    
 	// MARK: Init
-	
-	public convenience init() {
-		self.init(dictionary: [:])
-	}
-	
-    public required init(dictionary: [K: T]) {
-        self.dictionary = dictionary
+    
+    internal required init(origin: DataDecoding, tcpMode: Memory<Bool>) {
+        self.origin = origin
+        self.tcpMode = tcpMode
     }
     
-    // MARK: Public
-	
-	public subscript(key: K) -> T? {
-		get {
-			return dictionary[key]
-		}
-		set {
-			dictionary[key] = newValue
-		}
-	}
+    // MARK: DataDecoding
     
-    public func removeAll() {
-        dictionary.removeAll()
-    }
-    
-    public var isEmpty: Bool {
-        return dictionary.isEmpty
-    }
-    
-    public var values: LazyMapCollection<Dictionary<K, T>, T> {
-        return dictionary.values
+    func decode(data: OOData) {
+        if tcpMode.rawValue {
+            DispatchQueue.main.async {
+                print(String(data: data.rawValue, encoding: .utf8)!)
+            }
+        }
+        else {
+            origin.decode(data: data)
+        }
     }
 }

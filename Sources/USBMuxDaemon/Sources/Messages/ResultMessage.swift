@@ -28,39 +28,47 @@
 
 import Foundation
 
-public final class DictionaryReference<K:Hashable, T> {
-	private var dictionary: [K: T]
+internal final class ResultMessage: USBMuxMessage {
+	
+	// MARK: Constants
+	
+	private static let MessageTypeResult = "Result"
+	private static let MessageTypeKey = "MessageType"
+	
+	// MARK: Members
+	
+	private let origin: USBMuxMessage
+	private let plist: [String: Any]
+    private let tcpMode: Memory<Bool>
 	
 	// MARK: Init
 	
-	public convenience init() {
-		self.init(dictionary: [:])
+    internal convenience init(plist: [String: Any], tcpMode: Memory<Bool>) {
+        self.init(
+            origin: USBMuxMessageFake(),
+            plist: plist,
+            tcpMode: tcpMode
+        )
+    }
+    
+	internal required init(origin: USBMuxMessage, plist: [String: Any], tcpMode: Memory<Bool>) {
+		self.origin = origin
+		self.plist = plist
+        self.tcpMode = tcpMode
 	}
 	
-    public required init(dictionary: [K: T]) {
-        self.dictionary = dictionary
-    }
-    
-    // MARK: Public
+	// MARK: USBMuxMessage
 	
-	public subscript(key: K) -> T? {
-		get {
-			return dictionary[key]
+	func decode() {
+		let messageType: String = plist[ResultMessage.MessageTypeKey] as! String
+		if messageType == ResultMessage.MessageTypeResult {
+			let number = plist["Number"] as! Int
+            if number == 0 {
+                tcpMode.rawValue = true
+            }
 		}
-		set {
-			dictionary[key] = newValue
+		else {
+			origin.decode()
 		}
 	}
-    
-    public func removeAll() {
-        dictionary.removeAll()
-    }
-    
-    public var isEmpty: Bool {
-        return dictionary.isEmpty
-    }
-    
-    public var values: LazyMapCollection<Dictionary<K, T>, T> {
-        return dictionary.values
-    }
 }

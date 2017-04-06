@@ -28,39 +28,28 @@
 
 import Foundation
 
-public final class DictionaryReference<K:Hashable, T> {
-	private var dictionary: [K: T]
+internal final class ListeningMessageData: OODataWrap {
+
+	private static let DictionaryKeyMessageType  = "MessageType"
+	private static let MessageTypeListen 		 = "Listen"
+	private static let ProgNameValue             = "DarkLightning"
+	private static let DictionaryKeyProgName     = "ProgName"
 	
 	// MARK: Init
-	
-	public convenience init() {
-		self.init(dictionary: [:])
-	}
-	
-    public required init(dictionary: [K: T]) {
-        self.dictionary = dictionary
-    }
     
-    // MARK: Public
-	
-	public subscript(key: K) -> T? {
-		get {
-			return dictionary[key]
-		}
-		set {
-			dictionary[key] = newValue
-		}
-	}
-    
-    public func removeAll() {
-        dictionary.removeAll()
-    }
-    
-    public var isEmpty: Bool {
-        return dictionary.isEmpty
-    }
-    
-    public var values: LazyMapCollection<Dictionary<K, T>, T> {
-        return dictionary.values
+    internal required init() {
+        super.init(
+			origin: MessageData(
+				data: DictData(
+					dict: [
+						ListeningMessageData.DictionaryKeyMessageType: ListeningMessageData.MessageTypeListen,
+						ListeningMessageData.DictionaryKeyProgName: ListeningMessageData.ProgNameValue
+					]
+				),
+				packetType: 8,
+				messageTag: 1,
+				protocolType: 1
+			)
+		)
     }
 }

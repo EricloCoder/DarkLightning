@@ -28,39 +28,46 @@
 
 import Foundation
 
-public final class DictionaryReference<K:Hashable, T> {
-	private var dictionary: [K: T]
+internal final class USBMuxMessageDataArray: OODataArray {
+    private let data: Data
+	private let closure: (Data) -> (OOData)
 	
 	// MARK: Init
+    
+    internal required init(data: Data, closure: @escaping (Data) -> (OOData)) {
+        self.data = data
+		self.closure = closure
+    }
 	
-	public convenience init() {
-		self.init(dictionary: [:])
+	// MARK: Private
+	
+	private func messages() -> [Data] {
+		var result: [Data] = []
+		var origin = data
+		let headerSize = 4 * MemoryLayout<UInt32>.size
+		while origin.count >= headerSize {
+			let size: UInt32 = origin.subdata(in: 0..<4).withUnsafeBytes { (ptr: UnsafePointer<UInt32>) -> UInt32 in
+				return ptr.pointee
+			}
+			if Int(size) <= origin.count {
+				let message = origin.subdata(in: headerSize..<Int(size))
+				result.append(message)
+				origin.removeSubrange(0..<Int(size))
+			}
+			else {
+				origin = Data()
+			}
+		}
+		return result
+	}
+    
+    // MARK: OODataArray
+	
+	var count: UInt {
+		return UInt(messages().count)
 	}
 	
-    public required init(dictionary: [K: T]) {
-        self.dictionary = dictionary
-    }
-    
-    // MARK: Public
-	
-	public subscript(key: K) -> T? {
-		get {
-			return dictionary[key]
-		}
-		set {
-			dictionary[key] = newValue
-		}
+	subscript(index: UInt) -> OOData {
+		return closure(messages()[Int(index)])
 	}
-    
-    public func removeAll() {
-        dictionary.removeAll()
-    }
-    
-    public var isEmpty: Bool {
-        return dictionary.isEmpty
-    }
-    
-    public var values: LazyMapCollection<Dictionary<K, T>, T> {
-        return dictionary.values
-    }
 }

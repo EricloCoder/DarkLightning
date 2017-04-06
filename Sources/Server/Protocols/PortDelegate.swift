@@ -28,39 +28,31 @@
 
 import Foundation
 
-public final class DictionaryReference<K:Hashable, T> {
-	private var dictionary: [K: T]
-	
-	// MARK: Init
-	
-	public convenience init() {
-		self.init(dictionary: [:])
-	}
-	
-    public required init(dictionary: [K: T]) {
-        self.dictionary = dictionary
+public protocol PortDelegate: class {
+    func port(didConnect port: Port)
+    func port(didDisconnect port: Port)
+    func port(port: Port, didReceiveData data: OOData)
+}
+
+public final class PortDelegateFake: PortDelegate {
+
+	// MARK: - Init
+    
+    public init() {
+        
     }
     
-    // MARK: Public
-	
-	public subscript(key: K) -> T? {
-		get {
-			return dictionary[key]
-		}
-		set {
-			dictionary[key] = newValue
-		}
-	}
+    // MARK: - PortDelegate
     
-    public func removeAll() {
-        dictionary.removeAll()
+    public func port(didConnect port: Port) {
+        
     }
     
-    public var isEmpty: Bool {
-        return dictionary.isEmpty
+    public func port(didDisconnect port: Port) {
+        
     }
     
-    public var values: LazyMapCollection<Dictionary<K, T>, T> {
-        return dictionary.values
+    public func port(port: Port, didReceiveData data: OOData) {
+        
     }
 }

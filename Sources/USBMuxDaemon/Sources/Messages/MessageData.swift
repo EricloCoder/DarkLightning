@@ -28,39 +28,25 @@
 
 import Foundation
 
-public final class DictionaryReference<K:Hashable, T> {
-	private var dictionary: [K: T]
+internal final class MessageData: OODataWrap {
 	
 	// MARK: Init
-	
-	public convenience init() {
-		self.init(dictionary: [:])
-	}
-	
-    public required init(dictionary: [K: T]) {
-        self.dictionary = dictionary
-    }
     
-    // MARK: Public
-	
-	public subscript(key: K) -> T? {
-		get {
-			return dictionary[key]
-		}
-		set {
-			dictionary[key] = newValue
-		}
-	}
-    
-    public func removeAll() {
-        dictionary.removeAll()
-    }
-    
-    public var isEmpty: Bool {
-        return dictionary.isEmpty
-    }
-    
-    public var values: LazyMapCollection<Dictionary<K, T>, T> {
-        return dictionary.values
+	internal required init(data: OOData, packetType: UInt32, messageTag: UInt32, protocolType: UInt32) {
+        super.init(
+			origin: DataWithUInt32(
+				value: UInt32(data.rawValue.count + 4*MemoryLayout<UInt32>.size),
+				origin: DataWithUInt32(
+					value: protocolType,
+					origin: DataWithUInt32(
+						value: packetType,
+						origin: DataWithUInt32(
+							value: messageTag,
+							origin: data
+						)
+					)
+				)
+			)
+		)
     }
 }

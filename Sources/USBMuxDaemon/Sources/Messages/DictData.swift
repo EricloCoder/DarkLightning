@@ -28,39 +28,24 @@
 
 import Foundation
 
-public final class DictionaryReference<K:Hashable, T> {
-	private var dictionary: [K: T]
+internal final class DictData: OOData {
+	private let dict: [String: Any]
 	
 	// MARK: Init
-	
-	public convenience init() {
-		self.init(dictionary: [:])
-	}
-	
-    public required init(dictionary: [K: T]) {
-        self.dictionary = dictionary
+    
+	internal required init(dict: [String: Any]) {
+        self.dict = dict
     }
     
-    // MARK: Public
+    // MARK: OOData
 	
-	public subscript(key: K) -> T? {
-		get {
-			return dictionary[key]
+	var rawValue: Data {
+		var data = Data()
+		do {
+			try data = PropertyListSerialization.data(fromPropertyList: dict, format: .xml, options: 0)
+        } catch {
+
 		}
-		set {
-			dictionary[key] = newValue
-		}
+		return data
 	}
-    
-    public func removeAll() {
-        dictionary.removeAll()
-    }
-    
-    public var isEmpty: Bool {
-        return dictionary.isEmpty
-    }
-    
-    public var values: LazyMapCollection<Dictionary<K, T>, T> {
-        return dictionary.values
-    }
 }

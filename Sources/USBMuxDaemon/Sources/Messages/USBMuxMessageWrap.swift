@@ -28,39 +28,18 @@
 
 import Foundation
 
-public final class DictionaryReference<K:Hashable, T> {
-	private var dictionary: [K: T]
+internal class USBMuxMessageWrap: USBMuxMessage {
+	private let origin: USBMuxMessage
 	
 	// MARK: Init
+    
+    internal init(origin: USBMuxMessage) {
+        self.origin = origin
+    }
+    
+    // MARK: USBMuxMessage
 	
-	public convenience init() {
-		self.init(dictionary: [:])
+	func decode() {
+		origin.decode()
 	}
-	
-    public required init(dictionary: [K: T]) {
-        self.dictionary = dictionary
-    }
-    
-    // MARK: Public
-	
-	public subscript(key: K) -> T? {
-		get {
-			return dictionary[key]
-		}
-		set {
-			dictionary[key] = newValue
-		}
-	}
-    
-    public func removeAll() {
-        dictionary.removeAll()
-    }
-    
-    public var isEmpty: Bool {
-        return dictionary.isEmpty
-    }
-    
-    public var values: LazyMapCollection<Dictionary<K, T>, T> {
-        return dictionary.values
-    }
 }

@@ -28,39 +28,25 @@
 
 import Foundation
 
-public final class DictionaryReference<K:Hashable, T> {
-	private var dictionary: [K: T]
+internal final class DataWithUInt32: OOData {
+	private let value: UInt32
+	private let origin: OOData
 	
 	// MARK: Init
-	
-	public convenience init() {
-		self.init(dictionary: [:])
-	}
-	
-    public required init(dictionary: [K: T]) {
-        self.dictionary = dictionary
+    
+    internal required init(value: UInt32, origin: OOData) {
+        self.value = value
+		self.origin = origin
     }
     
-    // MARK: Public
+    // MARK: OOData
 	
-	public subscript(key: K) -> T? {
-		get {
-			return dictionary[key]
+	var rawValue: Data {
+		var aValue = value
+		var data = withUnsafePointer(to: &aValue) {
+			Data(bytes: UnsafePointer($0), count: MemoryLayout<UInt32>.size)
 		}
-		set {
-			dictionary[key] = newValue
-		}
+		data.append(origin.rawValue)
+		return data
 	}
-    
-    public func removeAll() {
-        dictionary.removeAll()
-    }
-    
-    public var isEmpty: Bool {
-        return dictionary.isEmpty
-    }
-    
-    public var values: LazyMapCollection<Dictionary<K, T>, T> {
-        return dictionary.values
-    }
 }

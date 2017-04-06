@@ -28,39 +28,33 @@
 
 import Foundation
 
-public final class DictionaryReference<K:Hashable, T> {
-	private var dictionary: [K: T]
+internal final class ConnectMessageData: OODataWrap {
+
+	private static let DictionaryKeyMessageType  = "MessageType"
+	private static let MessageTypeConnect 		 = "Connect"
+	private static let ProgNameValue             = "DarkLightning"
+	private static let DictionaryKeyProgName     = "ProgName"
+	private static let DictionaryKeyDeviceID 	 = "DeviceID"
+	private static let DictionaryKeyPortNumber 	 = "PortNumber"
 	
 	// MARK: Init
 	
-	public convenience init() {
-		self.init(dictionary: [:])
+	internal required init(deviceID: Int, port: UInt32) {
+        let p: UInt32 = ((port<<8) & 0xFF00) | (port>>8)
+		super.init(
+			origin: MessageData(
+				data: DictData(
+					dict: [
+						ConnectMessageData.DictionaryKeyMessageType: ConnectMessageData.MessageTypeConnect,
+						ConnectMessageData.DictionaryKeyDeviceID: NSNumber(integerLiteral: deviceID),
+						ConnectMessageData.DictionaryKeyPortNumber: NSNumber(integerLiteral: Int(p)),
+						ConnectMessageData.DictionaryKeyProgName: ConnectMessageData.ProgNameValue
+					]
+				),
+				packetType: 8,
+				messageTag: 1,
+				protocolType: 1
+			)
+		)
 	}
-	
-    public required init(dictionary: [K: T]) {
-        self.dictionary = dictionary
-    }
-    
-    // MARK: Public
-	
-	public subscript(key: K) -> T? {
-		get {
-			return dictionary[key]
-		}
-		set {
-			dictionary[key] = newValue
-		}
-	}
-    
-    public func removeAll() {
-        dictionary.removeAll()
-    }
-    
-    public var isEmpty: Bool {
-        return dictionary.isEmpty
-    }
-    
-    public var values: LazyMapCollection<Dictionary<K, T>, T> {
-        return dictionary.values
-    }
 }

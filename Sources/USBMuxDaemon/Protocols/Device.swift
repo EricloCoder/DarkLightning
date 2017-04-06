@@ -28,39 +28,55 @@
 
 import Foundation
 
-public final class DictionaryReference<K:Hashable, T> {
-	private var dictionary: [K: T]
-	
-	// MARK: Init
-	
-	public convenience init() {
-		self.init(dictionary: [:])
+public protocol Device: class {
+	func connect()
+	func disconnect()
+	func writeData(data: Data)
+}
+
+public final class DeviceFake: Device {
+
+	// MARK: - Init
+    
+    public init() {
+        
+    }
+    
+    // MARK: - Device
+    
+	public func connect() {
+		
 	}
 	
-    public required init(dictionary: [K: T]) {
-        self.dictionary = dictionary
-    }
-    
-    // MARK: Public
-	
-	public subscript(key: K) -> T? {
-		get {
-			return dictionary[key]
-		}
-		set {
-			dictionary[key] = newValue
-		}
+	public func disconnect() {
+		
 	}
+	
+	public func writeData(data: Data) {
+		
+	}
+}
+
+public class DeviceWrap: Device {
+    private let origin: Device
     
-    public func removeAll() {
-        dictionary.removeAll()
+    // MARK: - Init
+    
+    public init(origin: Device) {
+        self.origin = origin
     }
     
-    public var isEmpty: Bool {
-        return dictionary.isEmpty
+    // MARK: - Device
+    
+    public func connect() {
+        origin.connect()
     }
     
-    public var values: LazyMapCollection<Dictionary<K, T>, T> {
-        return dictionary.values
+    public func disconnect() {
+        origin.disconnect()
+    }
+    
+    public func writeData(data: Data) {
+        origin.writeData(data: data)
     }
 }

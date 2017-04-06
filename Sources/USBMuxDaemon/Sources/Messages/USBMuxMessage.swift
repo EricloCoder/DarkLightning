@@ -25,42 +25,23 @@
  *	IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  *	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-
 import Foundation
 
-public final class DictionaryReference<K:Hashable, T> {
-	private var dictionary: [K: T]
-	
-	// MARK: Init
-	
-	public convenience init() {
-		self.init(dictionary: [:])
+internal protocol USBMuxMessage: class {
+	func decode()
+}
+
+internal final class USBMuxMessageFake: USBMuxMessage {
+
+	// MARK: - Init
+    
+    internal init() {
+        
+    }
+    
+    // MARK: - USBMuxMessage
+    
+	func decode() {
+		
 	}
-	
-    public required init(dictionary: [K: T]) {
-        self.dictionary = dictionary
-    }
-    
-    // MARK: Public
-	
-	public subscript(key: K) -> T? {
-		get {
-			return dictionary[key]
-		}
-		set {
-			dictionary[key] = newValue
-		}
-	}
-    
-    public func removeAll() {
-        dictionary.removeAll()
-    }
-    
-    public var isEmpty: Bool {
-        return dictionary.isEmpty
-    }
-    
-    public var values: LazyMapCollection<Dictionary<K, T>, T> {
-        return dictionary.values
-    }
 }
