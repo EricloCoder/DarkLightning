@@ -37,6 +37,10 @@ internal final class AutoConnectDelegate: DevicesDelegate {
         device.writeData(data: "Yeehaa".data(using: .utf8)!)
     }
     
+    func device(didFailToConnect device: Device) {
+        
+    }
+    
     public func device(didDisconnect device: Device) {
         
     }
@@ -44,6 +48,6 @@ internal final class AutoConnectDelegate: DevicesDelegate {
 	func device(_ device: Device, didReceiveData data: OOData) {
         print(String(data: data.rawValue, encoding: .utf8)!)
         device.writeData(data: "Foo".data(using: .utf8)!)
-        //device.disconnect()
+        device.disconnect()
 	}
 }

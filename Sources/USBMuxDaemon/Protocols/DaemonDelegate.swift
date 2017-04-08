@@ -33,6 +33,7 @@ public protocol DevicesDelegate: class {
 	func device(didDetach device: Device)
     func device(didDisconnect device: Device)
     func device(didConnect device: Device)
+    func device(didFailToConnect device: Device)
 	func device(_ device: Device, didReceiveData data: OOData)
 }
 
@@ -55,6 +56,10 @@ public final class DevicesDelegateFake: DevicesDelegate {
 	}
     
     public func device(didConnect device: Device) {
+        
+    }
+    
+    public func device(didFailToConnect device: Device) {
         
     }
     

@@ -33,6 +33,7 @@ public final class USBDevice: Device, CustomStringConvertible {
 	private let deviceID: Int
     private let daemon: Daemon
     private let stream: WriteStream
+    private let delegate: DevicesDelegate
 	
 	// MARK: Init
     
@@ -75,7 +76,8 @@ public final class USBDevice: Device, CustomStringConvertible {
                                                     ),
                                                     stream: SocketWriteStream(
                                                         outputStream: outputStream
-                                                    )
+                                                    ),
+                                                    delegate: delegate
                                                 )
                                             )
                                         },
@@ -105,7 +107,8 @@ public final class USBDevice: Device, CustomStringConvertible {
 										),
 										stream: SocketWriteStream(
 											outputStream: outputStream
-										)
+										),
+										delegate: delegate
 									)
                                 )
                             ),
@@ -128,7 +131,8 @@ public final class USBDevice: Device, CustomStringConvertible {
                                     ),
                                     stream: SocketWriteStream(
                                         outputStream: outputStream
-                                    )
+                                    ),
+                                    delegate: delegate
                                 )
                             )
                         ]
@@ -152,15 +156,17 @@ public final class USBDevice: Device, CustomStringConvertible {
             ),
             stream: SocketWriteStream(
                 outputStream: outputStream
-            )
+            ),
+            delegate: delegate
         )
     }
     
-    public required init(deviceID: Int, dictionary: DictionaryReference<Int, Data>, daemon: Daemon, stream: WriteStream) {
+    public required init(deviceID: Int, dictionary: DictionaryReference<Int, Data>, daemon: Daemon, stream: WriteStream, delegate: DevicesDelegate) {
         self.deviceID = deviceID
 		self.dictionary = dictionary
         self.daemon = daemon
         self.stream = stream
+        self.delegate = delegate
     }
     
     // MARK: CustomStringConvertible
@@ -171,6 +177,7 @@ public final class USBDevice: Device, CustomStringConvertible {
 	
 	public func disconnect() {
 		daemon.stop()
+        delegate.device(didDisconnect: self)
 	}
 	
 	public func writeData(data: Data) {

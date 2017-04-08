@@ -75,6 +75,12 @@ internal final class ResultMessage: USBMuxMessage {
                     self.delegate.device(didConnect: self.device)
                 }
             }
+            else {
+                DispatchQueue.main.async {
+                    self.delegate.device(didFailToConnect: self.device)
+                    self.device.disconnect()
+                }
+            }
 		}
 		else {
 			origin.decode()
