@@ -31,12 +31,25 @@ import Foundation
 internal final class DisconnectReaction: NSObject, StreamDelegate {
 	private let handle: Memory<CFSocketNativeHandle>
 	private let state: Memory<Int>
+    private let delegate: DevicesDelegate
+    private let device: Device
 	
 	// MARK: Init
     
-	internal required init(handle: Memory<CFSocketNativeHandle>, state: Memory<Int>) {
+    internal convenience init(handle: Memory<CFSocketNativeHandle>, state: Memory<Int>) {
+        self.init(
+            handle: handle,
+            state: state,
+            delegate: DevicesDelegateFake(),
+            device: DeviceFake()
+        )
+    }
+    
+    internal required init(handle: Memory<CFSocketNativeHandle>, state: Memory<Int>, delegate: DevicesDelegate, device: Device) {
         self.handle = handle
 		self.state = state
+        self.delegate = delegate
+        self.device = device
     }
     
     // MARK: StreamDelegate
@@ -45,6 +58,7 @@ internal final class DisconnectReaction: NSObject, StreamDelegate {
 		if eventCode == .endEncountered || eventCode == .errorOccurred {
 			handle.rawValue = CFSocketInvalidHandle
 			state.rawValue = 0
+            delegate.device(didDisconnect: device)
 		}
 	}
 }

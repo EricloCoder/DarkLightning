@@ -21,7 +21,7 @@ internal final class AutoConnectDelegate: DarkLightning.PortDelegate {
     
     public func port(didConnect port: DarkLightning.Port) {
         let hello = "Hello World".data(using: .utf8)!
-		port.write(data: hello)
+        port.write(data: hello)
     }
     
     public func port(didDisconnect port: DarkLightning.Port) {

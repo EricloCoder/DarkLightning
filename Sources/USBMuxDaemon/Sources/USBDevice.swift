@@ -95,10 +95,27 @@ public final class USBDevice: Device, CustomStringConvertible {
 									)
                                 )
                             ),
-                            CloseStreamReaction(),
                             DisconnectReaction(
                                 handle: handle,
-                                state: state
+                                state: state,
+                                delegate: delegate,
+                                device: USBDevice(
+                                    deviceID: deviceID,
+                                    dictionary: dictionary,
+                                    daemon: USBDaemon(
+                                        socket: handle,
+                                        path: path,
+                                        queue: queue,
+                                        stream: SocketStream(
+                                            handle: handle,
+                                            inputStream: inputStream,
+                                            outputStream: outputStream
+                                        )
+                                    ),
+                                    stream: SocketWriteStream(
+                                        outputStream: outputStream
+                                    )
+                                )
                             )
                         ]
                     ),

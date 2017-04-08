@@ -96,7 +96,7 @@ public final class USBDaemon: DaemonWrap {
                                                 dictionary: devices,
                                                 port: port,
                                                 path: USBDaemon.USBMuxDPath,
-                                                delegate: DevicesDelegateFake()
+                                                delegate: delegate
                                             )
                                         }
                                     )
@@ -127,7 +127,7 @@ public final class USBDaemon: DaemonWrap {
                             )
                         ),
                         CloseStreamReaction(),
-                        ]
+                    ]
                 )
             )
 		)

@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		window = UIWindow()
 		window?.rootViewController = ViewController()
 		window?.makeKeyAndVisible()
+        application.isIdleTimerDisabled = true
         return true
     }
 

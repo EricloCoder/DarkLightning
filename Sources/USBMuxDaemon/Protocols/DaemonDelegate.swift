@@ -31,6 +31,8 @@ import Foundation
 public protocol DevicesDelegate: class {
 	func device(didAttach device: Device)
 	func device(didDetach device: Device)
+    func device(didDisconnect device: Device)
+    func device(didConnect device: Device)
 	func device(_ device: Device, didReceiveData data: OOData)
 }
 
@@ -51,6 +53,14 @@ public final class DevicesDelegateFake: DevicesDelegate {
 	public func device(didDetach device: Device) {
 		print(device)
 	}
+    
+    public func device(didConnect device: Device) {
+        
+    }
+    
+    public func device(didDisconnect device: Device) {
+        
+    }
 	
 	public func device(_ device: Device, didReceiveData data: OOData) {
 		

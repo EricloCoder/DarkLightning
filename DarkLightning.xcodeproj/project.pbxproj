@@ -670,7 +670,7 @@
 				TargetAttributes = {
 					B448E9E71E94F23700316651 = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = 85B58L94GF;
+						DevelopmentTeam = JAC9UTPT4U;
 						ProvisioningStyle = Automatic;
 					};
 					B4832BD31E910AF10028AB8E = {
@@ -679,7 +679,7 @@
 					};
 					B4A0402E1E8197BC00C06084 = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = 85B58L94GF;
+						DevelopmentTeam = JAC9UTPT4U;
 						ProvisioningStyle = Automatic;
 					};
 					B4A040371E8197BD00C06084 = {
@@ -942,7 +942,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 85B58L94GF;
+				DEVELOPMENT_TEAM = JAC9UTPT4U;
 				INFOPLIST_FILE = "Messenger-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -957,7 +957,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 85B58L94GF;
+				DEVELOPMENT_TEAM = JAC9UTPT4U;
 				INFOPLIST_FILE = "Messenger-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1107,7 +1107,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 85B58L94GF;
+				DEVELOPMENT_TEAM = JAC9UTPT4U;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1127,7 +1127,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 85B58L94GF;
+				DEVELOPMENT_TEAM = JAC9UTPT4U;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
