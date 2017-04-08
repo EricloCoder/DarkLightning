@@ -36,19 +36,20 @@ public final class USBDevice: Device, CustomStringConvertible {
 	
 	// MARK: Init
     
-    public convenience init(deviceID: Int, dictionary: DictionaryReference<Int, Data>, port: UInt32, path: String) {
+	public convenience init(deviceID: Int, dictionary: DictionaryReference<Int, Data>, port: UInt32, path: String, delegate: DevicesDelegate) {
         let handle = Memory<CFSocketNativeHandle>(initialValue: CFSocketInvalidHandle)
         let state = Memory<Int>(initialValue: 0)
         let inputStream = Memory<InputStream?>(initialValue: nil)
         let outputStream = Memory<OutputStream?>(initialValue: nil)
         let tcpMode = Memory<Bool>(initialValue: false)
+		let queue = DispatchQueue.global(qos: .background)
         self.init(
             deviceID: deviceID,
             dictionary: dictionary,
             daemon: USBDaemon(
                 socket: handle,
                 path: path,
-                queue: DispatchQueue.global(qos: .background),
+                queue: queue,
                 stream: SocketStream(
                     handle: handle,
                     inputStream: inputStream,
@@ -73,7 +74,25 @@ public final class USBDevice: Device, CustomStringConvertible {
                                             )
                                         }
                                     ),
-                                    tcpMode: tcpMode
+                                    tcpMode: tcpMode,
+                                    delegate: delegate,
+                                    device: USBDevice(
+										deviceID: deviceID,
+										dictionary: dictionary,
+										daemon: USBDaemon(
+											socket: handle,
+											path: path,
+											queue: queue,
+											stream: SocketStream(
+												handle: handle,
+												inputStream: inputStream,
+												outputStream: outputStream
+											)
+										),
+										stream: SocketWriteStream(
+											outputStream: outputStream
+										)
+									)
                                 )
                             ),
                             CloseStreamReaction(),

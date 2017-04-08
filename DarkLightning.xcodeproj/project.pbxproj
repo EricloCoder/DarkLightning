@@ -60,7 +60,6 @@
 		B4832BC41E9103F80028AB8E /* ReadStreamReaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0405A1E81981C00C06084 /* ReadStreamReaction.swift */; };
 		B4832BC51E9104180028AB8E /* PortDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0404E1E81981C00C06084 /* PortDelegate.swift */; };
 		B4832BC61E91041C0028AB8E /* Connections.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0404D1E81981C00C06084 /* Connections.swift */; };
-		B4832BC71E91041C0028AB8E /* IncomingDataReaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0404F1E81981C00C06084 /* IncomingDataReaction.swift */; };
 		B4832BD71E910AF10028AB8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4832BD61E910AF10028AB8E /* AppDelegate.swift */; };
 		B4832BD91E910AF10028AB8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4832BD81E910AF10028AB8E /* Assets.xcassets */; };
 		B4832BDC1E910AF10028AB8E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4832BDA1E910AF10028AB8E /* MainMenu.xib */; };
@@ -71,11 +70,21 @@
 		B4832C161E9193340028AB8E /* DataStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4832C141E9193340028AB8E /* DataStream.swift */; };
 		B4832C181E9193800028AB8E /* SocketWriteStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4832C171E9193800028AB8E /* SocketWriteStream.swift */; };
 		B4832C191E9193800028AB8E /* SocketWriteStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4832C171E9193800028AB8E /* SocketWriteStream.swift */; };
+		B4832C2B1E98F5460028AB8E /* IncomingDataReaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4832C2A1E98F5460028AB8E /* IncomingDataReaction.swift */; };
+		B4832C2C1E98F5ED0028AB8E /* DataDecoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448EA6A1E9634D700316651 /* DataDecoding.swift */; };
+		B4832C2D1E98F6130028AB8E /* OOData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448EA6B1E9634D700316651 /* OOData.swift */; };
+		B4832C2E1E98F6840028AB8E /* Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448EA731E9634D700316651 /* Memory.swift */; };
+		B4832C2F1E98F6900028AB8E /* StreamDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448EA771E9634D700316651 /* StreamDelegates.swift */; };
+		B4832C301E98F6A30028AB8E /* CFSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448EA701E9634D700316651 /* CFSocket.swift */; };
+		B4832C311E98F6AD0028AB8E /* NetworkUInt16.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448EA741E9634D700316651 /* NetworkUInt16.swift */; };
+		B4832C321E98F6B10028AB8E /* NetworkUInt32.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448EA751E9634D700316651 /* NetworkUInt32.swift */; };
+		B4832C331E98F6B80028AB8E /* OOUInt16.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448EA6D1E9634D700316651 /* OOUInt16.swift */; };
+		B4832C341E98F6BF0028AB8E /* OOUInt32.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448EA6E1E9634D700316651 /* OOUInt32.swift */; };
+		B4832C351E98F6C60028AB8E /* RawData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448EA761E9634D700316651 /* RawData.swift */; };
 		B4A040391E8197BD00C06084 /* DarkLightning.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A0402F1E8197BC00C06084 /* DarkLightning.framework */; };
 		B4A0403E1E8197BD00C06084 /* DarkLightningTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0403D1E8197BD00C06084 /* DarkLightningTests.swift */; };
 		B4A040691E81981C00C06084 /* Connections.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0404D1E81981C00C06084 /* Connections.swift */; };
 		B4A0406A1E81981C00C06084 /* PortDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0404E1E81981C00C06084 /* PortDelegate.swift */; };
-		B4A0406B1E81981C00C06084 /* IncomingDataReaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0404F1E81981C00C06084 /* IncomingDataReaction.swift */; };
 		B4A0406C1E81981C00C06084 /* WriteStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A040501E81981C00C06084 /* WriteStream.swift */; };
 		B4A0406D1E81981C00C06084 /* CloseStreamReaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A040521E81981C00C06084 /* CloseStreamReaction.swift */; };
 		B4A0406E1E81981C00C06084 /* ClosingDevicePort.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A040541E81981C00C06084 /* ClosingDevicePort.swift */; };
@@ -200,6 +209,7 @@
 		B4832C111E9192030028AB8E /* Port.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Port.swift; sourceTree = "<group>"; };
 		B4832C141E9193340028AB8E /* DataStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStream.swift; sourceTree = "<group>"; };
 		B4832C171E9193800028AB8E /* SocketWriteStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketWriteStream.swift; sourceTree = "<group>"; };
+		B4832C2A1E98F5460028AB8E /* IncomingDataReaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomingDataReaction.swift; sourceTree = "<group>"; };
 		B4A0402F1E8197BC00C06084 /* DarkLightning.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DarkLightning.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4A040381E8197BD00C06084 /* DarkLightningTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DarkLightningTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4A0403D1E8197BD00C06084 /* DarkLightningTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkLightningTests.swift; sourceTree = "<group>"; };
@@ -207,7 +217,6 @@
 		B4A0404A1E81981C00C06084 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4A0404D1E81981C00C06084 /* Connections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connections.swift; sourceTree = "<group>"; };
 		B4A0404E1E81981C00C06084 /* PortDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortDelegate.swift; sourceTree = "<group>"; };
-		B4A0404F1E81981C00C06084 /* IncomingDataReaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomingDataReaction.swift; sourceTree = "<group>"; };
 		B4A040501E81981C00C06084 /* WriteStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteStream.swift; sourceTree = "<group>"; };
 		B4A040521E81981C00C06084 /* CloseStreamReaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseStreamReaction.swift; sourceTree = "<group>"; };
 		B4A040541E81981C00C06084 /* ClosingDevicePort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosingDevicePort.swift; sourceTree = "<group>"; };
@@ -462,7 +471,6 @@
 			children = (
 				B4A0404D1E81981C00C06084 /* Connections.swift */,
 				B4A0404E1E81981C00C06084 /* PortDelegate.swift */,
-				B4A0404F1E81981C00C06084 /* IncomingDataReaction.swift */,
 				B4A040501E81981C00C06084 /* WriteStream.swift */,
 				B4832C111E9192030028AB8E /* Port.swift */,
 				B4832C141E9193340028AB8E /* DataStream.swift */,
@@ -481,6 +489,7 @@
 				B4A0405B1E81981C00C06084 /* SocketConnections.swift */,
 				B4A0405C1E81981C00C06084 /* SocketStream.swift */,
 				B4832C171E9193800028AB8E /* SocketWriteStream.swift */,
+				B4832C2A1E98F5460028AB8E /* IncomingDataReaction.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -664,7 +673,7 @@
 				TargetAttributes = {
 					B448E9E71E94F23700316651 = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = JAC9UTPT4U;
+						DevelopmentTeam = 85B58L94GF;
 						ProvisioningStyle = Automatic;
 					};
 					B4832BD31E910AF10028AB8E = {
@@ -673,7 +682,7 @@
 					};
 					B4A0402E1E8197BC00C06084 = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = JAC9UTPT4U;
+						DevelopmentTeam = 85B58L94GF;
 						ProvisioningStyle = Automatic;
 					};
 					B4A040371E8197BD00C06084 = {
@@ -790,20 +799,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4A040691E81981C00C06084 /* Connections.swift in Sources */,
+				B4832C311E98F6AD0028AB8E /* NetworkUInt16.swift in Sources */,
 				B4832C181E9193800028AB8E /* SocketWriteStream.swift in Sources */,
+				B4832C2B1E98F5460028AB8E /* IncomingDataReaction.swift in Sources */,
+				B4832C341E98F6BF0028AB8E /* OOUInt32.swift in Sources */,
 				B4A040751E81981C00C06084 /* SocketConnections.swift in Sources */,
 				B4A040761E81981C00C06084 /* SocketStream.swift in Sources */,
 				B4832C121E9192030028AB8E /* Port.swift in Sources */,
 				B4A0406F1E81981C00C06084 /* DevicePort.swift in Sources */,
+				B4832C351E98F6C60028AB8E /* RawData.swift in Sources */,
+				B4832C2D1E98F6130028AB8E /* OOData.swift in Sources */,
+				B4832C2E1E98F6840028AB8E /* Memory.swift in Sources */,
 				B4A0406D1E81981C00C06084 /* CloseStreamReaction.swift in Sources */,
 				B4A040711E81981C00C06084 /* WritingDevicePort.swift in Sources */,
 				B4A0406A1E81981C00C06084 /* PortDelegate.swift in Sources */,
 				B448E9E21E94F0A100316651 /* ReadStreamReaction.swift in Sources */,
-				B4A0406B1E81981C00C06084 /* IncomingDataReaction.swift in Sources */,
+				B4832C301E98F6A30028AB8E /* CFSocket.swift in Sources */,
 				B4A040721E81981C00C06084 /* DisconnectStreamReaction.swift in Sources */,
+				B4832C2F1E98F6900028AB8E /* StreamDelegates.swift in Sources */,
 				B4A040731E81981C00C06084 /* InsertConnectionReaction.swift in Sources */,
 				B4832C151E9193340028AB8E /* DataStream.swift in Sources */,
+				B4832C2C1E98F5ED0028AB8E /* DataDecoding.swift in Sources */,
 				B4A0406E1E81981C00C06084 /* ClosingDevicePort.swift in Sources */,
+				B4832C331E98F6B80028AB8E /* OOUInt16.swift in Sources */,
+				B4832C321E98F6B10028AB8E /* NetworkUInt32.swift in Sources */,
 				B4A0406C1E81981C00C06084 /* WriteStream.swift in Sources */,
 				B4A040701E81981C00C06084 /* OpeningDevicePort.swift in Sources */,
 			);
@@ -860,7 +879,6 @@
 				B448EA7D1E9634D700316651 /* ConnectMessageData.swift in Sources */,
 				B448EA8E1E9634D700316651 /* USBDevice.swift in Sources */,
 				B448EA821E9634D700316651 /* MessageData.swift in Sources */,
-				B4832BC71E91041C0028AB8E /* IncomingDataReaction.swift in Sources */,
 				B448EA8C1E9634D700316651 /* StoppingUSBDaemon.swift in Sources */,
 				B448EA831E9634D700316651 /* ResultMessage.swift in Sources */,
 				B448EA981E9634D700316651 /* NetworkUInt16.swift in Sources */,
@@ -936,7 +954,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = JAC9UTPT4U;
+				DEVELOPMENT_TEAM = 85B58L94GF;
 				INFOPLIST_FILE = "Messenger-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.jensmeder.Messenger-iOS";
@@ -950,7 +968,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = JAC9UTPT4U;
+				DEVELOPMENT_TEAM = 85B58L94GF;
 				INFOPLIST_FILE = "Messenger-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.jensmeder.Messenger-iOS";
@@ -1099,12 +1117,13 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = JAC9UTPT4U;
+				DEVELOPMENT_TEAM = 85B58L94GF;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Sources/iOS/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.jensmeder.DarkLightning;
 				PRODUCT_NAME = DarkLightning;
@@ -1118,12 +1137,13 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = JAC9UTPT4U;
+				DEVELOPMENT_TEAM = 85B58L94GF;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Sources/iOS/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.jensmeder.DarkLightning;
 				PRODUCT_NAME = DarkLightning;

@@ -39,20 +39,18 @@ public final class DevicePort: PortWrap {
 	
 	public convenience init() {
 		self.init(
-			delegate: PortDelegateFake(),
-			dataDelegate: DataDecodingFake()
+			delegate: PortDelegateFake()
 		)
 	}
 	
-	public convenience init(delegate: PortDelegate, dataDelegate: DataDecoding) {
+	public convenience init(delegate: PortDelegate) {
 		self.init(
 			port: DevicePort.DefaultPort,
-			delegate: delegate,
-			dataDelegate: dataDelegate
+			delegate: delegate
 		)
 	}
 	
-	public convenience init(port: UInt16, delegate: PortDelegate, dataDelegate: DataDecoding) {
+	public convenience init(port: UInt16, delegate: PortDelegate) {
         let handle = Memory<CFSocketNativeHandle>(initialValue: CFSocketInvalidHandle)
         let connectedHandle = Memory<CFSocketNativeHandle>(initialValue: CFSocketInvalidHandle)
         let queue = DispatchQueue.global(qos: .background)
@@ -67,7 +65,25 @@ public final class DevicePort: PortWrap {
                 readReaction: StreamDelegates(
                     delegates: [
                         ReadStreamReaction(
-                            delegate: dataDelegate
+                            delegate: IncomingDataReaction(
+								port: DevicePort(
+									port: port,
+									queue: queue,
+									inputStream: inputStream,
+									outputStream: outputStream,
+									socket: handle,
+									connections: SocketConnections(
+										queue: queue,
+										stream: SocketStream(
+											handle: connectedHandle,
+											inputStream: inputStream,
+											outputStream: outputStream
+										),
+										handle: connectedHandle
+									)
+								),
+								delegate: delegate
+							)
                         ),
                         CloseStreamReaction(),
                         DisconnectStreamReaction(

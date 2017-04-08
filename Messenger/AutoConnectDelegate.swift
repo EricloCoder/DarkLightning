@@ -32,4 +32,12 @@ internal final class AutoConnectDelegate: DevicesDelegate {
     func device(didDetach device: Device) {
         
     }
+	
+	public func device(_ device: Device, didReceiveData data: Data) {
+		
+	}
+	
+	func device(_ device: Device, didReceiveData data: OOData) {
+		
+	}
 }

@@ -82,7 +82,8 @@ public final class USBDaemon: DaemonWrap {
                                                     deviceID: deviceID,
                                                     dictionary: devices,
                                                     port: port,
-                                                    path: USBDaemon.USBMuxDPath
+                                                    path: USBDaemon.USBMuxDPath,
+                                                    delegate: delegate
                                                 )
                                             }
                                         ),
@@ -94,7 +95,8 @@ public final class USBDaemon: DaemonWrap {
                                                 deviceID: deviceID,
                                                 dictionary: devices,
                                                 port: port,
-                                                path: USBDaemon.USBMuxDPath
+                                                path: USBDaemon.USBMuxDPath,
+                                                delegate: DevicesDelegateFake()
                                             )
                                         }
                                     )

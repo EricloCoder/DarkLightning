@@ -31,12 +31,16 @@ import Foundation
 internal final class TCPMessage: DataDecoding {
     private let origin: DataDecoding
     private let tcpMode: Memory<Bool>
+	private let delegate: DevicesDelegate
+	private let device: Device
     
 	// MARK: Init
     
-    internal required init(origin: DataDecoding, tcpMode: Memory<Bool>) {
+	internal required init(origin: DataDecoding, tcpMode: Memory<Bool>, delegate: DevicesDelegate, device: Device) {
         self.origin = origin
         self.tcpMode = tcpMode
+		self.delegate = delegate
+		self.device = device
     }
     
     // MARK: DataDecoding
@@ -44,7 +48,7 @@ internal final class TCPMessage: DataDecoding {
     func decode(data: OOData) {
         if tcpMode.rawValue {
             DispatchQueue.main.async {
-                print(String(data: data.rawValue, encoding: .utf8)!)
+				self.delegate.device(self.device, didReceiveData: data)
             }
         }
         else {
