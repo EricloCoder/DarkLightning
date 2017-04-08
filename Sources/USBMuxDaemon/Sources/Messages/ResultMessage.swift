@@ -40,21 +40,27 @@ internal final class ResultMessage: USBMuxMessage {
 	private let origin: USBMuxMessage
 	private let plist: [String: Any]
     private let tcpMode: Memory<Bool>
+    private let delegate: DevicesDelegate
+    private let device: Device
 	
 	// MARK: Init
 	
-    internal convenience init(plist: [String: Any], tcpMode: Memory<Bool>) {
+    internal convenience init(plist: [String: Any], tcpMode: Memory<Bool>, delegate: DevicesDelegate, device: Device) {
         self.init(
             origin: USBMuxMessageFake(),
             plist: plist,
-            tcpMode: tcpMode
+            tcpMode: tcpMode,
+            delegate: delegate,
+            device: device
         )
     }
     
-	internal required init(origin: USBMuxMessage, plist: [String: Any], tcpMode: Memory<Bool>) {
+	internal required init(origin: USBMuxMessage, plist: [String: Any], tcpMode: Memory<Bool>, delegate: DevicesDelegate, device: Device) {
 		self.origin = origin
 		self.plist = plist
         self.tcpMode = tcpMode
+        self.delegate = delegate
+        self.device = device
 	}
 	
 	// MARK: USBMuxMessage
@@ -65,6 +71,9 @@ internal final class ResultMessage: USBMuxMessage {
 			let number = plist["Number"] as! Int
             if number == 0 {
                 tcpMode.rawValue = true
+                DispatchQueue.main.async {
+                    self.delegate.device(didConnect: self.device)
+                }
             }
 		}
 		else {

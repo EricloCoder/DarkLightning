@@ -62,7 +62,21 @@ public final class USBDevice: Device, CustomStringConvertible {
                                         mapping: { (plist: [String : Any]) -> (USBMuxMessage) in
                                             return ResultMessage(
                                                 plist: plist,
-                                                tcpMode: tcpMode
+                                                tcpMode: tcpMode,
+                                                delegate: delegate,
+                                                device: USBDevice(
+                                                    deviceID: deviceID,
+                                                    dictionary: dictionary,
+                                                    daemon: USBDaemon(
+                                                        socket: handle,
+                                                        path: path,
+                                                        queue: queue,
+                                                        stream: DataStreamFake()
+                                                    ),
+                                                    stream: SocketWriteStream(
+                                                        outputStream: outputStream
+                                                    )
+                                                )
                                             )
                                         },
                                         dataMapping: { (data: Data) -> (OODataArray) in

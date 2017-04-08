@@ -34,7 +34,7 @@ internal final class AutoConnectDelegate: DevicesDelegate {
     }
     
     public func device(didConnect device: Device) {
-        
+        device.writeData(data: "Yeehaa".data(using: .utf8)!)
     }
     
     public func device(didDisconnect device: Device) {
