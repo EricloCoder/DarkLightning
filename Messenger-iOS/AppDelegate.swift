@@ -19,6 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         port = DevicePort(delegate: AutoConnectDelegate())
         port?.open()
+		window = UIWindow()
+		window?.rootViewController = ViewController()
+		window?.makeKeyAndVisible()
         return true
     }
 

@@ -10,7 +10,6 @@
 		B448E9E21E94F0A100316651 /* ReadStreamReaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0405A1E81981C00C06084 /* ReadStreamReaction.swift */; };
 		B448E9EB1E94F23700316651 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448E9EA1E94F23700316651 /* AppDelegate.swift */; };
 		B448E9ED1E94F23700316651 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448E9EC1E94F23700316651 /* ViewController.swift */; };
-		B448E9F01E94F23700316651 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B448E9EE1E94F23700316651 /* Main.storyboard */; };
 		B448E9F21E94F23700316651 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B448E9F11E94F23700316651 /* Assets.xcassets */; };
 		B448E9F51E94F23700316651 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B448E9F31E94F23700316651 /* LaunchScreen.storyboard */; };
 		B448E9FA1E94F25900316651 /* DarkLightning.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A0402F1E8197BC00C06084 /* DarkLightning.framework */; };
@@ -159,7 +158,6 @@
 		B448E9E81E94F23700316651 /* Messenger-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Messenger-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B448E9EA1E94F23700316651 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B448E9EC1E94F23700316651 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B448E9EF1E94F23700316651 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B448E9F11E94F23700316651 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B448E9F41E94F23700316651 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B448E9F61E94F23700316651 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -290,7 +288,6 @@
 			children = (
 				B448E9EA1E94F23700316651 /* AppDelegate.swift */,
 				B448E9EC1E94F23700316651 /* ViewController.swift */,
-				B448E9EE1E94F23700316651 /* Main.storyboard */,
 				B448E9F11E94F23700316651 /* Assets.xcassets */,
 				B448E9F31E94F23700316651 /* LaunchScreen.storyboard */,
 				B448E9F61E94F23700316651 /* Info.plist */,
@@ -731,7 +728,6 @@
 			files = (
 				B448E9F51E94F23700316651 /* LaunchScreen.storyboard in Resources */,
 				B448E9F21E94F23700316651 /* Assets.xcassets in Resources */,
-				B448E9F01E94F23700316651 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -922,14 +918,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		B448E9EE1E94F23700316651 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B448E9EF1E94F23700316651 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		B448E9F31E94F23700316651 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -956,6 +944,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 85B58L94GF;
 				INFOPLIST_FILE = "Messenger-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.jensmeder.Messenger-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -970,6 +959,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 85B58L94GF;
 				INFOPLIST_FILE = "Messenger-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.jensmeder.Messenger-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";

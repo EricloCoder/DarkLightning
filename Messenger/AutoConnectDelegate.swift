@@ -38,6 +38,6 @@ internal final class AutoConnectDelegate: DevicesDelegate {
 	}
 	
 	func device(_ device: Device, didReceiveData data: OOData) {
-		
+		print(String(data: data.rawValue, encoding: .utf8)!)
 	}
 }

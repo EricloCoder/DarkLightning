@@ -21,9 +21,7 @@ internal final class AutoConnectDelegate: DarkLightning.PortDelegate {
     
     public func port(didConnect port: DarkLightning.Port) {
         let hello = "Hello World".data(using: .utf8)!
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { 
-            port.write(data: hello)
-        }
+		port.write(data: hello)
     }
     
     public func port(didDisconnect port: DarkLightning.Port) {
@@ -31,6 +29,6 @@ internal final class AutoConnectDelegate: DarkLightning.PortDelegate {
     }
     
     public func port(port: DarkLightning.Port, didReceiveData data: OOData) {
-        
+        print(String(data: data.rawValue, encoding: .utf8)!)
     }
 }
