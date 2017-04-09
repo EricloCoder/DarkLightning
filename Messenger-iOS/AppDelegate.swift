@@ -16,11 +16,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var port: DarkLightning.Port?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        port = DevicePort(delegate: AutoConnectDelegate())
+        let textView = Memory<UITextView?>(initialValue: nil)
+        let navigationItem = Memory<UINavigationItem?>(initialValue: nil)
+        port = DevicePort(delegate: AutoConnectDelegate(textView: textView, navigationItem: navigationItem))
         port?.open()
 		window = UIWindow()
-		window?.rootViewController = ViewController()
+        window?.rootViewController = UINavigationController(
+            rootViewController: ViewController(
+                title: "Disconnected",
+                textView: textView,
+                header: navigationItem
+            )
+        )
 		window?.makeKeyAndVisible()
         application.isIdleTimerDisabled = true
         return true

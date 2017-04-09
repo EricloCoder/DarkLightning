@@ -7,19 +7,37 @@
 //
 
 import UIKit
+import DarkLightning
 
 class ViewController: UIViewController {
+    
+    private let textView: Memory<UITextView?>
+    private let header: Memory<UINavigationItem?>
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    init(title: String, textView: Memory<UITextView?>, header: Memory<UINavigationItem?>) {
+        self.textView = textView
+        self.header = header
+        self.title = title
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func loadView() {
+        self.textView.rawValue = UITextView()
+        self.view = self.textView.rawValue
     }
-
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.header.rawValue = navigationItem
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.header.rawValue = nil
+    }
 }
 
