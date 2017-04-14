@@ -40,12 +40,12 @@ internal final class ResultMessage: USBMuxMessage {
 	private let origin: USBMuxMessage
 	private let plist: [String: Any]
     private let tcpMode: Memory<Bool>
-    private let delegate: DevicesDelegate
+    private let delegate: DeviceDelegate
     private let device: Device
 	
 	// MARK: Init
 	
-    internal convenience init(plist: [String: Any], tcpMode: Memory<Bool>, delegate: DevicesDelegate, device: Device) {
+    internal convenience init(plist: [String: Any], tcpMode: Memory<Bool>, delegate: DeviceDelegate, device: Device) {
         self.init(
             origin: USBMuxMessageFake(),
             plist: plist,
@@ -55,7 +55,7 @@ internal final class ResultMessage: USBMuxMessage {
         )
     }
     
-	internal required init(origin: USBMuxMessage, plist: [String: Any], tcpMode: Memory<Bool>, delegate: DevicesDelegate, device: Device) {
+	internal required init(origin: USBMuxMessage, plist: [String: Any], tcpMode: Memory<Bool>, delegate: DeviceDelegate, device: Device) {
 		self.origin = origin
 		self.plist = plist
         self.tcpMode = tcpMode

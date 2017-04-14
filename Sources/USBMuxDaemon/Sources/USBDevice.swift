@@ -33,11 +33,11 @@ public final class USBDevice: Device, CustomStringConvertible {
 	private let deviceID: Int
     private let daemon: Daemon
     private let stream: WriteStream
-    private let delegate: DevicesDelegate
+    private let delegate: DeviceDelegate
 	
 	// MARK: Init
     
-	public convenience init(deviceID: Int, dictionary: DictionaryReference<Int, Data>, port: UInt32, path: String, delegate: DevicesDelegate) {
+	public convenience init(deviceID: Int, dictionary: DictionaryReference<Int, Data>, port: UInt32, path: String, delegate: DeviceDelegate) {
         let handle = Memory<CFSocketNativeHandle>(initialValue: CFSocketInvalidHandle)
         let state = Memory<Int>(initialValue: 0)
         let inputStream = Memory<InputStream?>(initialValue: nil)
@@ -161,7 +161,7 @@ public final class USBDevice: Device, CustomStringConvertible {
         )
     }
     
-    public required init(deviceID: Int, dictionary: DictionaryReference<Int, Data>, daemon: Daemon, stream: WriteStream, delegate: DevicesDelegate) {
+    public required init(deviceID: Int, dictionary: DictionaryReference<Int, Data>, daemon: Daemon, stream: WriteStream, delegate: DeviceDelegate) {
         self.deviceID = deviceID
 		self.dictionary = dictionary
         self.daemon = daemon

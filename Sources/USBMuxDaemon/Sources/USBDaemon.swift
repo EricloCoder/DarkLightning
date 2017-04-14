@@ -40,19 +40,21 @@ public final class USBDaemon: DaemonWrap {
 	
 	public convenience init() {
         self.init(
-            delegate: DevicesDelegateFake(),
+            delegate: DaemonDelegateFake(),
+            deviceDelegate:DeviceDelegateFake(),
             port: USBDaemon.DefaultPort
         )
 	}
     
-    public convenience init(delegate: DevicesDelegate) {
+    public convenience init(delegate: DaemonDelegate, deviceDelegate: DeviceDelegate) {
         self.init(
             delegate: delegate,
+            deviceDelegate: deviceDelegate,
             port: USBDaemon.DefaultPort
         )
     }
 	
-    public convenience init(delegate: DevicesDelegate, port: UInt32) {
+    public convenience init(delegate: DaemonDelegate, deviceDelegate: DeviceDelegate, port: UInt32) {
         let handle = Memory<CFSocketNativeHandle>(initialValue: CFSocketInvalidHandle)
         let state = Memory<Int>(initialValue: 0)
         let devices = DictionaryReference<Int, Data>()
@@ -76,6 +78,16 @@ public final class USBDaemon: DaemonWrap {
                                             origin: USBMuxMessageFake(),
                                             plist: plist,
                                             devices: devices,
+                                            daemon: USBDaemon(
+                                                socket: handle,
+                                                path: USBDaemon.USBMuxDPath,
+                                                queue: DispatchQueue.global(qos: .background),
+                                                stream: SocketStream(
+                                                    handle: handle,
+                                                    inputStream: inputStream,
+                                                    outputStream: outputStream
+                                                )
+                                            ),
                                             delegate: delegate,
                                             closure: { (deviceID: Int, devices: DictionaryReference<Int, Data>) -> (Device) in
                                                 return USBDevice(
@@ -83,12 +95,22 @@ public final class USBDaemon: DaemonWrap {
                                                     dictionary: devices,
                                                     port: port,
                                                     path: USBDaemon.USBMuxDPath,
-                                                    delegate: delegate
+                                                    delegate: deviceDelegate
                                                 )
                                             }
                                         ),
                                         plist: plist,
                                         devices: devices,
+                                        daemon: USBDaemon(
+                                            socket: handle,
+                                            path: USBDaemon.USBMuxDPath,
+                                            queue: DispatchQueue.global(qos: .background),
+                                            stream: SocketStream(
+                                                handle: handle,
+                                                inputStream: inputStream,
+                                                outputStream: outputStream
+                                            )
+                                        ),
                                         delegate: delegate,
                                         closure: { (deviceID: Int, devices: DictionaryReference<Int, Data>) -> (Device) in
                                             return USBDevice(
@@ -96,7 +118,7 @@ public final class USBDaemon: DaemonWrap {
                                                 dictionary: devices,
                                                 port: port,
                                                 path: USBDaemon.USBMuxDPath,
-                                                delegate: delegate
+                                                delegate: deviceDelegate
                                             )
                                         }
                                     )

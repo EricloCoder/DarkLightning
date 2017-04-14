@@ -31,12 +31,12 @@ import Foundation
 internal final class TCPMessage: DataDecoding {
     private let origin: DataDecoding
     private let tcpMode: Memory<Bool>
-	private let delegate: DevicesDelegate
+	private let delegate: DeviceDelegate
 	private let device: Device
     
 	// MARK: Init
     
-	internal required init(origin: DataDecoding, tcpMode: Memory<Bool>, delegate: DevicesDelegate, device: Device) {
+	internal required init(origin: DataDecoding, tcpMode: Memory<Bool>, delegate: DeviceDelegate, device: Device) {
         self.origin = origin
         self.tcpMode = tcpMode
 		self.delegate = delegate

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B40F14A91EA1658300C9E270 /* DaemonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40F14A81EA1658300C9E270 /* DaemonDelegate.swift */; };
+		B40F14AB1EA168F200C9E270 /* DeviceEventReaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40F14AA1EA168F200C9E270 /* DeviceEventReaction.swift */; };
 		B448E9E21E94F0A100316651 /* ReadStreamReaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0405A1E81981C00C06084 /* ReadStreamReaction.swift */; };
 		B448E9EB1E94F23700316651 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448E9EA1E94F23700316651 /* AppDelegate.swift */; };
 		B448E9ED1E94F23700316651 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448E9EC1E94F23700316651 /* ViewController.swift */; };
@@ -14,10 +16,10 @@
 		B448E9F51E94F23700316651 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B448E9F31E94F23700316651 /* LaunchScreen.storyboard */; };
 		B448E9FA1E94F25900316651 /* DarkLightning.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A0402F1E8197BC00C06084 /* DarkLightning.framework */; };
 		B448E9FB1E94F25900316651 /* DarkLightning.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B4A0402F1E8197BC00C06084 /* DarkLightning.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B448EA081E94FF2A00316651 /* AutoConnectDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448EA071E94FF2A00316651 /* AutoConnectDelegate.swift */; };
+		B448EA081E94FF2A00316651 /* AttachReaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448EA071E94FF2A00316651 /* AttachReaction.swift */; };
 		B448EA111E95250E00316651 /* AutoConnectDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448EA101E95250E00316651 /* AutoConnectDelegate.swift */; };
 		B448EA781E9634D700316651 /* Daemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448EA4F1E9634D700316651 /* Daemon.swift */; };
-		B448EA791E9634D700316651 /* DaemonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448EA501E9634D700316651 /* DaemonDelegate.swift */; };
+		B448EA791E9634D700316651 /* DeviceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448EA501E9634D700316651 /* DeviceDelegate.swift */; };
 		B448EA7A1E9634D700316651 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448EA511E9634D700316651 /* Device.swift */; };
 		B448EA7B1E9634D700316651 /* DisconnectReaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448EA531E9634D700316651 /* DisconnectReaction.swift */; };
 		B448EA7C1E9634D700316651 /* AttachMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448EA551E9634D700316651 /* AttachMessage.swift */; };
@@ -155,16 +157,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B40F14A81EA1658300C9E270 /* DaemonDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaemonDelegate.swift; sourceTree = "<group>"; };
+		B40F14AA1EA168F200C9E270 /* DeviceEventReaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceEventReaction.swift; sourceTree = "<group>"; };
 		B448E9E81E94F23700316651 /* Messenger-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Messenger-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B448E9EA1E94F23700316651 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B448E9EC1E94F23700316651 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B448E9F11E94F23700316651 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B448E9F41E94F23700316651 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B448E9F61E94F23700316651 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B448EA071E94FF2A00316651 /* AutoConnectDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoConnectDelegate.swift; sourceTree = "<group>"; };
+		B448EA071E94FF2A00316651 /* AttachReaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachReaction.swift; sourceTree = "<group>"; };
 		B448EA101E95250E00316651 /* AutoConnectDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoConnectDelegate.swift; sourceTree = "<group>"; };
 		B448EA4F1E9634D700316651 /* Daemon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Daemon.swift; sourceTree = "<group>"; };
-		B448EA501E9634D700316651 /* DaemonDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaemonDelegate.swift; sourceTree = "<group>"; };
+		B448EA501E9634D700316651 /* DeviceDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceDelegate.swift; sourceTree = "<group>"; };
 		B448EA511E9634D700316651 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		B448EA531E9634D700316651 /* DisconnectReaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisconnectReaction.swift; sourceTree = "<group>"; };
 		B448EA551E9634D700316651 /* AttachMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachMessage.swift; sourceTree = "<group>"; };
@@ -309,8 +313,9 @@
 			isa = PBXGroup;
 			children = (
 				B448EA4F1E9634D700316651 /* Daemon.swift */,
-				B448EA501E9634D700316651 /* DaemonDelegate.swift */,
+				B448EA501E9634D700316651 /* DeviceDelegate.swift */,
 				B448EA511E9634D700316651 /* Device.swift */,
+				B40F14A81EA1658300C9E270 /* DaemonDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -393,7 +398,8 @@
 				B4832BD81E910AF10028AB8E /* Assets.xcassets */,
 				B4832BDA1E910AF10028AB8E /* MainMenu.xib */,
 				B4832BDD1E910AF10028AB8E /* Info.plist */,
-				B448EA071E94FF2A00316651 /* AutoConnectDelegate.swift */,
+				B448EA071E94FF2A00316651 /* AttachReaction.swift */,
+				B40F14AA1EA168F200C9E270 /* DeviceEventReaction.swift */,
 			);
 			path = Messenger;
 			sourceTree = "<group>";
@@ -785,7 +791,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B448EA081E94FF2A00316651 /* AutoConnectDelegate.swift in Sources */,
+				B448EA081E94FF2A00316651 /* AttachReaction.swift in Sources */,
+				B40F14AB1EA168F200C9E270 /* DeviceEventReaction.swift in Sources */,
 				B4832BD71E910AF10028AB8E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -864,6 +871,7 @@
 				B4832BC11E9103B90028AB8E /* SocketStream.swift in Sources */,
 				B448EA971E9634D700316651 /* Memory.swift in Sources */,
 				B448EA991E9634D700316651 /* NetworkUInt32.swift in Sources */,
+				B40F14A91EA1658300C9E270 /* DaemonDelegate.swift in Sources */,
 				B4832BC41E9103F80028AB8E /* ReadStreamReaction.swift in Sources */,
 				B4832BBC1E8D75E60028AB8E /* WriteStream.swift in Sources */,
 				B448EA941E9634D700316651 /* CFSocket.swift in Sources */,
@@ -878,7 +886,7 @@
 				B448EA8C1E9634D700316651 /* StoppingUSBDaemon.swift in Sources */,
 				B448EA831E9634D700316651 /* ResultMessage.swift in Sources */,
 				B448EA981E9634D700316651 /* NetworkUInt16.swift in Sources */,
-				B448EA791E9634D700316651 /* DaemonDelegate.swift in Sources */,
+				B448EA791E9634D700316651 /* DeviceDelegate.swift in Sources */,
 				B448EA7F1E9634D700316651 /* DetachMessage.swift in Sources */,
 				B4832BC61E91041C0028AB8E /* Connections.swift in Sources */,
 			);

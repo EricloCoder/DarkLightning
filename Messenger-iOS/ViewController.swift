@@ -17,8 +17,8 @@ class ViewController: UIViewController {
     init(title: String, textView: Memory<UITextView?>, header: Memory<UINavigationItem?>) {
         self.textView = textView
         self.header = header
-        self.title = title
         super.init(nibName: nil, bundle: nil)
+        self.title = title
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -28,37 +28,44 @@
 
 import Foundation
 
-internal final class DisconnectReaction: NSObject, StreamDelegate {
-	private let handle: Memory<CFSocketNativeHandle>
-	private let state: Memory<Int>
-    private let delegate: DeviceDelegate
-    private let device: Device
-	
-	// MARK: Init
+public protocol DeviceDelegate: class {
+    func device(didDisconnect device: Device)
+    func device(didConnect device: Device)
+    func device(didFailToConnect device: Device)
+	func device(_ device: Device, didReceiveData data: OOData)
+}
+
+public final class DeviceDelegateFake: DeviceDelegate {
+
+	// MARK: - Init
     
-    internal convenience init(handle: Memory<CFSocketNativeHandle>, state: Memory<Int>) {
-        self.init(
-            handle: handle,
-            state: state,
-            delegate: DeviceDelegateFake(),
-            device: DeviceFake()
-        )
+    public init() {
+        
     }
     
-    internal required init(handle: Memory<CFSocketNativeHandle>, state: Memory<Int>, delegate: DeviceDelegate, device: Device) {
-        self.handle = handle
-		self.state = state
-        self.delegate = delegate
-        self.device = device
+    // MARK: - DeviceDelegate
+    
+	public func device(didAttach device: Device) {
+		print(device)
+	}
+	
+	public func device(didDetach device: Device) {
+		print(device)
+	}
+    
+    public func device(didConnect device: Device) {
+        
     }
     
-    // MARK: StreamDelegate
+    public func device(didFailToConnect device: Device) {
+        
+    }
+    
+    public func device(didDisconnect device: Device) {
+        
+    }
 	
-	func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
-		if eventCode == .endEncountered || eventCode == .errorOccurred {
-			handle.rawValue = CFSocketInvalidHandle
-			state.rawValue = 0
-            delegate.device(didDisconnect: device)
-		}
+	public func device(_ device: Device, didReceiveData data: OOData) {
+		
 	}
 }

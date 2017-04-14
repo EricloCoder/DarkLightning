@@ -18,7 +18,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 	func applicationDidFinishLaunching(_ aNotification: Notification) {
 		// Insert code here to initialize your application
-		daemon = USBDaemon(delegate: AutoConnectDelegate())
+        daemon = USBDaemon(delegate: AttachReaction(), deviceDelegate: DeviceEventReaction())
 		daemon?.start()
 	}
 
