@@ -323,8 +323,8 @@
 		B448EA521E9634D700316651 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				B448EA531E9634D700316651 /* DisconnectReaction.swift */,
 				B448EA541E9634D700316651 /* Messages */,
+				B448EA531E9634D700316651 /* DisconnectReaction.swift */,
 				B448EA621E9634D700316651 /* OpenReaction.swift */,
 				B448EA631E9634D700316651 /* ReceivingDataReaction.swift */,
 				B448EA641E9634D700316651 /* StartingUSBDaemon.swift */,

@@ -72,7 +72,7 @@ internal final class ReadStreamReaction: NSObject, StreamDelegate {
     // MARK: StreamDelegate
 	
 	func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
-		if eventCode == .hasBytesAvailable {
+        if eventCode == .hasBytesAvailable {
 			var buffer = Data()
 			let inputStream = aStream as! InputStream
 			while inputStream.hasBytesAvailable {

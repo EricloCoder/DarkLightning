@@ -60,6 +60,7 @@ public final class USBDaemon: DaemonWrap {
         let devices = DictionaryReference<Int, Data>()
         let inputStream = Memory<InputStream?>(initialValue: nil)
         let outputStream = Memory<OutputStream?>(initialValue: nil)
+        let root = Memory<Daemon?>(initialValue: nil)
 		self.init(
 			socket: handle,
 			path: USBDaemon.USBMuxDPath,
@@ -78,16 +79,7 @@ public final class USBDaemon: DaemonWrap {
                                             origin: USBMuxMessageFake(),
                                             plist: plist,
                                             devices: devices,
-                                            daemon: USBDaemon(
-                                                socket: handle,
-                                                path: USBDaemon.USBMuxDPath,
-                                                queue: DispatchQueue.global(qos: .background),
-                                                stream: SocketStream(
-                                                    handle: handle,
-                                                    inputStream: inputStream,
-                                                    outputStream: outputStream
-                                                )
-                                            ),
+                                            daemon: root,
                                             delegate: delegate,
                                             closure: { (deviceID: Int, devices: DictionaryReference<Int, Data>) -> (Device) in
                                                 return USBDevice(
@@ -101,16 +93,7 @@ public final class USBDaemon: DaemonWrap {
                                         ),
                                         plist: plist,
                                         devices: devices,
-                                        daemon: USBDaemon(
-                                            socket: handle,
-                                            path: USBDaemon.USBMuxDPath,
-                                            queue: DispatchQueue.global(qos: .background),
-                                            stream: SocketStream(
-                                                handle: handle,
-                                                inputStream: inputStream,
-                                                outputStream: outputStream
-                                            )
-                                        ),
+                                        daemon: root,
                                         delegate: delegate,
                                         closure: { (deviceID: Int, devices: DictionaryReference<Int, Data>) -> (Device) in
                                             return USBDevice(
@@ -151,11 +134,13 @@ public final class USBDaemon: DaemonWrap {
                         CloseStreamReaction(),
                     ]
                 )
-            )
+            ),
+			root: root,
+			state: state
 		)
 	}
     
-    public required init(socket: Memory<CFSocketNativeHandle>, path: String, queue: DispatchQueue, stream: DataStream) {
+    public required init(socket: Memory<CFSocketNativeHandle>, path: String, queue: DispatchQueue, stream: DataStream, root: Memory<Daemon?>, state: Memory<Int>) {
         super.init(
             origin: StoppingUSBDaemon(
                 origin: StartingUSBDaemon(
@@ -165,8 +150,11 @@ public final class USBDaemon: DaemonWrap {
                     stream: stream
                 ),
                 handle: socket,
-                stream: stream
+                stream: stream,
+                state: state
             )
         )
+        weak var weakSelf = self
+        root.rawValue = weakSelf
     }
 }

@@ -54,12 +54,6 @@ internal final class SocketStream: DataStream {
 		self.readReaction = readReaction
 		self.writeReaction = writeReaction
 	}
-	
-	// MARK: Internal
-	
-	deinit {
-		close()
-	}
     
     // MARK: DataStream
 	
@@ -104,9 +98,11 @@ internal final class SocketStream: DataStream {
 	func close() {
 		if inputStream.rawValue?.streamStatus != .closed {
 			inputStream.rawValue?.close()
+            inputStream.rawValue = nil
 		}
 		if outputStream.rawValue?.streamStatus != .closed {
 			outputStream.rawValue?.close()
+            outputStream.rawValue = nil
 		}
 	}
 }

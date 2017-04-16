@@ -44,6 +44,7 @@ public final class USBDevice: Device, CustomStringConvertible {
         let outputStream = Memory<OutputStream?>(initialValue: nil)
         let tcpMode = Memory<Bool>(initialValue: false)
 		let queue = DispatchQueue.global(qos: .background)
+        let root = Memory<Daemon?>(initialValue: nil)
         self.init(
             deviceID: deviceID,
             dictionary: dictionary,
@@ -72,7 +73,9 @@ public final class USBDevice: Device, CustomStringConvertible {
                                                         socket: handle,
                                                         path: path,
                                                         queue: queue,
-                                                        stream: DataStreamFake()
+                                                        stream: DataStreamFake(),
+                                                        root: root,
+                                                        state: state
                                                     ),
                                                     stream: SocketWriteStream(
                                                         outputStream: outputStream
@@ -103,7 +106,9 @@ public final class USBDevice: Device, CustomStringConvertible {
 												handle: handle,
 												inputStream: inputStream,
 												outputStream: outputStream
-											)
+											),
+											root: root,
+											state: state
 										),
 										stream: SocketWriteStream(
 											outputStream: outputStream
@@ -127,7 +132,9 @@ public final class USBDevice: Device, CustomStringConvertible {
                                             handle: handle,
                                             inputStream: inputStream,
                                             outputStream: outputStream
-                                        )
+                                        ),
+                                        root: root,
+                                        state: state
                                     ),
                                     stream: SocketWriteStream(
                                         outputStream: outputStream
@@ -152,7 +159,9 @@ public final class USBDevice: Device, CustomStringConvertible {
                             CloseStreamReaction(),
                         ]
                     )
-                )
+                ),
+                root: root,
+                state: state
             ),
             stream: SocketWriteStream(
                 outputStream: outputStream

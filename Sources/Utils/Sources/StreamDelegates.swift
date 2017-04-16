@@ -41,6 +41,10 @@ internal final class StreamDelegates: NSObject, StreamDelegate {
         self.delegates = delegates
     }
     
+    deinit {
+        print("deinit")
+    }
+    
     // MARK: StreamDelegate
 	
 	func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
