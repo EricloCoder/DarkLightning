@@ -40,20 +40,18 @@ class ViewController: UIViewController {
         separator.translatesAutoresizingMaskIntoConstraints = false
         textFieldContainer.translatesAutoresizingMaskIntoConstraints = false
         textFieldContainer.backgroundColor = UIColor.white
-        textFieldContainer.layer.cornerRadius = 13.0
+        textFieldContainer.layer.cornerRadius = 15.0
         textFieldContainer.layer.borderWidth = 1.0
         textFieldContainer.layer.borderColor = UIColor(white: 0.87, alpha: 1.0).cgColor
         let messageContainer = UIView()
         messageContainer.translatesAutoresizingMaskIntoConstraints = false
         messageContainer.backgroundColor = UIColor(white: 0.97, alpha: 1.0)
         button = UIButton()
-        button?.titleLabel?.font = UIFont.systemFont(ofSize: 16.0)
         button?.setTitleColor(UIColor.blue, for: .normal)
         button?.setTitleColor(UIColor.lightGray, for: .disabled)
         button?.addTarget(self, action: #selector(send(button:)), for: .touchUpInside)
         button?.setTitle("Send", for: .normal)
         textField = UITextField()
-        textField?.font = UIFont.systemFont(ofSize: 14.0)
         textField?.addTarget(self, action: #selector(textDidChange(textField:)), for: .editingChanged)
         textView.rawValue = UITextView()
         textView.rawValue?.addGestureRecognizer(recognizer!)
@@ -109,6 +107,11 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        textField?.becomeFirstResponder()
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.header.rawValue = nil
@@ -128,9 +131,10 @@ class ViewController: UIViewController {
     }
     
     @objc private func send(button: UIButton) {
-        textField?.text = nil
         button.isEnabled = false
-        port.write(data: textField!.text!.data(using: .utf8)!)
+        let data = textField!.text!.data(using: .utf8)!
+        port.write(data: data)
+        textField?.text = nil
     }
     
     // MARK: Keyboard Events
