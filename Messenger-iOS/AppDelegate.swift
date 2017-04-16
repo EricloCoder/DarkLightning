@@ -25,7 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             rootViewController: ViewController(
                 title: "Disconnected",
                 textView: textView,
-                header: navigationItem
+                header: navigationItem,
+                port: port!
             )
         )
 		window?.makeKeyAndVisible()

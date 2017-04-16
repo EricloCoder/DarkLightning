@@ -25,8 +25,8 @@ internal final class AttachReaction: DaemonDelegate {
     // MARK: DeviceDelegate
     
     func daemon(_ daemon: Daemon, didAttach device: Device) {
-        //devices.append(device)
-        //device.connect()
+        devices.append(device)
+        device.connect()
         print("Attach: ")
     }
     
