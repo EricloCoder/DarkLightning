@@ -46,7 +46,7 @@ internal final class DetachMessage: USBMuxMessage {
 	
 	// MARK: Init
 	
-	internal init(origin: USBMuxMessage, plist: [String: Any], devices: DictionaryReference<Int, Data>, daemon: Memory<Daemon?>, delegate: DaemonDelegate, closure: @escaping (Int, DictionaryReference<Int, Data>) -> (Device)) {
+	internal required init(origin: USBMuxMessage = USBMuxMessageFake(), plist: [String: Any], devices: DictionaryReference<Int, Data>, daemon: Memory<Daemon?>, delegate: DaemonDelegate, closure: @escaping (Int, DictionaryReference<Int, Data>) -> (Device)) {
 		self.origin = origin
 		self.plist = plist
 		self.devices = devices

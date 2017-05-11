@@ -178,7 +178,7 @@ public final class USBDevice: Device, CustomStringConvertible {
         self.delegate = delegate
     }
     
-    // MARK: CustomStringConvertible
+    // MARK: Device
 	
 	public func connect() {
 		daemon.start()
@@ -192,6 +192,8 @@ public final class USBDevice: Device, CustomStringConvertible {
 	public func writeData(data: Data) {
 		stream.write(data: data)
 	}
+	
+	// MARK: CustomStringConvertible
 	
 	public var description: String {
 		var result = ""

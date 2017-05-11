@@ -76,7 +76,6 @@ public final class USBDaemon: DaemonWrap {
                                 mapping: { (plist: [String : Any]) -> (USBMuxMessage) in
                                     return AttachMessage(
                                         origin: DetachMessage(
-                                            origin: USBMuxMessageFake(),
                                             plist: plist,
                                             devices: devices,
                                             daemon: root,
