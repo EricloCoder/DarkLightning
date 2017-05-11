@@ -57,7 +57,7 @@ public final class USBDaemon: DaemonWrap {
     public convenience init(delegate: DaemonDelegate, deviceDelegate: DeviceDelegate, port: UInt32) {
         let handle = Memory<CFSocketNativeHandle>(initialValue: CFSocketInvalidHandle)
         let state = Memory<Int>(initialValue: 0)
-        let devices = DictionaryReference<Int, Data>()
+		let devices = Memory<[Int: Data]>(initialValue: [:])
         let inputStream = Memory<InputStream?>(initialValue: nil)
         let outputStream = Memory<OutputStream?>(initialValue: nil)
         let root = Memory<Daemon?>(initialValue: nil)
@@ -80,7 +80,7 @@ public final class USBDaemon: DaemonWrap {
                                             devices: devices,
                                             daemon: root,
                                             delegate: delegate,
-                                            closure: { (deviceID: Int, devices: DictionaryReference<Int, Data>) -> (Device) in
+                                            closure: { (deviceID: Int, devices: Memory<[Int: Data]>) -> (Device) in
                                                 return USBDevice(
                                                     deviceID: deviceID,
                                                     dictionary: devices,
@@ -94,7 +94,7 @@ public final class USBDaemon: DaemonWrap {
                                         devices: devices,
                                         daemon: root,
                                         delegate: delegate,
-                                        closure: { (deviceID: Int, devices: DictionaryReference<Int, Data>) -> (Device) in
+                                        closure: { (deviceID: Int, devices: Memory<[Int: Data]>) -> (Device) in
                                             return USBDevice(
                                                 deviceID: deviceID,
                                                 dictionary: devices,

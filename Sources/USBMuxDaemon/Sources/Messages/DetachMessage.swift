@@ -39,14 +39,14 @@ internal final class DetachMessage: USBMuxMessage {
 	
 	private let origin: USBMuxMessage
 	private let plist: [String: Any]
-	private let devices: DictionaryReference<Int, Data>
+	private let devices: Memory<[Int: Data]>
 	private let delegate: DaemonDelegate
     private let daemon: Memory<Daemon?>
-	private let closure: (Int, DictionaryReference<Int, Data>) -> (Device)
+	private let closure: (Int, Memory<[Int: Data]>) -> (Device)
 	
 	// MARK: Init
 	
-	internal required init(origin: USBMuxMessage = USBMuxMessageFake(), plist: [String: Any], devices: DictionaryReference<Int, Data>, daemon: Memory<Daemon?>, delegate: DaemonDelegate, closure: @escaping (Int, DictionaryReference<Int, Data>) -> (Device)) {
+	internal required init(origin: USBMuxMessage = USBMuxMessageFake(), plist: [String: Any], devices: Memory<[Int: Data]>, daemon: Memory<Daemon?>, delegate: DaemonDelegate, closure: @escaping (Int, Memory<[Int: Data]>) -> (Device)) {
 		self.origin = origin
 		self.plist = plist
 		self.devices = devices
@@ -62,7 +62,7 @@ internal final class DetachMessage: USBMuxMessage {
 		if messageType == DetachMessage.MessageTypeDetached {
 			let deviceID: Int = plist[DetachMessage.DeviceIDKey] as! Int
             self.delegate.daemon(self.daemon.rawValue!, didDetach: self.closure(deviceID, self.devices))
-			devices[deviceID] = nil
+			devices.rawValue[deviceID] = nil
 		}
 		else {
 			origin.decode()

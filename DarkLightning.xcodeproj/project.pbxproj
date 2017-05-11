@@ -48,7 +48,6 @@
 		B448EA931E9634D700316651 /* OOUInt32.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448EA6E1E9634D700316651 /* OOUInt32.swift */; };
 		B448EA941E9634D700316651 /* CFSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448EA701E9634D700316651 /* CFSocket.swift */; };
 		B448EA951E9634D700316651 /* ConstDataArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448EA711E9634D700316651 /* ConstDataArray.swift */; };
-		B448EA961E9634D700316651 /* DictionaryReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448EA721E9634D700316651 /* DictionaryReference.swift */; };
 		B448EA971E9634D700316651 /* Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448EA731E9634D700316651 /* Memory.swift */; };
 		B448EA981E9634D700316651 /* NetworkUInt16.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448EA741E9634D700316651 /* NetworkUInt16.swift */; };
 		B448EA991E9634D700316651 /* NetworkUInt32.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448EA751E9634D700316651 /* NetworkUInt32.swift */; };
@@ -197,7 +196,6 @@
 		B448EA6E1E9634D700316651 /* OOUInt32.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OOUInt32.swift; sourceTree = "<group>"; };
 		B448EA701E9634D700316651 /* CFSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFSocket.swift; sourceTree = "<group>"; };
 		B448EA711E9634D700316651 /* ConstDataArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstDataArray.swift; sourceTree = "<group>"; };
-		B448EA721E9634D700316651 /* DictionaryReference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryReference.swift; sourceTree = "<group>"; };
 		B448EA731E9634D700316651 /* Memory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Memory.swift; sourceTree = "<group>"; };
 		B448EA741E9634D700316651 /* NetworkUInt16.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkUInt16.swift; sourceTree = "<group>"; };
 		B448EA751E9634D700316651 /* NetworkUInt32.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkUInt32.swift; sourceTree = "<group>"; };
@@ -381,7 +379,6 @@
 			children = (
 				B448EA701E9634D700316651 /* CFSocket.swift */,
 				B448EA711E9634D700316651 /* ConstDataArray.swift */,
-				B448EA721E9634D700316651 /* DictionaryReference.swift */,
 				B448EA731E9634D700316651 /* Memory.swift */,
 				B448EA741E9634D700316651 /* NetworkUInt16.swift */,
 				B448EA751E9634D700316651 /* NetworkUInt32.swift */,
@@ -859,7 +856,6 @@
 				B448EA8D1E9634D700316651 /* USBDaemon.swift in Sources */,
 				B448EA811E9634D700316651 /* ListeningMessageData.swift in Sources */,
 				B448EA801E9634D700316651 /* DictData.swift in Sources */,
-				B448EA961E9634D700316651 /* DictionaryReference.swift in Sources */,
 				B448EA851E9634D700316651 /* USBMuxMessage.swift in Sources */,
 				B448EA951E9634D700316651 /* ConstDataArray.swift in Sources */,
 				B4832BC21E9103F80028AB8E /* CloseStreamReaction.swift in Sources */,

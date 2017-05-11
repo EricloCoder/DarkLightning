@@ -41,14 +41,14 @@ internal final class AttachMessage: USBMuxMessage {
 	
 	private let origin: USBMuxMessage
 	private let plist: [String: Any]
-	private let devices: DictionaryReference<Int, Data>
+	private let devices: Memory<[Int: Data]>
 	private let delegate: DaemonDelegate
     private let daemon: Memory<Daemon?>
-	private let closure: (Int, DictionaryReference<Int, Data>) -> (Device)
+	private let closure: (Int, Memory<[Int: Data]>) -> (Device)
 	
 	// MARK: Init
 	
-	internal init(origin: USBMuxMessage, plist: [String: Any], devices: DictionaryReference<Int, Data>, daemon: Memory<Daemon?>, delegate: DaemonDelegate, closure: @escaping (Int, DictionaryReference<Int, Data>) -> (Device)) {
+	internal init(origin: USBMuxMessage, plist: [String: Any], devices: Memory<[Int: Data]>, daemon: Memory<Daemon?>, delegate: DaemonDelegate, closure: @escaping (Int, Memory<[Int: Data]>) -> (Device)) {
 		self.origin = origin
 		self.plist = plist
 		self.devices = devices
@@ -66,7 +66,7 @@ internal final class AttachMessage: USBMuxMessage {
 			do {
                 let properties = plist[AttachMessage.PropertiesKey] as! [String : Any]
 				let data = try PropertyListSerialization.data(fromPropertyList: properties, format: .xml, options: 0)
-				devices[deviceID] = data
+				devices.rawValue[deviceID] = data
                 delegate.daemon(daemon.rawValue!, didAttach: closure(deviceID, devices))
 			} catch {
     

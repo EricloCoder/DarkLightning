@@ -29,7 +29,7 @@
 import Foundation
 
 public final class USBDevice: Device, CustomStringConvertible {
-	private let dictionary: DictionaryReference<Int, Data>
+	private let dictionary: Memory<[Int: Data]>
 	private let deviceID: Int
     private let daemon: Daemon
     private let stream: WriteStream
@@ -37,7 +37,7 @@ public final class USBDevice: Device, CustomStringConvertible {
 	
 	// MARK: Init
     
-	public convenience init(deviceID: Int, dictionary: DictionaryReference<Int, Data>, port: UInt32, path: String, delegate: DeviceDelegate) {
+	public convenience init(deviceID: Int, dictionary: Memory<[Int: Data]>, port: UInt32, path: String, delegate: DeviceDelegate) {
         let handle = Memory<CFSocketNativeHandle>(initialValue: CFSocketInvalidHandle)
         let state = Memory<Int>(initialValue: 0)
         let inputStream = Memory<InputStream?>(initialValue: nil)
@@ -170,7 +170,7 @@ public final class USBDevice: Device, CustomStringConvertible {
         )
     }
     
-    public required init(deviceID: Int, dictionary: DictionaryReference<Int, Data>, daemon: Daemon, stream: WriteStream, delegate: DeviceDelegate) {
+    public required init(deviceID: Int, dictionary: Memory<[Int: Data]>, daemon: Daemon, stream: WriteStream, delegate: DeviceDelegate) {
         self.deviceID = deviceID
 		self.dictionary = dictionary
         self.daemon = daemon
@@ -198,7 +198,7 @@ public final class USBDevice: Device, CustomStringConvertible {
 	public var description: String {
 		var result = ""
 		do {
-			let plist: [String: Any] = try PropertyListSerialization.propertyList(from: dictionary[deviceID]!, options: PropertyListSerialization.ReadOptions.mutableContainers, format: nil) as! [String : Any]
+			let plist: [String: Any] = try PropertyListSerialization.propertyList(from: dictionary.rawValue[deviceID]!, options: PropertyListSerialization.ReadOptions.mutableContainers, format: nil) as! [String : Any]
 			result = String(format: "%@", plist)
 		} catch {
 			
